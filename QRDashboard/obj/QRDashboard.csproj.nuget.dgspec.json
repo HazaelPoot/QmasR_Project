@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {}
+    "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {
+    "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
+        "projectUniqueName": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
         "projectName": "QRDashboard",
-        "projectPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
+        "projectPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
         "packagesPath": "C:\\Users\\Hazael_Poot\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\QRDashboard\\obj\\",
+        "outputPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hazael_Poot\\AppData\\Roaming\\NuGet\\NuGet.Config",

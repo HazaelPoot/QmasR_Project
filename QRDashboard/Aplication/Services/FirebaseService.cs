@@ -6,10 +6,10 @@ namespace QRDashboard.Aplication.Services
 {
     public class FirebaseService : IFirebaseService
     {
-        //private readonly IGenericRepository _repository;
-
         public async Task<string> UploadStorage(Stream streamArchivo, string nomArchivo)
         {
+            //Prueba de Git Push
+
             string urlImagen = "";
 
             try
