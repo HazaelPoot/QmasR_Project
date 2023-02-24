@@ -22,7 +22,8 @@ namespace QRDashboard.Aplication.Services
             IQueryable<Usuario> query = await _repositorio.Consult();
             return query.Include(r => r.AdminTypeNavigation).ToList(); 
         }
-        public async Task<Usuario> Crear(Usuario entidad, Stream Foto = null, string NombreFoto = "")
+
+        public async Task<Usuario> Crear(Usuario entidad, Stream Foto = null, string carpetaDestino = "", string NombreFoto = "")
         {
             Usuario usuarioExist = await _repositorio.Obtain(u => u.Username == entidad.Username);
 
@@ -33,7 +34,7 @@ namespace QRDashboard.Aplication.Services
             {
                 if(Foto != null)
                 {
-                    string urlFoto = await _fireBaseService.UploadStorage(Foto, NombreFoto);
+                    string urlFoto = await _fireBaseService.UploadStorage(Foto, carpetaDestino, NombreFoto);
                     entidad.UrlImagen = urlFoto;
                 }
 
@@ -53,7 +54,7 @@ namespace QRDashboard.Aplication.Services
             }
         }
 
-        public async Task<Usuario> Editar(Usuario entidad, Stream Foto = null, string NombreFoto = "")
+        public async Task<Usuario> Editar(Usuario entidad, Stream Foto = null, string carpetaDestino = "", string NombreFoto = "")
         {
             Usuario usuarioExist = await _repositorio.Obtain(u => u.Username == entidad.Username && u.IdUser != entidad.IdUser);
 
@@ -75,7 +76,7 @@ namespace QRDashboard.Aplication.Services
 
                 if (Foto != null)
                 {
-                    string urlFoto = await _fireBaseService.UploadStorage(Foto, NombreFoto);
+                    string urlFoto = await _fireBaseService.UploadStorage(Foto, carpetaDestino, NombreFoto);
                     usuario_editar.UrlImagen = urlFoto;
                 }
 
@@ -107,7 +108,7 @@ namespace QRDashboard.Aplication.Services
                 bool response = await _repositorio.Eliminate(usuarioEncontrado);
 
                 if(response)
-                    await _fireBaseService.DeleteStorage(nombreFoto);
+                    await _fireBaseService.DeleteStorage("Fotos_Perfil", nombreFoto);
 
                 return true;
             }

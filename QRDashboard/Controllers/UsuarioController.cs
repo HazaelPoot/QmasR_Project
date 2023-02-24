@@ -59,7 +59,7 @@ namespace QRDashboard.Controllers
                     fotoStream = foto.OpenReadStream();
                 }
 
-                Usuario usuarioCreado = await _usuarioService.Crear(_mapper.Map<Usuario>(vMUsuario), fotoStream, nombreFoto);
+                Usuario usuarioCreado = await _usuarioService.Crear(_mapper.Map<Usuario>(vMUsuario), fotoStream, "Fotos_Perfil", nombreFoto);
 
                 vMUsuario = _mapper.Map<VMUsuario>(usuarioCreado);
                 gResponse.Status = true;
@@ -93,7 +93,7 @@ namespace QRDashboard.Controllers
                     fotoStream = foto.OpenReadStream();
                 }
 
-                Usuario usuarioEditado = await _usuarioService.Editar(_mapper.Map<Usuario>(vMUsuario), fotoStream, nombreFoto);
+                Usuario usuarioEditado = await _usuarioService.Editar(_mapper.Map<Usuario>(vMUsuario), fotoStream, "Fotos_Perfil", nombreFoto);
 
                 vMUsuario = _mapper.Map<VMUsuario>(usuarioEditado);
                 gResponse.Status = true;

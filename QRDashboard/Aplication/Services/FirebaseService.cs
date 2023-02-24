@@ -6,9 +6,10 @@ namespace QRDashboard.Aplication.Services
 {
     public class FirebaseService : IFirebaseService
     {
-        public async Task<string> UploadStorage(Stream streamArchivo, string nomArchivo)
+        public async Task<string> UploadStorage(Stream streamArchivo, string carpetaDestino, string nomArchivo)
         {
             //Prueba de Git Push
+            //Segudo push
 
             string urlImagen = "";
 
@@ -33,7 +34,7 @@ namespace QRDashboard.Aplication.Services
                         AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
                         ThrowOnCancel = true
                     })
-                    .Child("Fotos_Perfil")
+                    .Child(carpetaDestino)
                     .Child(nomArchivo)
                     .PutAsync(streamArchivo, cancellation.Token);
 
@@ -50,8 +51,9 @@ namespace QRDashboard.Aplication.Services
             return urlImagen;
         }
 
-        public async Task<bool> DeleteStorage(string nomArchivo)
+        public async Task<bool> DeleteStorage(string carpetaDestino, string nomArchivo)
         {
+            // carpetaDestino = "Fotos_Perfil";
             try
             {
                 //INGRESA AQUÍ TUS PROPIAS CREDENCIALES
@@ -73,7 +75,7 @@ namespace QRDashboard.Aplication.Services
                         AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
                         ThrowOnCancel = true
                     })
-                    .Child("Fotos_Perfil")
+                    .Child(carpetaDestino)
                     .Child(nomArchivo)
                     .DeleteAsync();
 
