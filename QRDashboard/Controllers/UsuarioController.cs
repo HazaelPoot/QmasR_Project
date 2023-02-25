@@ -117,7 +117,7 @@ namespace QRDashboard.Controllers
             {
                 gResponse.Status = await _usuarioService.Eliminar(idUsuario);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 gResponse.Status = false;
                 gResponse.Mesaje = ex.Message;

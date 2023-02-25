@@ -1,9 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace QRDashboard.Domain.Entities
 {
-    public partial class ProyectoQr
+    public class ProyectoQr
     {
         public ProyectoQr()
         {

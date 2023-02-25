@@ -1,6 +1,5 @@
 using QRDashboard.Models;
 using QRDashboard.Domain.Entities;
-using System.Globalization;
 using AutoMapper;
 
 namespace QRDashboard.Aplication.Mappings

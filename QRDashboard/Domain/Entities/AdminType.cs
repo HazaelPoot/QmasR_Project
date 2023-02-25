@@ -1,6 +1,6 @@
-﻿namespace QRDashboard.Domain.Entities
+namespace QRDashboard.Domain.Entities
 {
-    public partial class AdminType
+    public class AdminType
     {
         public AdminType()
         {

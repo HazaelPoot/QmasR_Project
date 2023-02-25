@@ -1,3 +1,4 @@
+
 using Microsoft.EntityFrameworkCore;
 using QRDashboard.Aplication.Services;
 using QRDashboard.Domain.Interfaces;

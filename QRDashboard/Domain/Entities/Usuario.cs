@@ -1,9 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace QRDashboard.Domain.Entities
 {
-    public partial class Usuario
+    public class Usuario
     {
         public int IdUser { get; set; }
         public string Nombre { get; set; } = null!;
