@@ -10130,11 +10130,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Hazael_Poot\\Desktop\\QRDashboard\\QRDashboard.csproj",
+      "projectUniqueName": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
       "projectName": "QRDashboard",
-      "projectPath": "c:\\Users\\Hazael_Poot\\Desktop\\QRDashboard\\QRDashboard.csproj",
+      "projectPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
       "packagesPath": "C:\\Users\\Hazael_Poot\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Hazael_Poot\\Desktop\\QRDashboard\\obj\\",
+      "outputPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Hazael_Poot\\AppData\\Roaming\\NuGet\\NuGet.Config",

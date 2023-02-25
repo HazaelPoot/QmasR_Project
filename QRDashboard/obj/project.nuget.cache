@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KR7oV4+UUpscxfMC37JCRpioHPQHywBc1fNwPDx29UVKhQGMnIRpyQURNZI9v9l6IT3sryQiQq5NVJp5Nsd2XA==",
+  "dgSpecHash": "3mr2rZYhVs4FZJ05GU3WKb6SnVzKlGZc5JXg6jbk5CCiPEtFbk6SdoOq49IzOd3xaz8VPi0cMhn/AcyWrbodvg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hazael_Poot\\Desktop\\QRDashboard\\QRDashboard.csproj",
+  "projectFilePath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hazael_Poot\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Hazael_Poot\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
