@@ -1,11 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace QRDashboard.Domain.Entities
 {
-    public class FotosProyecto
+    public partial class FotosProyecto
     {
         public int IdImg { get; set; }
         public string Descripcion { get; set; } = null!;

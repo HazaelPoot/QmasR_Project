@@ -1,6 +1,9 @@
+﻿using System;
+using System.Collections.Generic;
+
 namespace QRDashboard.Domain.Entities
 {
-    public class AdminType
+    public partial class AdminType
     {
         public AdminType()
         {

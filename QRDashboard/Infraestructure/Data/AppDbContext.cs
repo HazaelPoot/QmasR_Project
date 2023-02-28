@@ -19,13 +19,13 @@ namespace QRDashboard.Infraestructure.Data
         public virtual DbSet<ProyectoQr> ProyectoQrs { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Data source=HAZAEL\\SQLEXPRESS; Initial Catalog=QR_DATABASE; Trusted_Connection=True;");
-            }
-        }
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //     if (!optionsBuilder.IsConfigured)
+        //     {
+        //         optionsBuilder.UseSqlServer("Data source=HAZAEL\\SQLEXPRESS; Initial Catalog=QR_DATABASE; Trusted_Connection=True;");
+        //     }
+        // }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -69,15 +69,17 @@ namespace QRDashboard.Infraestructure.Data
 
                 entity.Property(e => e.FinaliDatre).HasColumnType("date");
 
-                entity.Property(e => e.Nombre)
+                entity.Property(e => e.Presupuesto).HasColumnType("decimal(10, 2)");
+
+                entity.Property(e => e.Titulo)
                     .HasMaxLength(100)
                     .IsUnicode(false);
-
-                entity.Property(e => e.Presupuesto).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.Ubicacion)
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UrlImagen).IsUnicode(false);
             });
 
             modelBuilder.Entity<Usuario>(entity =>
