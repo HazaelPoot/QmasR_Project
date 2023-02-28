@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using QRDashboard.Domain.Interfaces;
 using QRDashboard.Domain.Entities;
-using System.Net;
-using System.Text;
 
 namespace QRDashboard.Aplication.Services
 {
@@ -124,11 +122,6 @@ namespace QRDashboard.Aplication.Services
         }
 
         public Task<Usuario> ObtenerPorId(int IdUsuario)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> GuardarPerfil(Usuario entidad)
         {
             throw new NotImplementedException();
         }

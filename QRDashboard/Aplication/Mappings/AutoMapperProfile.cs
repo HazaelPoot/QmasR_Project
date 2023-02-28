@@ -13,7 +13,6 @@ namespace QRDashboard.Aplication.Mappings
             #endregion Roles
 
             #region Usuario
-
             CreateMap<Usuario, VMUsuario>()
                 .ForMember(destino =>
                     destino.AdminTypeName,
@@ -22,9 +21,26 @@ namespace QRDashboard.Aplication.Mappings
             CreateMap<VMUsuario, Usuario>()
                 .ForMember(destino =>
                     destino.AdminTypeNavigation,
-                    opt => opt.Ignore());
-                    
+                    opt => opt.Ignore());       
             #endregion Usuario
+
+            #region Categoria
+            CreateMap<Categorium, VMCategoria>().ReverseMap();
+            #endregion categoria
+
+            #region Proyecto
+            CreateMap<ProyectoQr, VMProyecto>()
+                .ForMember(destino =>
+                destino.CategoriaName,
+                opt => opt.MapFrom(origen => origen.IdCategoriaNavigation.Descripcion));
+
+            CreateMap<VMProyecto, ProyectoQr>()
+                .ForMember(destino =>
+                destino.IdCategoriaNavigation,
+                opt => opt.Ignore());
+            #endregion Proyecto
+
+            
         }
     }
 }

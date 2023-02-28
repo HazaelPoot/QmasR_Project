@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using QRDashboard.Aplication.Services;
 using QRDashboard.Domain.Interfaces;
@@ -21,6 +20,8 @@ namespace QRDashboard.Infraestructure.Ioc
             services.AddScoped<IFirebaseService, FirebaseService>();
             services.AddScoped<IRolService, RolService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IProyectoService, ProyectoService>();
+            services.AddScoped<ICategoriaService, CategoriaService>();
         }
     }
 }

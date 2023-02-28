@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace QRDashboard.Domain.Entities
+﻿namespace QRDashboard.Domain.Entities
 {
     public partial class ProyectoQr
     {
@@ -18,7 +15,9 @@ namespace QRDashboard.Domain.Entities
         public decimal Presupuesto { get; set; }
         public string UrlImagen { get; set; } = null!;
         public int Status { get; set; }
+        public int? IdCategoria { get; set; }
 
+        public virtual Categorium? IdCategoriaNavigation { get; set; }
         public virtual ICollection<FotosProyecto> FotosProyectos { get; set; }
     }
 }

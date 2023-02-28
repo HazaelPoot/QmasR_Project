@@ -13,8 +13,9 @@ namespace QRDashboard.Infraestructure.Data
             : base(options)
         {
         }
-
+        
         public virtual DbSet<AdminType> AdminTypes { get; set; } = null!;
+        public virtual DbSet<Categorium> Categoria { get; set; } = null!;
         public virtual DbSet<FotosProyecto> FotosProyectos { get; set; } = null!;
         public virtual DbSet<ProyectoQr> ProyectoQrs { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
@@ -37,6 +38,15 @@ namespace QRDashboard.Infraestructure.Data
                 entity.ToTable("AdminType");
 
                 entity.Property(e => e.Tipo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Categorium>(entity =>
+            {
+                entity.HasKey(e => e.IdCategoria);
+
+                entity.Property(e => e.Descripcion)
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
@@ -80,6 +90,11 @@ namespace QRDashboard.Infraestructure.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.UrlImagen).IsUnicode(false);
+
+                entity.HasOne(d => d.IdCategoriaNavigation)
+                    .WithMany(p => p.ProyectoQrs)
+                    .HasForeignKey(d => d.IdCategoria)
+                    .HasConstraintName("FK_ProyectoQR_Categoria");
             });
 
             modelBuilder.Entity<Usuario>(entity =>
