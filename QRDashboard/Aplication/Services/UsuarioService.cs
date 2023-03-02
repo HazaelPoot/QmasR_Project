@@ -66,7 +66,7 @@ namespace QRDashboard.Aplication.Services
                 usuario_editar.Nombre = entidad.Nombre;
                 usuario_editar.Apellidos = entidad.Apellidos;
                 usuario_editar.Username = entidad.Username;
-                usuario_editar.Contraseña = entidad.Contraseña;
+                usuario_editar.Passw = entidad.Passw;
                 usuario_editar.AdminType = entidad.AdminType;
 
                 if(usuario_editar.UrlImagen == "")

@@ -3,7 +3,7 @@
     nombre: "",
     apellidos: "",
     username: "",
-    contraseña: "",
+    passw: "",
     adminType: 0,
     urlImagen: "",
 }
@@ -42,7 +42,7 @@ $(document).ready(function(){
             { "data": "nombre" },
             { "data": "apellidos" },
             { "data": "username" },
-            { "data": "contraseña" },
+            { "data": "passw" },
              {"data": "adminTypeName" },
             // { "data": "admintype", render: function (data){
             //    if(data == 1)
@@ -88,7 +88,7 @@ function mostarModal(modelo = MODELO_BASE){
     $("#txtNombre").val(modelo.nombre)
     $("#txtApellido").val(modelo.apellidos)
     $("#txtUserName").val(modelo.username)
-    $("#txtPassword").val(modelo.contraseña)
+    $("#txtPassword").val(modelo.passw)
     $("#cboRol").val(modelo.adminType == 0 ? $("#cboRol option:first").val(): modelo.adminType)
     // $("#cboEstado").val(modelo.esActivo)
     $("#txtFoto").val("")
@@ -118,7 +118,7 @@ $("#btnGuardar").click(function(){
     modelo["nombre"] = $("#txtNombre").val()
     modelo["apellidos"] = $("#txtApellido").val()
     modelo["username"] = $("#txtUserName").val()
-    modelo["contraseña"] = $("#txtPassword").val()
+    modelo["passw"] = $("#txtPassword").val()
     modelo["adminType"] = $("#cboRol").val()
     // modelo["esActivo"] = $("#cboEstado").val()
     

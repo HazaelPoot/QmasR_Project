@@ -44,7 +44,8 @@ namespace QRDashboard.Infraestructure.Data
 
             modelBuilder.Entity<Categorium>(entity =>
             {
-                entity.HasKey(e => e.IdCategoria);
+                entity.HasKey(e => e.IdCategoria)
+                    .HasName("PK__Categori__A3C02A1047C0F7AD");
 
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(50)
@@ -54,30 +55,26 @@ namespace QRDashboard.Infraestructure.Data
             modelBuilder.Entity<FotosProyecto>(entity =>
             {
                 entity.HasKey(e => e.IdImg)
-                    .HasName("PK__FotosPro__0C1AF99B5F1DB885");
+                    .HasName("PK__FotosPro__0C1AF99B76705D58");
 
                 entity.ToTable("FotosProyecto");
-
-                entity.Property(e => e.Descripcion).IsUnicode(false);
 
                 entity.Property(e => e.UrlImage).IsUnicode(false);
 
                 entity.HasOne(d => d.IdProjNavigation)
                     .WithMany(p => p.FotosProyectos)
                     .HasForeignKey(d => d.IdProj)
-                    .HasConstraintName("FK__FotosProy__IdPro__3D5E1FD2");
+                    .HasConstraintName("FK__FotosProy__IdPro__208CD6FA");
             });
 
             modelBuilder.Entity<ProyectoQr>(entity =>
             {
                 entity.HasKey(e => e.IdProj)
-                    .HasName("PK__Proyecto__E40D9717D5B9C62B");
+                    .HasName("PK__Proyecto__E40D9717C9622AF5");
 
                 entity.ToTable("ProyectoQR");
 
-                entity.Property(e => e.CreateDate).HasColumnType("date");
-
-                entity.Property(e => e.FinaliDatre).HasColumnType("date");
+                entity.Property(e => e.Descripcion).IsUnicode(false);
 
                 entity.Property(e => e.Presupuesto).HasColumnType("decimal(10, 2)");
 
@@ -94,7 +91,7 @@ namespace QRDashboard.Infraestructure.Data
                 entity.HasOne(d => d.IdCategoriaNavigation)
                     .WithMany(p => p.ProyectoQrs)
                     .HasForeignKey(d => d.IdCategoria)
-                    .HasConstraintName("FK_ProyectoQR_Categoria");
+                    .HasConstraintName("FK__ProyectoQ__IdCat__1DB06A4F");
             });
 
             modelBuilder.Entity<Usuario>(entity =>
@@ -106,11 +103,11 @@ namespace QRDashboard.Infraestructure.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Contraseña)
+                entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Nombre)
+                entity.Property(e => e.Passw)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 

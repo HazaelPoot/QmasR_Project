@@ -1,8 +1,7 @@
 const MODELO_BASE = {
   idProj: 0,
   titulo: "",
-  createDate: "",
-  finaliDatre: "",
+  descripcion: "",
   ubicacion: "",
   presupuesto: 0,
   idCategoria: 0,
@@ -31,8 +30,7 @@ $(document).ready(function () {
 function mostarModal(modelo = MODELO_BASE) {
   $("#txtId").val(modelo.idProj);
   $("#txtTitulo").val(modelo.titulo);
-  $("#txtCreateDate").val(modelo.createDate);
-  $("#txtFinaliDate").val(modelo.finaliDatre);
+  $("#txtDescripcion").val(modelo.descripcion);
   $("#txtPresupuesto").val(modelo.presupuesto);
   $("#txtUbicacion").val(modelo.ubicacion);
   $("#cboCategoria").val(
@@ -79,8 +77,7 @@ $("#btnGuardar").click(function () {
   const modelo = structuredClone(MODELO_BASE);
   modelo["idProj"] = parseInt($("#txtId").val());
   modelo["titulo"] = $("#txtTitulo").val();
-  modelo["createDate"] = $("#txtCreateDate").val();
-  modelo["finaliDatre"] = $("#txtFinaliDate").val();
+  modelo["descripcion"] = $("#txtDescripcion").val();
   modelo["ubicacion"] = $("#txtUbicacion").val();
   modelo["presupuesto"] = $("#txtPresupuesto").val();
   modelo["idCategoria"] = $("#cboCategoria").val();

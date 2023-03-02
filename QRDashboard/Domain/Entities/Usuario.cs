@@ -6,7 +6,7 @@
         public string Nombre { get; set; } = null!;
         public string Apellidos { get; set; } = null!;
         public string Username { get; set; } = null!;
-        public string Contraseña { get; set; } = null!;
+        public string Passw { get; set; } = null!;
         public int? AdminType { get; set; }
         public string UrlImagen { get; set; } = null!;
 

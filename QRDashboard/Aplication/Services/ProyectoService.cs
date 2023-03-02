@@ -63,8 +63,7 @@ namespace QRDashboard.Aplication.Services
                 IQueryable<ProyectoQr> queryProj = await _repositorio.Consult(u => u.IdProj == entidad.IdProj);
                 ProyectoQr proj_editar = queryProj.First();
                 proj_editar.Titulo = entidad.Titulo;
-                proj_editar.CreateDate = entidad.CreateDate;
-                proj_editar.FinaliDatre = entidad.FinaliDatre;
+                proj_editar.Descripcion = entidad.Descripcion;
                 proj_editar.Ubicacion = entidad.Ubicacion;
                 proj_editar.Presupuesto = entidad.Presupuesto;
                 proj_editar.IdCategoria = entidad.IdCategoria;

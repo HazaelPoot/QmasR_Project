@@ -18417,11 +18417,6 @@
       "FilePath": "c:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\Views\\Proyecto\\_EditModal.cshtml",
-      "TargetPath": "Views\\Proyecto\\_EditModal.cshtml",
-      "FileKind": "mvc"
     }
   ],
   "SerializationFormat": "0.3"

@@ -9,10 +9,9 @@
 
         public int IdProj { get; set; }
         public string Titulo { get; set; } = null!;
-        public DateTime CreateDate { get; set; }
-        public DateTime FinaliDatre { get; set; }
+        public string Descripcion { get; set; } = null!;
         public string Ubicacion { get; set; } = null!;
-        public decimal Presupuesto { get; set; }
+        public decimal? Presupuesto { get; set; }
         public string UrlImagen { get; set; } = null!;
         public int Status { get; set; }
         public int? IdCategoria { get; set; }
