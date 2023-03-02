@@ -1,0 +1,42 @@
+@model VMProyecto
+@{
+    ViewData["Title"] = "_EditModal";
+}
+
+<!--  Modal Add - Update-->
+<div class="modal fade" id="user-modal" tabindex="-1" role="dialog" aria-labelledby="user-modal-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="user-modal-label">Detalles del usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>ID: @Model.IdCategoria</p>
+                <p>Nombre: @Model.Titulo</p>
+                <p>Correo electrónico: @Model.Presupuesto</p>
+                <!-- Agrega más detalles del usuario aquí -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+        <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+        <script src="~/vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+    <script src="~/js/vistas/Proyecto_Index.js"></script>
+
+    <!-- SOLO ES DE EJEMPLO - IGNORAR -->
+    <!-- <script src="js/vistas/datatables-demo.js"></script> -->
+    }

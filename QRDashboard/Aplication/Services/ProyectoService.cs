@@ -51,9 +51,47 @@ namespace QRDashboard.Aplication.Services
             }
         }
 
-        public Task<ProyectoQr> Editar(ProyectoQr entidad, Stream Foto = null, string carpetaDestino = "", string NombreFoto = "")
+        public async Task<ProyectoQr> Editar(ProyectoQr entidad, Stream Foto = null, string carpetaDestino = "", string NombreFoto = "")
         {
-            throw new NotImplementedException();
+            ProyectoQr proyectExist = await _repositorio.Obtain(u => u.Titulo == entidad.Titulo && u.IdProj != entidad.IdProj);
+
+            if (proyectExist != null)
+                throw new TaskCanceledException("El Proyecto ya existe");
+
+            try
+            {
+                IQueryable<ProyectoQr> queryProj = await _repositorio.Consult(u => u.IdProj == entidad.IdProj);
+                ProyectoQr proj_editar = queryProj.First();
+                proj_editar.Titulo = entidad.Titulo;
+                proj_editar.CreateDate = entidad.CreateDate;
+                proj_editar.FinaliDatre = entidad.FinaliDatre;
+                proj_editar.Ubicacion = entidad.Ubicacion;
+                proj_editar.Presupuesto = entidad.Presupuesto;
+                proj_editar.IdCategoria = entidad.IdCategoria;
+                proj_editar.Status = entidad.Status;
+
+                if(proj_editar.UrlImagen == "")
+                    proj_editar.UrlImagen = entidad.UrlImagen;
+
+                if (Foto != null)
+                {
+                    string urlFoto = await _fireBaseService.UploadStorage(Foto, carpetaDestino, NombreFoto);
+                    proj_editar.UrlImagen = urlFoto;
+                }
+
+                bool response = await _repositorio.Edit(proj_editar);
+
+                if(!response)
+                    throw new TaskCanceledException("No se pudo moficiar el Proyecto");
+
+                ProyectoQr proj_editado = queryProj.Include(r => r.IdCategoriaNavigation).First();
+
+                return proj_editado;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public Task<bool> Eliminar(int idProyecto)
@@ -66,9 +104,12 @@ namespace QRDashboard.Aplication.Services
             throw new NotImplementedException();
         }
 
-        public Task<ProyectoQr> ObtenerPorId(int idProyecto)
+        public async Task<ProyectoQr> ObtenerPorId(int IdProj)
         {
-            throw new NotImplementedException();
+            IQueryable<ProyectoQr> query = await _repositorio.Consult(u => u.IdProj == IdProj);
+            ProyectoQr resultado = query.Include(r => r.IdCategoriaNavigation).FirstOrDefault();
+
+            return resultado;
         }
     }
 }

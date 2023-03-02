@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\img\\QmasRIcono.png"
     },
     {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\img\\favicon.png",
+      "PackagePath": "staticwebassets\\img\\favicon.png"
+    },
+    {
       "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\img\\undraw_posting_photo.svg",
       "PackagePath": "staticwebassets\\img\\undraw_posting_photo.svg"
     },
@@ -67,6 +71,10 @@
     {
       "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Proyecto_Index.js",
+      "PackagePath": "staticwebassets\\js\\vistas\\Proyecto_Index.js"
     },
     {
       "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Usuario_Index.js",
@@ -311,6 +319,98 @@
     {
       "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_buttons.scss",
+      "PackagePath": "staticwebassets\\scss\\_buttons.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_cards.scss",
+      "PackagePath": "staticwebassets\\scss\\_cards.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_charts.scss",
+      "PackagePath": "staticwebassets\\scss\\_charts.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_dropdowns.scss",
+      "PackagePath": "staticwebassets\\scss\\_dropdowns.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_error.scss",
+      "PackagePath": "staticwebassets\\scss\\_error.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_footer.scss",
+      "PackagePath": "staticwebassets\\scss\\_footer.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_global.scss",
+      "PackagePath": "staticwebassets\\scss\\_global.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_login.scss",
+      "PackagePath": "staticwebassets\\scss\\_login.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_mixins.scss",
+      "PackagePath": "staticwebassets\\scss\\_mixins.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_navs.scss",
+      "PackagePath": "staticwebassets\\scss\\_navs.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_utilities.scss",
+      "PackagePath": "staticwebassets\\scss\\_utilities.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\_variables.scss",
+      "PackagePath": "staticwebassets\\scss\\_variables.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\navs\\_global.scss",
+      "PackagePath": "staticwebassets\\scss\\navs\\_global.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\navs\\_sidebar.scss",
+      "PackagePath": "staticwebassets\\scss\\navs\\_sidebar.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\navs\\_topbar.scss",
+      "PackagePath": "staticwebassets\\scss\\navs\\_topbar.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\sb-admin-2.scss",
+      "PackagePath": "staticwebassets\\scss\\sb-admin-2.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\utilities\\_animation.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_animation.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\utilities\\_background.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_background.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\utilities\\_border.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_border.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\utilities\\_display.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_display.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\utilities\\_progress.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_progress.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\utilities\\_rotate.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_rotate.scss"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\scss\\utilities\\_text.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_text.scss"
     },
     {
       "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\vendor\\bootstrap\\js\\bootstrap.bundle.js",

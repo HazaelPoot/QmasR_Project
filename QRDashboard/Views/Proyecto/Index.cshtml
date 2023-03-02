@@ -1,282 +1,218 @@
-﻿@{
-ViewData["Title"] = "Proyectos";
-Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model IEnumerable<QRDashboard.Models.VMProyecto>
+    @{
+    ViewData["Title"] = "Proyectos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-@section Styles{
-<link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
-<link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
-}
+    @section Styles{
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+    }
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
-    <div class="content-body">
-
-        <div class="container-fluid">
-            <div class="col-sm-6 p-md-0 justify-content-sm-start mt-2 mt-sm-0 d-flex">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Projects</a></li>
-                    <li class="breadcrumb-item active">Galeria</li>
-                </ol>
-            </div>
-            <div class="row page-titles mx-0">
-                <div class="col-sm-6 p-md-0">
-                    <div class="welcome-text">
-                        <h1>Galeria de Proyectos</h1>
-                    </div>
-                </div>
-                <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="col-sm-6 p-md-0 justify-content-sm-start mt-2 mt-sm-0 d-flex">
                     <ol class="breadcrumb">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#modalProyecto">
-                            Nuevo <i class="fa fa-plus-circle"></i>
-                        </button>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Projects</a></li>
+                        <li class="breadcrumb-item active">Galeria</li>
                     </ol>
                 </div>
-            </div>
-
-            <div class="row">
-
-                <!-- ======= Card Project ======= -->
-                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h5 class="card-title">Project Title</h5>
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h1>Galeria de Proyectos</h1>
                         </div>
-                        <img class="card-img-top img-fluid"
-                            src="https://images.adsttc.com/media/images/5fd5/0402/63c0/1740/7000/041a/large_jpg/Mario_Wibowo.jpg?1607795706"
-                            alt="Card image cap">
-                        <div class="card-body">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-bold">Fecha de Creación:</td>
-                                        <td>00/00/0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-bold">Fecha de Finalización:</td>
-                                        <td>00/00/0000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer d-sm-flex justify-content-between">
-                            <!-- Boton Imagenes -->
-                            <div class="card-footer-link mb-4 mb-sm-0">
-                                <a href="#" class="btn btn-primary">Imagenes <i class="fa fa-images"></i></a>
-                            </div>
-                            <!-- Boton Editar -->
-                            <button class="btn btn-info" data-toggle="modal" data-target="#modalProyecto">
-                                Modificar <i class="fa fa-pencil-alt"></i>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <button class="btn btn-success" id="btnNuevo">
+                                Nuevo <i class="fa fa-plus-circle"></i>
                             </button>
-                            <!-- Botn Eliminar -->
-                            <div class="card-footer-link mb-4 mb-sm-0">
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">
-                                    Eliminar
-                                    <i class="fa fa-trash"></i>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                    <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
+                        <div class="card mb-3" id="cardate">
+                            <div class="card-header">
+                                <h5 class="card-title">@item.Titulo</h5>
+                            </div>
+                            <img class="card-img-top img-fluid" src="@item.UrlImagen" alt="Card image cap">
+                            <div class="card-body">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-bold">Categoria:</td>
+                                            <td>@item.CategoriaName</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-bold">Estado:</td>
+                                            <td>
+                                                @if(item.Status == 0)
+                                                {
+                                                <span class="badge bg-success">
+                                                    Activo
+                                                </span>
+                                                }
+                                                else if(item.Status == 1)
+                                                {
+                                                <span class="badge bg-danger">
+                                                    Desactivo
+                                                </span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-footer d-sm-flex justify-content-between">
+                                <!-- Boton Imagenes -->
+                                <div class="card-footer-link mb-4 mb-sm-0">
+                                    <button class="btn btn-primary">Imagenes <i class="fa fa-images"></i></button>
+                                </div>
+                                <!-- Boton Editar -->
+                                <button class="btn btn-info" onclick="openModalEdit(@item.IdProj)">
+                                    Modificar <i class="fa fa-pencil-alt"></i>
                                 </button>
+                                <!-- Botn Eliminar -->
+                                <div class="card-footer-link mb-4 mb-sm-0">
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">
+                                        Eliminar
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- ======= End Card Project ======= -->
-
-                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h5 class="card-title">Project Title</h5>
-                        </div>
-                        <img class="card-img-top img-fluid"
-                            src="https://concepto.de/wp-content/uploads/2018/04/arquitectura-vivienda-moderna-e1523469732991.jpeg"
-                            alt="Card image cap">
-                        <div class="card-body">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-bold">Fecha de Creación:</td>
-                                        <td>00/00/0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-bold">Fecha de Finalización:</td>
-                                        <td>00/00/0000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer d-sm-flex justify-content-between">
-                            <div class="card-footer-link mb-4 mb-sm-0">
-                                <a href="#" class="btn btn-primary">Imagenes <i class="fa fa-images"></i></a>
-                            </div>
-                            <a href="#" class="btn btn-info">Modificar <i class="fa fa-pencil-alt"></i></a>
-                            <div class="card-footer-link mb-4 mb-sm-0">
-                                <a href="#" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h5 class="card-title">Project Title</h5>
-                        </div>
-                        <img class="card-img-top img-fluid"
-                            src="https://i.pinimg.com/originals/82/04/c1/8204c1140a1d524dc471d33cbef8c590.jpg"
-                            alt="Card image cap">
-                        <div class="card-body">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-bold">Fecha de Creación:</td>
-                                        <td>00/00/0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-bold">Fecha de Finalización:</td>
-                                        <td>00/00/0000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer d-sm-flex justify-content-between">
-                            <div class="card-footer-link mb-4 mb-sm-0">
-                                <a href="#" class="btn btn-primary">Imagenes <i class="fa fa-images"></i></a>
-                            </div>
-                            <a href="#" class="btn btn-info">Modificar <i class="fa fa-pencil-alt"></i></a>
-                            <div class="card-footer-link mb-4 mb-sm-0">
-                                <a href="#" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h5 class="card-title">Project Title</h5>
-                        </div>
-                        <img class="card-img-top img-fluid"
-                            src="https://images.adsttc.com/media/images/5de9/3010/3312/fd9f/fd00/04a7/newsletter/Lv_Lin.jpg?1575563274"
-                            alt="Card image cap">
-                        <div class="card-body">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-bold">Fecha de Creación:</td>
-                                        <td>00/00/0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-bold">Fecha de Finalización:</td>
-                                        <td>00/00/0000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer d-sm-flex justify-content-between">
-                            <div class="card-footer-link mb-4 mb-sm-0">
-                                <a href="#" class="btn btn-primary">Imagenes <i class="fa fa-images"></i></a>
-                            </div>
-                            <a href="#" class="btn btn-info">Modificar <i class="fa fa-pencil-alt"></i></a>
-                            <div class="card-footer-link mb-4 mb-sm-0">
-                                <a href="#" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!--  Modal Add - Update-->
-<div class="modal fade" id="modalProyecto" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Proyecto</h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <input type="hidden" value="0" id="txtId">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="txtNombre">Nombre</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtNombre"
-                                        name="Nombre">
+    <!--  Modal Add - Update-->
+    <div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Proyecto</h4>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" value="0" id="txtId">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="txtTitulo">Titulo</label>
+                                        <input type="text" class="form-control form-control-sm input-validar"
+                                            id="txtTitulo" name="Nombre">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="txtCreateDate">Fecha de Creación</label>
+                                        <input type="date" class="form-control form-control-sm input-validar"
+                                            id="txtCreateDate" name="Correo">
+                                    </div>
                                 </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="txtCorreo">Fecha de Creación</label>
-                                    <input type="date" class="form-control form-control-sm input-validar" id="txtCorreo"
-                                        name="Correo">
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="txtFinaliDate">Fecha de Finalización</label>
+                                        <input type="date" class="form-control form-control-sm input-validar"
+                                            id="txtFinaliDate" name="Telefono">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="txtUbicacion">Ubicación</label>
+                                        <input type="text" class="form-control form-control-sm input-validar"
+                                            id="txtUbicacion" name="Telefono">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="txtPresupuesto">Presupuesto</label>
+                                        <input type="text" class="form-control form-control-sm input-validar"
+                                            id="txtPresupuesto" name="Presupuesto">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="cboEstado">Estado</label>
+                                        <select class="form-control form-control-sm" id="cboEstado">
+                                            <option value="0">Activo</option>
+                                            <option value="1">Desactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="cboCategoria">Categoria</label>
+                                        <select class="form-control form-control-sm" id="cboCategoria">
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="txtFoto">Foto</label>
+                                        <input class="form-control-file" type="file" id="txtFoto" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="txtTelefono">Fecha de Finalización</label>
-                                    <input type="date" class="form-control form-control-sm input-validar"
-                                        id="txtTelefono" name="Telefono">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="txtTelefono">Ubicación</label>
-                                    <input type="text" class="form-control form-control-sm input-validar"
-                                        id="txtTelefono" name="Telefono">
-                                </div>
+                            <div class="col-sm-4">
+                                <img id="imgPost" style="max-width:200px;"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTdkiS1we0b08bO2lLpga3qg48N-xFSvrLl_ay4KrPE2UJTmsnOF4x9ThTBPTinwIGeM&usqp=CAU"
+                                    class="rounded mx-auto d-block" alt="Foto Proyecto">
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="cboEstado">Estado</label>
-                                    <select class="form-control form-control-sm" id="cboEstado">
-                                        <option value="1">Activo</option>
-                                        <option value="0">No Activo</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="txtFoto">Portada</label>
-                                    <input class="form-control-file" type="file" id="txtFoto" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <img id="imgUsuario" style="max-width:200px;"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTdkiS1we0b08bO2lLpga3qg48N-xFSvrLl_ay4KrPE2UJTmsnOF4x9ThTBPTinwIGeM&usqp=CAU"
-                                class="rounded mx-auto d-block" alt="Foto usuario">
-                        </div>
 
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="btnGuardar">Guardar</button>
-                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-sm" type="button" id="btnGuardar">Guardar</button>
+                    <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!--  Modal Delete-->
-<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Eliminar Proyecto</h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h6>¿Deseas Eliminar la información del proyecto ?</h6>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="btnGuar">
-                    Si,
-                    Eliminar
-                </button>
-                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancelar</button>
+    <!--  Modal Delete-->
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Eliminar Proyecto</h4>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h6>¿Deseas Eliminar la información del proyecto ?</h6>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-sm" type="button" id="btnGuar">
+                        Si,
+                        Eliminar
+                    </button>
+                    <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    @section Scripts{
+
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+    <script src="~/js/vistas/Proyecto_Index.js"></script>
+
+    <!-- SOLO ES DE EJEMPLO - IGNORAR -->
+    <!-- <script src="js/vistas/datatables-demo.js"></script> -->
+    }
