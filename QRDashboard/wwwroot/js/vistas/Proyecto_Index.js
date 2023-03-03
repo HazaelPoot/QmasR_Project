@@ -46,7 +46,6 @@ function mostarModal(modelo = MODELO_BASE) {
 
 $("#btnNuevo").click(function () {
   mostarModal();
-  // swal("Listo!", "El Usuario fue modificado", "success");
 });
 
 $("#btnDelete").click(function () {
@@ -61,8 +60,7 @@ function openModalEdit(id) {
     success: function (datos) {
       mostarModal(datos);
       console.log(id);
-    },
-    error: function (xhr, status, error) {},
+    }
   });
 }
 

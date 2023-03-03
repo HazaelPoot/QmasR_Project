@@ -1,6 +1,6 @@
-namespace QRDashboard.Models
+namespace QRDashboard.Domain.Dtos
 {
-    public class VMUsuario
+    public class DtoUsuario
     {
         public int IdUser { get; set; }
         public string Nombre { get; set; } = null!;

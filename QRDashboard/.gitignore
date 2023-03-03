@@ -1,2 +1,3 @@
 # Visual Studio Code
-QRDashboard/.vs/
+.vs
+.vscode

@@ -1,6 +1,6 @@
-using QRDashboard.Models;
 using QRDashboard.Domain.Entities;
 using AutoMapper;
+using QRDashboard.Domain.Dtos;
 
 namespace QRDashboard.Aplication.Mappings
 {
@@ -9,37 +9,36 @@ namespace QRDashboard.Aplication.Mappings
         public AutoMapperProfile()
         {
             #region Roles
-            CreateMap<AdminType, VMRol>().ReverseMap();
+            CreateMap<AdminType, DtoRol>().ReverseMap();
             #endregion Roles
 
             #region Usuario
-            CreateMap<Usuario, VMUsuario>()
+            CreateMap<Usuario, DtoUsuario>()
                 .ForMember(destino =>
                     destino.AdminTypeName,
                     opt => opt.MapFrom(origen => origen.AdminTypeNavigation.Tipo));
 
-            CreateMap<VMUsuario, Usuario>()
+            CreateMap<DtoUsuario, Usuario>()
                 .ForMember(destino =>
                     destino.AdminTypeNavigation,
                     opt => opt.Ignore());       
             #endregion Usuario
 
             #region Categoria
-            CreateMap<Categorium, VMCategoria>().ReverseMap();
+            CreateMap<Categorium,DtoCategoria>().ReverseMap();
             #endregion categoria
 
             #region Proyecto
-            CreateMap<ProyectoQr, VMProyecto>()
+            CreateMap<ProyectoQr, DtoProyecto>()
                 .ForMember(destino =>
                 destino.CategoriaName,
                 opt => opt.MapFrom(origen => origen.IdCategoriaNavigation.Descripcion));
 
-            CreateMap<VMProyecto, ProyectoQr>()
+            CreateMap<DtoProyecto, ProyectoQr>()
                 .ForMember(destino =>
                 destino.IdCategoriaNavigation,
                 opt => opt.Ignore());
             #endregion Proyecto
-
             
         }
     }

@@ -8,14 +8,11 @@ namespace QRDashboard.Aplication.Services
     {
         public async Task<string> UploadStorage(Stream streamArchivo, string carpetaDestino, string nomArchivo)
         {
-            //Prueba de Git Push
-            //Segudo push
-
             string urlImagen = "";
 
             try
             {
-                //INGRESA AQUÍ TUS PROPIAS CREDENCIALES
+                //INGRESA AQUÍ LAS CREDENCIALES DE TU CUENTA
                 string email = "prueba001@gmail.com";
                 string clave = "1234567";
                 string ruta = "prueba-sotorage.appspot.com";
@@ -53,10 +50,9 @@ namespace QRDashboard.Aplication.Services
 
         public async Task<bool> DeleteStorage(string carpetaDestino, string nomArchivo)
         {
-            // carpetaDestino = "Fotos_Perfil";
             try
             {
-                //INGRESA AQUÍ TUS PROPIAS CREDENCIALES
+                //INGRESA AQUÍ LAS CREDENCIALES DE TU CUENTA
                 string email = "prueba001@gmail.com";
                 string clave = "1234567";
                 string ruta = "prueba-sotorage.appspot.com";

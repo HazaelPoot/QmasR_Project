@@ -1,6 +1,6 @@
-namespace QRDashboard.Models
+namespace QRDashboard.Domain.Dtos
 {
-    public class VMProyecto
+    public class DtoProyecto
     {
         public int IdProj { get; set; }
         public string Titulo { get; set; } = null!;

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using QRDashboard.Domain.Dtos;
 using QRDashboard.Domain.Dtos.Response;
 using QRDashboard.Domain.Entities;
 using QRDashboard.Domain.Interfaces;
-using QRDashboard.Models;
 
 namespace QRDashboard.Controllers
 {
@@ -20,17 +20,18 @@ namespace QRDashboard.Controllers
             _categoriaService = categoriaService;
             _mapper = mapper;
         }
+        
         public async Task<IActionResult> Index()
         {
-            List<VMProyecto> vmProyectoLista = _mapper.Map<List<VMProyecto>>(await _proyectoService.Lista());
-            return View(vmProyectoLista);
+            List<DtoProyecto> dtoProyectoLista = _mapper.Map<List<DtoProyecto>>(await _proyectoService.Lista());
+            return View(dtoProyectoLista);
         }
 
         [HttpGet]
         public async Task<IActionResult> Lista()
         {
-            List<VMProyecto> vmProyectoLista = _mapper.Map<List<VMProyecto>>(await _proyectoService.Lista());
-            return StatusCode(StatusCodes.Status200OK, new { data = vmProyectoLista });
+            List<DtoProyecto> dtoProyectoLista = _mapper.Map<List<DtoProyecto>>(await _proyectoService.Lista());
+            return StatusCode(StatusCodes.Status200OK, new { data = dtoProyectoLista });
         }
 
         //ESTE EL GET EN ARRAY, SOLO DESCOMENTALO Y COMENTA EL DE ARRIBA PARA QUE NO TE DE ERROR DE METODO AMBIGUO
@@ -44,32 +45,25 @@ namespace QRDashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> ListaCategorias()
         {
-            List<VMCategoria> vmListaRoles = _mapper.Map<List<VMCategoria>>(await _categoriaService.Lista());
-            return StatusCode(StatusCodes.Status200OK, vmListaRoles);
+            List<DtoCategoria> dtoListaRoles = _mapper.Map<List<DtoCategoria>>(await _categoriaService.Lista());
+            return StatusCode(StatusCodes.Status200OK, dtoListaRoles);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
-            VMProyecto vmProyecto = _mapper.Map<VMProyecto>(await _proyectoService.ObtenerPorId(id));
-            return StatusCode(StatusCodes.Status200OK, vmProyecto);
-        }
-
-        //a este hay que darle cuello
-        public async Task<IActionResult> EditModal(int id)
-        {
-            VMProyecto vmProyecto = _mapper.Map<VMProyecto>(await _proyectoService.ObtenerPorId(id));
-            return PartialView("_EditModal", vmProyecto);
+            DtoProyecto dtoProyecto = _mapper.Map<DtoProyecto>(await _proyectoService.ObtenerPorId(id));
+            return StatusCode(StatusCodes.Status200OK, dtoProyecto);
         }
 
         [HttpPost]
         public async Task<IActionResult> Crear([FromForm] IFormFile foto, [FromForm] string modelo)
         {
-            GenericResponse<VMProyecto> gResponse = new GenericResponse<VMProyecto>();
+            GenericResponse<DtoProyecto> gResponse = new GenericResponse<DtoProyecto>();
 
             try
             {
-                VMProyecto vMProyecto = JsonConvert.DeserializeObject<VMProyecto>(modelo);
+                DtoProyecto dtoProyecto = JsonConvert.DeserializeObject<DtoProyecto>(modelo);
                 string nombreFoto = "";
                 Stream fotoStream = null;
 
@@ -81,11 +75,11 @@ namespace QRDashboard.Controllers
                     fotoStream = foto.OpenReadStream();
                 }
 
-                ProyectoQr ProyectoCreado = await _proyectoService.Crear(_mapper.Map<ProyectoQr>(vMProyecto), fotoStream, "Fotos_Proyecto", nombreFoto);
+                ProyectoQr ProyectoCreado = await _proyectoService.Crear(_mapper.Map<ProyectoQr>(dtoProyecto), fotoStream, "Fotos_Proyecto", nombreFoto);
 
-                vMProyecto = _mapper.Map<VMProyecto>(ProyectoCreado);
+                dtoProyecto = _mapper.Map<DtoProyecto>(ProyectoCreado);
                 gResponse.Status = true;
-                gResponse.Obejct = vMProyecto;
+                gResponse.Obejct = dtoProyecto;
             }
             catch (Exception ex)
             {
@@ -99,11 +93,11 @@ namespace QRDashboard.Controllers
         [HttpPut]
         public async Task<IActionResult> Editar([FromForm] IFormFile foto, [FromForm] string modelo)
         {
-            GenericResponse<VMProyecto> gResponse = new GenericResponse<VMProyecto>();
+            GenericResponse<DtoProyecto> gResponse = new GenericResponse<DtoProyecto>();
 
             try
             {
-                VMProyecto vMProyecto = JsonConvert.DeserializeObject<VMProyecto>(modelo);
+                DtoProyecto dtoProyecto = JsonConvert.DeserializeObject<DtoProyecto>(modelo);
                 string nombreFoto = "";
                 Stream fotoStream = null;
 
@@ -115,11 +109,11 @@ namespace QRDashboard.Controllers
                     fotoStream = foto.OpenReadStream();
                 }
 
-                ProyectoQr proyectoEditado = await _proyectoService.Editar(_mapper.Map<ProyectoQr>(vMProyecto), fotoStream, "Fotos_Proyecto", nombreFoto);
+                ProyectoQr proyectoEditado = await _proyectoService.Editar(_mapper.Map<ProyectoQr>(dtoProyecto), fotoStream, "Fotos_Proyecto", nombreFoto);
 
-                vMProyecto = _mapper.Map<VMProyecto>(proyectoEditado);
+                dtoProyecto = _mapper.Map<DtoProyecto>(proyectoEditado);
                 gResponse.Status = true;
-                gResponse.Obejct = vMProyecto;
+                gResponse.Obejct = dtoProyecto;
             }
             catch (Exception ex)
             {

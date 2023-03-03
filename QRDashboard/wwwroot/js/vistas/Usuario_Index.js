@@ -184,7 +184,6 @@ $("#tbdata tbody").on("click", ".btn-editar", function(){
 
     const data = tablaData.row(filaSeleccionada).data();
     mostarModal(data);
-
 })
 
 $("#tbdata tbody").on("click", ".btn-eliminar", function(){

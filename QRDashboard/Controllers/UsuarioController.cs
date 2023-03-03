@@ -1,10 +1,10 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using QRDashboard.Domain.Dtos;
 using QRDashboard.Domain.Dtos.Response;
 using QRDashboard.Domain.Entities;
 using QRDashboard.Domain.Interfaces;
-using QRDashboard.Models;
 
 namespace QRDashboard.Controllers
 {
@@ -29,25 +29,25 @@ namespace QRDashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> Lista()
         {
-            List<VMUsuario> vmUsuarioLista = _mapper.Map<List<VMUsuario>>(await _usuarioService.Lista());
-            return StatusCode(StatusCodes.Status200OK, new { data = vmUsuarioLista });
+            List<DtoUsuario> dtoUsuarioLista = _mapper.Map<List<DtoUsuario>>(await _usuarioService.Lista());
+            return StatusCode(StatusCodes.Status200OK, new { data = dtoUsuarioLista });
         }
 
         [HttpGet]
         public async Task<IActionResult> ListaRoles()
         {
-            List<VMRol> vmListaRoles = _mapper.Map<List<VMRol>>(await _rolService.Lista());
-            return StatusCode(StatusCodes.Status200OK, vmListaRoles);
+            List<DtoRol> dtoListaRoles = _mapper.Map<List<DtoRol>>(await _rolService.Lista());
+            return StatusCode(StatusCodes.Status200OK, dtoListaRoles);
         }
 
         [HttpPost]
         public async Task<IActionResult> Crear([FromForm] IFormFile foto, [FromForm] string modelo)
         {
-            GenericResponse<VMUsuario> gResponse = new GenericResponse<VMUsuario>();
+            GenericResponse<DtoUsuario> gResponse = new GenericResponse<DtoUsuario>();
 
             try
             {
-                VMUsuario vMUsuario = JsonConvert.DeserializeObject<VMUsuario>(modelo);
+                DtoUsuario dtoUsuario = JsonConvert.DeserializeObject<DtoUsuario>(modelo);
                 string nombreFoto = "";
                 Stream fotoStream = null;
 
@@ -59,11 +59,11 @@ namespace QRDashboard.Controllers
                     fotoStream = foto.OpenReadStream();
                 }
 
-                Usuario usuarioCreado = await _usuarioService.Crear(_mapper.Map<Usuario>(vMUsuario), fotoStream, "Fotos_Perfil", nombreFoto);
+                Usuario usuarioCreado = await _usuarioService.Crear(_mapper.Map<Usuario>(dtoUsuario), fotoStream, "Fotos_Perfil", nombreFoto);
 
-                vMUsuario = _mapper.Map<VMUsuario>(usuarioCreado);
+                dtoUsuario = _mapper.Map<DtoUsuario>(usuarioCreado);
                 gResponse.Status = true;
-                gResponse.Obejct = vMUsuario;
+                gResponse.Obejct = dtoUsuario;
             }
             catch (Exception ex)
             {
@@ -77,11 +77,11 @@ namespace QRDashboard.Controllers
         [HttpPut]
         public async Task<IActionResult> Editar([FromForm] IFormFile foto, [FromForm] string modelo)
         {
-            GenericResponse<VMUsuario> gResponse = new GenericResponse<VMUsuario>();
+            GenericResponse<DtoUsuario> gResponse = new GenericResponse<DtoUsuario>();
 
             try
             {
-                VMUsuario vMUsuario = JsonConvert.DeserializeObject<VMUsuario>(modelo);
+                DtoUsuario dtoUsuario = JsonConvert.DeserializeObject<DtoUsuario>(modelo);
                 string nombreFoto = "";
                 Stream fotoStream = null;
 
@@ -93,11 +93,11 @@ namespace QRDashboard.Controllers
                     fotoStream = foto.OpenReadStream();
                 }
 
-                Usuario usuarioEditado = await _usuarioService.Editar(_mapper.Map<Usuario>(vMUsuario), fotoStream, "Fotos_Perfil", nombreFoto);
+                Usuario usuarioEditado = await _usuarioService.Editar(_mapper.Map<Usuario>(dtoUsuario), fotoStream, "Fotos_Perfil", nombreFoto);
 
-                vMUsuario = _mapper.Map<VMUsuario>(usuarioEditado);
+                dtoUsuario = _mapper.Map<DtoUsuario>(usuarioEditado);
                 gResponse.Status = true;
-                gResponse.Obejct = vMUsuario;
+                gResponse.Obejct = dtoUsuario;
             }
             catch (Exception ex)
             {
