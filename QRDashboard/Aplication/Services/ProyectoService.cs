@@ -93,9 +93,27 @@ namespace QRDashboard.Aplication.Services
             }
         }
 
-        public Task<bool> Eliminar(int idProyecto)
+        public async Task<bool> Eliminar(int idProyecto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ProyectoQr proyectoEncontrado = await _repositorio.Obtain(u => u.IdProj == idProyecto);
+
+                if(proyectoEncontrado == null)
+                throw new TaskCanceledException("El Proyecto no existe");
+
+                string nombreFoto = proyectoEncontrado.UrlImagen;
+                bool response = await _repositorio.Eliminate(proyectoEncontrado);
+
+                if(response)
+                    await _fireBaseService.DeleteStorage("Fotos_Proyecto", nombreFoto);
+
+                return true;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public Task<ProyectoQr> ObtenerPorCredenciales(string username, string clave)

@@ -14,12 +14,6 @@
     <div class="container-fluid">
         <div class="content-body">
             <div class="container-fluid">
-                <div class="col-sm-6 p-md-0 justify-content-sm-start mt-2 mt-sm-0 d-flex">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Projects</a></li>
-                        <li class="breadcrumb-item active">Galeria</li>
-                    </ol>
-                </div>
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
@@ -28,13 +22,17 @@
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Proyectos</a></li>
+                            <li class="breadcrumb-item active">Galeria</li>
+                        </ol>
+                        <ol>
                             <button class="btn btn-success" id="btnNuevo">
                                 Nuevo <i class="fa fa-plus-circle"></i>
                             </button>
                         </ol>
+                        <br>
                     </div>
                 </div>
-
                 <div class="row">
                     @foreach (var item in Model)
                     {
@@ -44,7 +42,7 @@
                                 <h5 class="card-title">@item.Titulo</h5>
                             </div>
                             <img class="card-img-top img-fluid" src="@item.UrlImagen" alt="Card image cap">
-                            <div class="card-body">
+                            <div class="card-body-proj">
                                 <table class="table">
                                     <tbody>
                                         <tr>
@@ -56,13 +54,13 @@
                                             <td>
                                                 @if(item.Status == 0)
                                                 {
-                                                <span class="badge bg-success">
+                                                <span class="badge bg-success text-white">
                                                     Activo
                                                 </span>
                                                 }
                                                 else if(item.Status == 1)
                                                 {
-                                                <span class="badge bg-danger">
+                                                <span class="badge bg-danger text-white">
                                                     Desactivo
                                                 </span>
                                                 }
@@ -71,21 +69,24 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="card-footer d-sm-flex justify-content-between">
-                                <!-- Boton Imagenes -->
-                                <div class="card-footer-link mb-4 mb-sm-0">
-                                    <button class="btn btn-primary">Imagenes <i class="fa fa-images"></i></button>
-                                </div>
-                                <!-- Boton Editar -->
-                                <button class="btn btn-info" onclick="openModalEdit(@item.IdProj)">
-                                    Modificar <i class="fa fa-pencil-alt"></i>
-                                </button>
-                                <!-- Botn Eliminar -->
-                                <div class="card-footer-link mb-4 mb-sm-0">
-                                    <button class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">
-                                        Eliminar
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col">
+                                        <button class="btn btn-primary">
+                                            Añadir <i class="fa fa-images"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-info" onclick="openModalEdit(@item.IdProj)">
+                                            Editar <i class="fa fa-pencil-alt"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-danger" onclick="openModalDelete(@item.IdProj)">
+                                            Borrar
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +150,8 @@
                                     </div>
                                 </div>
                                 <div class="form-row form-floating">
-                                        <textarea class="form-control" placeholder="Descripción del proyecto" id="txtDescripcion" style="height: 70px" name="Descripción"></textarea>
+                                    <textarea class="form-control" placeholder="Descripción del proyecto"
+                                        id="txtDescripcion" style="height: 70px" name="Descripción"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-4">

@@ -46,24 +46,27 @@ function mostarModal(modelo = MODELO_BASE) {
 
 $("#btnNuevo").click(function () {
   mostarModal();
+  // swal("Listo!", "El Usuario fue modificado", "success");
+});
+
+$("#btnDelete").click(function () {
+  swal("Listo!", "El Usuario fue modificado", "success");
 });
 
 function openModalEdit(id) {
   $.ajax({
-      url: '/Proyecto/GetById/' + id,
-      type: 'GET',
-      dataType: 'json',
-      success: function(datos) {
-          console.log(datos);
-          mostarModal(datos);
-      },
-      error: function(xhr, status, error) {
-      }
+    url: "/Proyecto/GetById/" + id,
+    type: "GET",
+    dataType: "json",
+    success: function (datos) {
+      mostarModal(datos);
+      console.log(id);
+    },
+    error: function (xhr, status, error) {},
   });
 }
 
 $("#btnGuardar").click(function () {
-
   const inputs = $("input.input-validar").serializeArray();
   const inputsSnValor = inputs.filter((item) => item.value.trim() == "");
 
@@ -145,3 +148,55 @@ $("#btnGuardar").click(function () {
       });
   }
 });
+
+function openModalDelete(id) {
+  $.ajax({
+    url: "/Proyecto/GetById/" + id,
+    type: "GET",
+    dataType: "json",
+    success: function (datos) {
+      swal(
+        {
+          title: "¿Está seguro?",
+          text: `Eliminar Proyecto "${datos.titulo}"`,
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "Si, Eliminar",
+          cancelButtonText: "No, Cancelar",
+          closeOnConfirm: false,
+          closeOnCancel: true,
+        },
+        function (response) {
+          if (response) {
+            $(".showSweetAlert").LoadingOverlay("show");
+
+            fetch(`/Proyecto/Eliminar?idProj=${id}`, {
+              method: "DELETE",
+            })
+              .then((response) => {
+                $(".showSweetAlert").LoadingOverlay("hide");
+                return response.ok ? response.json() : Promise.reject(response);
+              })
+              .then((responseJson) => {
+                if (responseJson.status) {
+                  swal(
+                    {
+                      title: "Listo!",
+                      text: "El Proyecto fue Eliminado",
+                      type: "success",
+                    },
+                    function () {
+                      location.reload();
+                    }
+                  );
+                } else {
+                  swal("Lo sentimos", responseJson.Mesaje, "error");
+                }
+              });
+          }
+        }
+      );
+    },
+  });
+}

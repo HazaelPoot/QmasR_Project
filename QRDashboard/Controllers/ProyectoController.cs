@@ -33,6 +33,14 @@ namespace QRDashboard.Controllers
             return StatusCode(StatusCodes.Status200OK, new { data = vmProyectoLista });
         }
 
+        //ESTE EL GET EN ARRAY, SOLO DESCOMENTALO Y COMENTA EL DE ARRIBA PARA QUE NO TE DE ERROR DE METODO AMBIGUO
+        // [HttpGet]
+        // public async Task<IActionResult> Lista()
+        // {
+        //     List<VMProyecto> vmProyectoLista = _mapper.Map<List<VMProyecto>>(await _proyectoService.Lista());
+        //     return StatusCode(StatusCodes.Status200OK, vmProyectoLista);
+        // }
+
         [HttpGet]
         public async Task<IActionResult> ListaCategorias()
         {
@@ -112,6 +120,24 @@ namespace QRDashboard.Controllers
                 vMProyecto = _mapper.Map<VMProyecto>(proyectoEditado);
                 gResponse.Status = true;
                 gResponse.Obejct = vMProyecto;
+            }
+            catch (Exception ex)
+            {
+                gResponse.Status = false;
+                gResponse.Mesaje = ex.Message;
+            }
+
+            return StatusCode(StatusCodes.Status200OK, gResponse);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Eliminar(int idProj)
+        {
+            GenericResponse<string> gResponse = new GenericResponse<string>();
+
+            try
+            {
+                gResponse.Status = await _proyectoService.Eliminar(idProj);
             }
             catch (Exception ex)
             {

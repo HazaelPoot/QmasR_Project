@@ -16,6 +16,17 @@ namespace QRDashboard.Infraestructure.Ioc
                 options.UseSqlServer(configuration.GetConnectionString("Conexion"));
             });
 
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("QmasRPolicy", app =>
+                {
+                    app.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+
+                });
+            });
+
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IFirebaseService, FirebaseService>();
             services.AddScoped<IRolService, RolService>();
