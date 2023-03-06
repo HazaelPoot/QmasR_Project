@@ -1,4 +1,4 @@
-const MODELO_BASE = {
+const MODELO_BASE_PROJ = {
   idProj: 0,
   titulo: "",
   descripcion: "",
@@ -12,7 +12,7 @@ const MODELO_BASE = {
 
 let gridData;
 $(document).ready(function () {
-  fetch("/Proyecto/ListaCategorias")
+  fetch("/Categoria/ListaCategorias")
     .then((response) => {
       return response.ok ? response.json() : Promise.reject(response);
     })
@@ -27,7 +27,7 @@ $(document).ready(function () {
     });
 });
 
-function mostarModal(modelo = MODELO_BASE) {
+function mostarModal(modelo = MODELO_BASE_PROJ) {
   $("#txtId").val(modelo.idProj);
   $("#txtTitulo").val(modelo.titulo);
   $("#txtDescripcion").val(modelo.descripcion);
@@ -75,7 +75,7 @@ $("#btnGuardar").click(function () {
     return;
   }
 
-  const modelo = structuredClone(MODELO_BASE);
+  const modelo = structuredClone(MODELO_BASE_PROJ);
   modelo["idProj"] = parseInt($("#txtId").val());
   modelo["titulo"] = $("#txtTitulo").val();
   modelo["descripcion"] = $("#txtDescripcion").val();

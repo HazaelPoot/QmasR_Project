@@ -1,61 +1,22 @@
-﻿const MODELO_BASE_USER = {
-    idUser: 0,
-    nombre: "",
-    apellidos: "",
-    username: "",
-    passw: "",
-    adminType: 0,
-    urlImagen: "",
+const MODELO_BASE_CATEG = {
+    idCategoria: 0,
+    descripcion: ""
 }
 
 let tablaData;
 
 $(document).ready(function(){
 
-    fetch("/Usuario/ListaRoles")
-    .then(response => {
-        return response.ok ? response.json(): Promise.reject(response);
-    })
-    .then(responseJson => {
-        if(responseJson.length > 0){
-            responseJson.forEach((item) => {
-                $("#cboRol").append(
-                    $("<option>").val(item.idRol).text(item.tipo)
-                )
-            })
-        }
-    })
-
     tablaData = $('#tbdata').DataTable({
         responsive: true,
         "ajax": {
-            "url": '/Usuario/Lista',
+            "url": '/Categoria/Lista',
             "type": "GET",
             "datatype": "json"
         },
         "columns": [
-            { "data": "idUser", "visible":false, "searchable": false },
-            {
-                "data": "urlImagen", render: function(data){
-                return `<img style="height:60px" src=${data} class="rounded mx-auto d-block"/>`
-            }},
-            { "data": "nombre" },
-            { "data": "apellidos" },
-            { "data": "username" },
-            { "data": "passw" },
-             {"data": "adminTypeName" },
-            // { "data": "admintype", render: function (data){
-            //    if(data == 1)
-            //    return '<p">Administrador</p>'
-            //    else
-            //    return '<p">Supervisor</p>'
-            // }},
-            // { "data": "admintype", render: function (data){
-            //     if(data == 1)
-            //     return '<span class="badge badge-info">Administrador</span>'
-            //     else
-            //     return '<span class="badge badge-danger">Supervisor</span>'
-            //  }},
+            { "data": "idCategoria", "visible":true, "searchable": false },
+            { "data": "descripcion" },
             {
                 "defaultContent": '<button class="btn btn-primary btn-editar btn-sm mr-2"><i class="fas fa-pencil-alt"></i></button>' +
                     '<button class="btn btn-danger btn-eliminar btn-sm"><i class="fas fa-trash-alt"></i></button>',
@@ -73,7 +34,7 @@ $(document).ready(function(){
                 title: '',
                 filename: 'Q+R Usuarios',
                 exportOptions: {
-                    columns: [0,2,3,4,5,6]
+                    columns: [0,1]
                 }
             },'pageLength'
         ],
@@ -83,25 +44,17 @@ $(document).ready(function(){
       });
 })
 
-function mostarModal(modelo = MODELO_BASE_USER){
-    $("#txtId").val(modelo.idUser)
-    $("#txtNombre").val(modelo.nombre)
-    $("#txtApellido").val(modelo.apellidos)
-    $("#txtUserName").val(modelo.username)
-    $("#txtPassword").val(modelo.passw)
-    $("#cboRol").val(modelo.adminType == 0 ? $("#cboRol option:first").val(): modelo.adminType)
-    // $("#cboEstado").val(modelo.esActivo)
-    $("#txtFoto").val("")
-    $("#imgUsuario").attr("src", modelo.urlImagen)
+function mostarModal(modelo = MODELO_BASE_CATEG){
+    $("#txtId").val(modelo.idCategoria);
+    $("#txtDescripcion").val(modelo.descripcion);
     $("#modalData").modal("show")
 }
 
-$("#btnNuevo").click(function(){
-    mostarModal()
-})
+$("#btnNuevo").click(function () {
+    mostarModal();
+});
 
 $("#btnGuardar").click(function(){
-    //debugger
 
     const inputs = $("input.input-validar").serializeArray();
     const inputsSnValor = inputs.filter((item) => item.value.trim() == "")
@@ -113,27 +66,17 @@ $("#btnGuardar").click(function(){
         return;
     }
     
-    const modelo = structuredClone(MODELO_BASE_USER);
-    modelo["idUser"] = parseInt($("#txtId").val())
-    modelo["nombre"] = $("#txtNombre").val()
-    modelo["apellidos"] = $("#txtApellido").val()
-    modelo["username"] = $("#txtUserName").val()
-    modelo["passw"] = $("#txtPassword").val()
-    modelo["adminType"] = $("#cboRol").val()
-    // modelo["esActivo"] = $("#cboEstado").val()
-    
-    const inputFoto = document.getElementById("txtFoto")
-    const formData = new FormData();
-
-    formData.append("foto", inputFoto.files[0])
-    formData.append("modelo", JSON.stringify(modelo))
+    const modelo = structuredClone(MODELO_BASE_CATEG);
+    modelo["idCategoria"] = parseInt($("#txtId").val())
+    modelo["descripcion"] = $("#txtDescripcion").val()
 
     $("#modalData").find("div.modal-content").LoadingOverlay("show");
 
-    if(modelo.idUser == 0){
-        fetch("/Usuario/Crear",{
+    if(modelo.idCategoria == 0){
+        fetch("/Categoria/Crear",{
             method: "POST",
-            body: formData
+            headers: {"Content-Type":"application/json; charset=utf-8"},
+            body: JSON.stringify(modelo)
         })
         .then(response => {
             $("#modalData").find("div.modal-content").LoadingOverlay("hide");
@@ -143,17 +86,19 @@ $("#btnGuardar").click(function(){
             if (responseJson.status) {
                 tablaData.row.add(responseJson.obejct).draw(false)
                 $("#modalData").modal("hide")
-                swal("Listo!", "El Usuario fue creado", "success")
+                swal("Listo!", "La Categoria fue creada", "success")
             }else{
                 swal("Lo sentimos", responseJson.Mesaje, "error")
+                console.log(responseJson.Mesaje)
             }
         })
     }
     else
     {
-        fetch("/Usuario/Editar",{
+        fetch("/Categoria/Editar",{
             method: "PUT",
-            body: formData
+            headers: {"Content-Type": "application/json; charset=utf-8"},
+            body: JSON.stringify(modelo)
         })
         .then(response => {
             $("#modalData").find("div.modal-content").LoadingOverlay("hide");
@@ -165,7 +110,7 @@ $("#btnGuardar").click(function(){
                 tablaData.row(filaSeleccionada).data(responseJson.obejct).draw(false)
                 filaSeleccionada = null;
                 $("#modalData").modal("hide")
-                swal("Listo!", "El Usuario fue modificado", "success")
+                swal("Listo!", "La Categoria fue modificada", "success")
             }else{
                 swal("Lo sentimos", responseJson.Mesaje, "error")
             }
@@ -199,7 +144,7 @@ $("#tbdata tbody").on("click", ".btn-eliminar", function(){
     
     swal({
         title: "¿Está seguro?",
-        text: `Eliminar Usuario "${data.nombre}"`,
+        text: `Eliminar Categoria "${data.descripcion}"`,
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
@@ -214,7 +159,7 @@ $("#tbdata tbody").on("click", ".btn-eliminar", function(){
             {
                 $(".showSweetAlert").LoadingOverlay("show");
 
-                fetch(`/Usuario/Eliminar?idUsuario=${data.idUser}`,{
+                fetch(`/Categoria/Eliminar?idCategoria=${data.idCategoria}`,{
                     method: "DELETE"
                 })
                 .then(response => {
@@ -227,7 +172,7 @@ $("#tbdata tbody").on("click", ".btn-eliminar", function(){
                         
                         tablaData.row(fila).remove().draw()
                         
-                        swal("Listo!", "El Usuario fue Eliminado", "success")
+                        swal("Listo!", "La Categoria fue Eliminada", "success")
                     }else{
                         swal("Lo sentimos", responseJson.Mesaje, "error")
                     }
@@ -237,5 +182,3 @@ $("#tbdata tbody").on("click", ".btn-eliminar", function(){
     )
 
 })
-
-

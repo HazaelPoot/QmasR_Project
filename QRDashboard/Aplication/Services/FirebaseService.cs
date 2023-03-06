@@ -12,7 +12,7 @@ namespace QRDashboard.Aplication.Services
 
             try
             {
-                //INGRESA AQUÍ LAS CREDENCIALES DE TU CUENTA
+                //INGRESA AQUÍ LAS CREDENCIALES DE LA EMPRESA
                 string email = "prueba001@gmail.com";
                 string clave = "1234567";
                 string ruta = "prueba-sotorage.appspot.com";
@@ -52,7 +52,7 @@ namespace QRDashboard.Aplication.Services
         {
             try
             {
-                //INGRESA AQUÍ LAS CREDENCIALES DE TU CUENTA
+                //INGRESA AQUÍ LAS CREDENCIALES DE LA EMPRESA
                 string email = "prueba001@gmail.com";
                 string clave = "1234567";
                 string ruta = "prueba-sotorage.appspot.com";

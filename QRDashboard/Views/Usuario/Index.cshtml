@@ -1,58 +1,60 @@
 ﻿@{
-ViewData["Title"] = "Usuarios";
-Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles{
-<link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
-<link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
 }
 
 <!-- DataTales Example -->
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h1>Usuarios</h1>
-        </div>
-    </div>
-    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Administración</a></li>
-            <li class="breadcrumb-item active">Usuarios</li>
-        </ol>
-    </div>
-</div>
-<div class="card shadow mb-4">
-    <div class="card-header py-3 bg-second-primary">
-        <h6 class="m-0 font-weight-bold text-white">Lista de Usuarios</h6>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-3">
-                <button class="btn btn-success" id="btnNuevo"><i class="fas fa-user-plus"></i> Nuevo Usuario</button>
+<div class="main-part-usuarios">
+    <div class="row page-titles mx-0">
+        <div class="col-sm-6 p-md-0">
+            <div class="welcome-text">
+                <h1>Usuarios</h1>
             </div>
         </div>
-        <hr />
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-hover" id="tbdata" cellspacing="0" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Foto</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>UserName</th>
-                            <th>Contraseña</th>
-                            <th>Rol</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--AQUI SALE LO QUE HAY EN JQUERY-->
-                    </tbody>
-                </table>
+        <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Administración</a></li>
+                <li class="breadcrumb-item active">Usuarios</li>
+            </ol>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 bg-second-primary">
+            <h6 class="m-0 font-weight-bold text-white">Lista de Usuarios</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <button class="btn btn-success" id="btnNuevo"><i class="fas fa-user-plus"></i> Nuevo Usuario</button>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover" id="tbdata" cellspacing="0" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Foto</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>UserName</th>
+                                <th>Contraseña</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--AQUI SALE LO QUE HAY EN JQUERY-->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -134,8 +136,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
 <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
 <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
-<script src="~/js/vistas/Usuario_Index.js"></script>
 
-<!-- SOLO ES DE EJEMPLO - IGNORAR -->
-<!-- <script src="js/vistas/datatables-demo.js"></script> -->
+<!-- SCRIPT CON LAS FUNCIONES: POST, PUT, DELETE, GET -->
+<script src="~/js/vistas/Usuario_Index.js"></script>
 }

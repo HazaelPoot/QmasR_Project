@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7RN6SpL32x+QJqo4WyxJovqp2zE1x74wHh6T+7AYHVc=",
+  "Hash": "nqi1G2kZSwC7SAYzX85mrdZR9E4r878YsLjW9DxFL0o=",
   "Source": "QRDashboard",
   "BasePath": "_content/QRDashboard",
   "Mode": "Default",
@@ -338,6 +338,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Categoria_Index.js",
+      "SourceId": "QRDashboard",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\",
+      "BasePath": "_content/QRDashboard",
+      "RelativePath": "js/vistas/Categoria_Index.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\vistas\\Categoria_Index.js"
     },
     {
       "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\chart-bar-demo.js",

@@ -11357,3 +11357,19 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+.main-part-categoria {
+  width: 75%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: start;
+  padding: 0px 5px;
+}
+
+.main-part-usuarios {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: start;
+  padding: 0px 5px;
+}

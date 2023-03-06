@@ -20,6 +20,15 @@ namespace QRDashboard.Aplication.Services
             IQueryable<ProyectoQr> query = await _repositorio.Consult();
             return query.Include(r => r.IdCategoriaNavigation).ToList();
         }
+
+        public async Task<ProyectoQr> ObtenerPorId(int IdProj)
+        {
+            IQueryable<ProyectoQr> query = await _repositorio.Consult(u => u.IdProj == IdProj);
+            ProyectoQr resultado = query.Include(r => r.IdCategoriaNavigation).FirstOrDefault();
+
+            return resultado;
+        }
+        
         public async Task<ProyectoQr> Crear(ProyectoQr entidad, Stream Foto = null, string carpetaDestino = "", string NombreFoto = "")
         {
             ProyectoQr projectExist = await _repositorio.Obtain(u => u.Titulo == entidad.Titulo);
@@ -119,14 +128,6 @@ namespace QRDashboard.Aplication.Services
         public Task<ProyectoQr> ObtenerPorCredenciales(string username, string clave)
         {
             throw new NotImplementedException();
-        }
-
-        public async Task<ProyectoQr> ObtenerPorId(int IdProj)
-        {
-            IQueryable<ProyectoQr> query = await _repositorio.Consult(u => u.IdProj == IdProj);
-            ProyectoQr resultado = query.Include(r => r.IdCategoriaNavigation).FirstOrDefault();
-
-            return resultado;
         }
     }
 }
