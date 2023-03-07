@@ -1,6 +1,5 @@
 using QRDashboard.Domain.Interfaces;
 using QRDashboard.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace QRDashboard.Aplication.Services
 {
@@ -18,7 +17,7 @@ namespace QRDashboard.Aplication.Services
             return query.ToList();
         }
 
-        public async Task<Categorium> ObtenerPorId(int IdCategoria)
+        public async Task<Categorium> GetById(int IdCategoria)
         {
             IQueryable<Categorium> query = await _repository.Consult(u => u.IdCategoria == IdCategoria);
             Categorium resultado = query.FirstOrDefault();

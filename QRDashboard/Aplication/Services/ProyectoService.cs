@@ -21,7 +21,7 @@ namespace QRDashboard.Aplication.Services
             return query.Include(r => r.IdCategoriaNavigation).ToList();
         }
 
-        public async Task<ProyectoQr> ObtenerPorId(int IdProj)
+        public async Task<ProyectoQr> GetById(int IdProj)
         {
             IQueryable<ProyectoQr> query = await _repositorio.Consult(u => u.IdProj == IdProj);
             ProyectoQr resultado = query.Include(r => r.IdCategoriaNavigation).FirstOrDefault();

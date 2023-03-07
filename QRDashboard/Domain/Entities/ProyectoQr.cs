@@ -16,7 +16,7 @@
         public int Status { get; set; }
         public int? IdCategoria { get; set; }
 
-        public virtual Categorium? IdCategoriaNavigation { get; set; }
+        public virtual Categorium IdCategoriaNavigation { get; set; }
         public virtual ICollection<FotosProyecto> FotosProyectos { get; set; }
     }
 }

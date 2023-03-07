@@ -8,8 +8,8 @@
     urlImagen: "",
 }
 
+//DATA TABLE: GET
 let tablaData;
-
 $(document).ready(function(){
 
     fetch("/Usuario/ListaRoles")
@@ -43,19 +43,7 @@ $(document).ready(function(){
             { "data": "apellidos" },
             { "data": "username" },
             { "data": "passw" },
-             {"data": "adminTypeName" },
-            // { "data": "admintype", render: function (data){
-            //    if(data == 1)
-            //    return '<p">Administrador</p>'
-            //    else
-            //    return '<p">Supervisor</p>'
-            // }},
-            // { "data": "admintype", render: function (data){
-            //     if(data == 1)
-            //     return '<span class="badge badge-info">Administrador</span>'
-            //     else
-            //     return '<span class="badge badge-danger">Supervisor</span>'
-            //  }},
+            {"data": "adminTypeName" },
             {
                 "defaultContent": '<button class="btn btn-primary btn-editar btn-sm mr-2"><i class="fas fa-pencil-alt"></i></button>' +
                     '<button class="btn btn-danger btn-eliminar btn-sm"><i class="fas fa-trash-alt"></i></button>',
@@ -83,6 +71,7 @@ $(document).ready(function(){
       });
 })
 
+//MODAL FORM USUARIO
 function mostarModal(modelo = MODELO_BASE_USER){
     $("#txtId").val(modelo.idUser)
     $("#txtNombre").val(modelo.nombre)
@@ -90,18 +79,18 @@ function mostarModal(modelo = MODELO_BASE_USER){
     $("#txtUserName").val(modelo.username)
     $("#txtPassword").val(modelo.passw)
     $("#cboRol").val(modelo.adminType == 0 ? $("#cboRol option:first").val(): modelo.adminType)
-    // $("#cboEstado").val(modelo.esActivo)
     $("#txtFoto").val("")
     $("#imgUsuario").attr("src", modelo.urlImagen)
     $("#modalData").modal("show")
 }
 
+//BOTON NUEVO USUARIO
 $("#btnNuevo").click(function(){
     mostarModal()
 })
 
+//BOTON GUARDAR: POST - PUT
 $("#btnGuardar").click(function(){
-    //debugger
 
     const inputs = $("input.input-validar").serializeArray();
     const inputsSnValor = inputs.filter((item) => item.value.trim() == "")
@@ -120,7 +109,6 @@ $("#btnGuardar").click(function(){
     modelo["username"] = $("#txtUserName").val()
     modelo["passw"] = $("#txtPassword").val()
     modelo["adminType"] = $("#cboRol").val()
-    // modelo["esActivo"] = $("#cboEstado").val()
     
     const inputFoto = document.getElementById("txtFoto")
     const formData = new FormData();
@@ -173,6 +161,7 @@ $("#btnGuardar").click(function(){
     }
 })
 
+//SELECCIONAR UN USUARIO
 let filaSeleccionada
 $("#tbdata tbody").on("click", ".btn-editar", function(){
 
@@ -186,6 +175,7 @@ $("#tbdata tbody").on("click", ".btn-editar", function(){
     mostarModal(data);
 })
 
+//ELIMINAR USUARIO: DELETE
 $("#tbdata tbody").on("click", ".btn-eliminar", function(){
 
     let fila;

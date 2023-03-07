@@ -11373,3 +11373,11 @@ body.sidebar-toggled footer.sticky-footer {
   text-align: start;
   padding: 0px 5px;
 }
+
+.main-part-profile {
+  width: 45%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: start;
+  padding: 0px 5px;
+}

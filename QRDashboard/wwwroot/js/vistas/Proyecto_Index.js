@@ -10,6 +10,7 @@ const MODELO_BASE_PROJ = {
   urlImagen: "",
 };
 
+//GRID VIEW: GET
 let gridData;
 $(document).ready(function () {
   fetch("/Categoria/ListaCategorias")
@@ -27,6 +28,7 @@ $(document).ready(function () {
     });
 });
 
+//MODAL FORM PROYECTO
 function mostarModal(modelo = MODELO_BASE_PROJ) {
   $("#txtId").val(modelo.idProj);
   $("#txtTitulo").val(modelo.titulo);
@@ -44,14 +46,12 @@ function mostarModal(modelo = MODELO_BASE_PROJ) {
   $("#modalData").modal("show");
 }
 
+//BOTON NUEVO PROYECTO
 $("#btnNuevo").click(function () {
   mostarModal();
 });
 
-$("#btnDelete").click(function () {
-  swal("Listo!", "El Usuario fue modificado", "success");
-});
-
+//OBTENER ID PARA EDITAR
 function openModalEdit(id) {
   $.ajax({
     url: "/Proyecto/GetById/" + id,
@@ -64,6 +64,7 @@ function openModalEdit(id) {
   });
 }
 
+//BOTON GUARDA: POST - PUT
 $("#btnGuardar").click(function () {
   const inputs = $("input.input-validar").serializeArray();
   const inputsSnValor = inputs.filter((item) => item.value.trim() == "");
@@ -147,6 +148,7 @@ $("#btnGuardar").click(function () {
   }
 });
 
+//ELIMINAR PROYECTO: DELETE
 function openModalDelete(id) {
   $.ajax({
     url: "/Proyecto/GetById/" + id,

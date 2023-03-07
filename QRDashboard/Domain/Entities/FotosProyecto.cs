@@ -6,6 +6,6 @@
         public string UrlImage { get; set; } = null!;
         public int? IdProj { get; set; }
 
-        public virtual ProyectoQr? IdProjNavigation { get; set; }
+        public virtual ProyectoQr IdProjNavigation { get; set; }
     }
 }

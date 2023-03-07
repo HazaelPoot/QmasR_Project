@@ -3,8 +3,8 @@ const MODELO_BASE_CATEG = {
     descripcion: ""
 }
 
+//DATA TABLE: GET
 let tablaData;
-
 $(document).ready(function(){
 
     tablaData = $('#tbdata').DataTable({
@@ -15,7 +15,7 @@ $(document).ready(function(){
             "datatype": "json"
         },
         "columns": [
-            { "data": "idCategoria", "visible":true, "searchable": false },
+            { "data": "idCategoria", "visible":true, "searchable": true },
             { "data": "descripcion" },
             {
                 "defaultContent": '<button class="btn btn-primary btn-editar btn-sm mr-2"><i class="fas fa-pencil-alt"></i></button>' +
@@ -44,16 +44,19 @@ $(document).ready(function(){
       });
 })
 
+//MODAL FORM CATEGORIA
 function mostarModal(modelo = MODELO_BASE_CATEG){
     $("#txtId").val(modelo.idCategoria);
     $("#txtDescripcion").val(modelo.descripcion);
     $("#modalData").modal("show")
 }
 
+//BOTON NUEVO CATEGORIA
 $("#btnNuevo").click(function () {
     mostarModal();
 });
 
+//BOTON GUARDAR: POST - PUT
 $("#btnGuardar").click(function(){
 
     const inputs = $("input.input-validar").serializeArray();
@@ -118,6 +121,7 @@ $("#btnGuardar").click(function(){
     }
 })
 
+//SELECCIONAR UN CATEGORIA
 let filaSeleccionada
 $("#tbdata tbody").on("click", ".btn-editar", function(){
 
@@ -131,6 +135,7 @@ $("#tbdata tbody").on("click", ".btn-editar", function(){
     mostarModal(data);
 })
 
+//ELIMINAR CATEGORIA: DELETE
 $("#tbdata tbody").on("click", ".btn-eliminar", function(){
 
     let fila;

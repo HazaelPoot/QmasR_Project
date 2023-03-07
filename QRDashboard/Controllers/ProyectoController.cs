@@ -45,7 +45,7 @@ namespace QRDashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
-            DtoProyecto dtoProyecto = _mapper.Map<DtoProyecto>(await _proyectoService.ObtenerPorId(id));
+            DtoProyecto dtoProyecto = _mapper.Map<DtoProyecto>(await _proyectoService.GetById(id));
             return StatusCode(StatusCodes.Status200OK, dtoProyecto);
         }
 

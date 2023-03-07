@@ -66,10 +66,10 @@ namespace QRDashboard.Infraestructure.Repositories
                 throw;
             }
         }
-        public async Task<IQueryable<TEntity>> Consult(Expression<Func<TEntity, bool>>? filtro = null)
+        public Task<IQueryable<TEntity>> Consult(Expression<Func<TEntity, bool>> filtro = null)
         {
             IQueryable<TEntity> queryEntity = filtro == null? _context.Set<TEntity>() : _context.Set<TEntity>().Where(filtro);
-            return queryEntity;
+            return Task.FromResult(queryEntity);
         }
     }
 }

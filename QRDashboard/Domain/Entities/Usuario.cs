@@ -10,6 +10,6 @@
         public int? AdminType { get; set; }
         public string UrlImagen { get; set; } = null!;
 
-        public virtual AdminType? AdminTypeNavigation { get; set; }
+        public virtual AdminType AdminTypeNavigation { get; set; }
     }
 }

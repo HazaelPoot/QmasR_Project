@@ -121,7 +121,7 @@ namespace QRDashboard.Aplication.Services
             throw new NotImplementedException();
         }
 
-        public Task<Usuario> ObtenerPorId(int IdUsuario)
+        public Task<Usuario> GetById(int IdUsuario)
         {
             throw new NotImplementedException();
         }
