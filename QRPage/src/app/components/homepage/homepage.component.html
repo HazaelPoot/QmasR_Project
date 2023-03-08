@@ -234,7 +234,6 @@
           </li><!-- End tab nav item -->
 
         </ul>
-
         <div class="tab-content">
 
           <div class="tab-pane active show" id="tab-1">
@@ -364,10 +363,6 @@
       </div>
     </section><!-- End Features Section -->
 
-
-
-
-
     <!-- ======= Our Projects Section ======= -->
     <section id="projects" class="projects">
       <div class="container" data-aos="fade-up">
@@ -378,39 +373,47 @@
           <p>Conoce los proyectos que hemos desarrolla en nuestra empresa</p>
         </div>
 
-
-
         <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
           data-portfolio-sort="original-order">
 
-          <ul class="portfolio-flters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">Todos</li>
-            <li data-filter=".filter-remodeling">Remodelacíon</li>
-            <li data-filter=".filter-construction">Construcción</li>
-            <li data-filter=".filter-repairs">Reparación</li>
-            <li data-filter=".filter-design">Diseño</li>
-          </ul><!-- End Projects Filters -->
+            <ul class="portfolio-flters" data-aos="fade-up" data-aos-delay="100">
+              <li data-filter="*" class="filter-active">Todo</li>
+              <li data-filter=".Remodelación">Remodelación</li>
+              <li data-filter=".Construcción">Construcción</li>
+              <li data-filter=".Reparacion">Reparacion</li>
+              <li data-filter=".Diseño">Diseño</li>
+            </ul>
 
-          <div id= "three" class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="100" style="height:400px;">
+            <!-- ESTE FILTRO ES CON EL NGFOR, PERO NO JALA XD -->
+            <!-- <ul class="portfolio-flters" data-aos="fade-up" data-aos-delay="100">
+              <li data-filter="*" class="filter-active">Todos</li>
+              <li *ngFor="let cat of categorias">{{cat.descripcion}}</li>
+            </ul> -->
 
-            <div id="one" class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
-              <app-proyecto [proyect]="proy" *ngFor="let proy of proyectos">
-              </app-proyecto>
+            <!-- ESTE UN UNA PRUEBA DE FILTROS CON DIV -->
+            <!-- <div class="container" style="width: 700px;">
+              <div class="row mb-3 portfolio-flters" data-aos="fade-up" data-aos-delay="100">
+               <div class="col d-flex justify-content-center">Todo</div>
+               <div *ngFor="let cat of categorias" class="col d-flex justify-content-center">{{cat.descripcion}}</div>
+             </div>
+            </div> -->
+
+            <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
+            <!-- CARDS DE LOS PROYECTOS -->
+            <div *ngFor="let proy of proyectos" class="col-lg-4 col-md-6 portfolio-item {{proy.categoriaName}}">
+              <div class="portfolio-content h-100">
+                <img src="{{proy.urlImagen}}" class="image-project" alt="">
+                <div class="portfolio-info">
+                  <h4>{{proy.titulo}}</h4>
+                  <p>{{proy.descripcion}}</p>
+                  <a href="{{proy.urlImagen}}" title="{{proy.titulo}}" data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
             </div>
-            <div id="one" class="col-lg-4 col-md-6 portfolio-item filter-construction">
-              <app-proyecto [proyect]="proy" *ngFor="let proy of proyectos">
-              </app-proyecto>
-            </div>
-            <div id="one" class="col-lg-4 col-md-6 portfolio-item filter-repairs">
-              <app-proyecto [proyect]="proy" *ngFor="let proy of proyectos">
-              </app-proyecto>
             </div>
           </div>
-          </div>
-
-
       </div>
-
 
     </section><!-- End Our Projects Section -->
 

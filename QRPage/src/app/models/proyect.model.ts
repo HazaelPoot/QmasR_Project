@@ -10,7 +10,6 @@ export interface Proyecto {
   urlImagen: string;
 }
 
-
 export interface ProyectsResponse {
-  data: Proyecto[]
+  data: Proyecto[];
 }
