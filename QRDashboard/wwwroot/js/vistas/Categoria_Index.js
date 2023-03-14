@@ -91,8 +91,8 @@ $("#btnGuardar").click(function(){
                 $("#modalData").modal("hide")
                 swal("Listo!", "La Categoria fue creada", "success")
             }else{
-                swal("Lo sentimos", responseJson.Mesaje, "error")
-                console.log(responseJson.Mesaje)
+                swal("Lo sentimos", responseJson.mesaje, "error")
+                console.log(responseJson.mesaje)
             }
         })
     }

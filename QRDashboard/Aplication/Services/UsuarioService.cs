@@ -129,5 +129,27 @@ namespace QRDashboard.Aplication.Services
 
             return result;
         }
+
+        public async Task<bool> GuardarPerfil(Usuario entidad)
+        {
+            try
+            {
+                Usuario user_encontrado = await _repositorio.Obtain(u => u.IdUser == entidad.IdUser);
+
+                if(user_encontrado == null)
+                    throw new TaskCanceledException("El usuario no existe");
+                
+                user_encontrado.Username = entidad.Username;
+                user_encontrado.Passw = entidad.Passw;
+
+                bool response = await _repositorio.Edit(user_encontrado);
+
+                return response;
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

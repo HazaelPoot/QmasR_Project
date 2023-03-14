@@ -10,5 +10,6 @@ namespace QRDashboard.Domain.Interfaces
         Task<bool> Eliminar(int IdUsuario);
         Task<Usuario> Autenthication(string username, string password);
         Task<Usuario> GetById (int IdUsuario);
+        Task<bool> GuardarPerfil(Usuario entidad);
     }
 }
