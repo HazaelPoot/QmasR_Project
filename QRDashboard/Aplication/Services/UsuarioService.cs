@@ -116,14 +116,18 @@ namespace QRDashboard.Aplication.Services
             }
         }
 
-        public Task<Usuario> ObtenerPorCredenciales(string username, string clave)
+        public async Task<Usuario> Autenthication(string username, string password)
         {
-            throw new NotImplementedException();
+            Usuario user_encontrado = await _repositorio.Obtain(u => u.Username.Equals(username) && u.Passw.Equals(password));
+            return user_encontrado;
         }
 
-        public Task<Usuario> GetById(int IdUsuario)
+        public async Task<Usuario> GetById(int IdUsuario)
         {
-            throw new NotImplementedException();
+            IQueryable<Usuario> query = await _repositorio.Consult(u => u.IdUser == IdUsuario);
+            Usuario result = query.Include(r => r.AdminTypeNavigation).FirstOrDefault();
+
+            return result;
         }
     }
 }

@@ -40,6 +40,9 @@ namespace QRDashboard.Aplication.Mappings
                 opt => opt.Ignore());
             #endregion Proyecto
             
+            #region Login
+            CreateMap<Usuario, DtoLogin>().ReverseMap();
+            #endregion Login
         }
     }
 }

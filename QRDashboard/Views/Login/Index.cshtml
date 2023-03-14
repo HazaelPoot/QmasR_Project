@@ -1,5 +1,7 @@
-﻿@{
-Layout = null;
+﻿@model QRDashboard.Domain.Dtos.DtoLogin;
+
+@{
+    Layout = null;
 }
 
 <head>
@@ -19,7 +21,7 @@ Layout = null;
 </head>
 
 <body>
-    <form method="post">
+    <form asp-controller="Login" asp-action="Acceso" method="post">
         <div class="text-center">
             <a href="/"><i class="bi bi-caret-left-fill"></i>Regresar</a>
         </div>
@@ -29,17 +31,17 @@ Layout = null;
         </div>
         <br />
         <label for="username">Usuario</label>
-        <input placeholder="Ingrese su Usuario" type="text" required>
+        <input placeholder="Ingrese su Usuario" type="text" asp-for="Username" required>
         <label for="password">Contraseña</label>
-        <input placeholder="Ingrese su Contraseña" type="password" required>
+        <input placeholder="Ingrese su Contraseña" type="password" asp-for="Passw" required>
         <br />
-        @*@if (ViewData["Message"] != null)
+        @if (ViewData["Message"] != null)
         {
         <div class="alert alert-danger" role="alert" style="text-align:center">
             @ViewData["Message"]
         </div>
-        }*@
-        <!-- <button type="submit" class="submit" id="btnEntrar">Log In</button> -->
-            <button class="submit" onclick="window.location = '/Home/Index'">Log In</button>
+        }
+        <button type="submit" class="submit" id="btnEntrar">Log In</button>
+        @* <button class="submit" onclick="window.location = '/Home/Index'">Log In</button> *@
     </form>
 </body>

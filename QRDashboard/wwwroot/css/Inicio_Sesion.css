@@ -187,3 +187,16 @@ body {
     align-items: center;
 }
 
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.35rem;
+}
+
+.alert-danger {
+  color: #78261f;
+  background-color: #fadbd8;
+  border-color: #f8ccc8;
+}

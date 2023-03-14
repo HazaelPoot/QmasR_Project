@@ -8,7 +8,7 @@ namespace QRDashboard.Domain.Interfaces
         Task<Usuario> Crear(Usuario entidad, Stream Foto = null, string carpetaDestino = "", string NombreFoto ="");
         Task<Usuario> Editar(Usuario entidad, Stream Foto = null, string carpetaDestino = "", string NombreFoto ="");
         Task<bool> Eliminar(int IdUsuario);
-        Task<Usuario> ObtenerPorCredenciales(string username, string clave);
+        Task<Usuario> Autenthication(string username, string password);
         Task<Usuario> GetById (int IdUsuario);
     }
 }

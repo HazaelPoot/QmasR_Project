@@ -7,7 +7,7 @@
         public string Apellidos { get; set; } = null!;
         public string Username { get; set; } = null!;
         public string Passw { get; set; } = null!;
-        public int? AdminType { get; set; }
+        public int AdminType { get; set; }
         public string UrlImagen { get; set; } = null!;
 
         public virtual AdminType AdminTypeNavigation { get; set; }

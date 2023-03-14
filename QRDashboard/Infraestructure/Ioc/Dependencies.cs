@@ -27,6 +27,13 @@ namespace QRDashboard.Infraestructure.Ioc
                 });
             });
 
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.Name = ".QmasR.Session";
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IFirebaseService, FirebaseService>();
             services.AddScoped<IRolService, RolService>();

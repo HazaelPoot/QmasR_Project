@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
+@using Microsoft.AspNetCore.Http
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +20,14 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
+@{
+    var sesion = Context.Session.GetInt32("Sesion");
+    var name = Context.Session.GetString("Nombres");
+    var username = Context.Session.GetString("Username");
+    var image = Context.Session.GetString("Imagen");
+    var typeuser = Context.Session.GetInt32("TypeUser");
+}
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -38,7 +46,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+            <!-- Nav Item - Home -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="http://localhost:4200/" target="_blank" data-toggle="collapse">
                     <i class="fas fa-fw fa-home"></i>
@@ -104,16 +112,15 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <div class="topbar-divider d-none d-sm-block"></div>
-                        <!-- Nav Item - User Information -->
-                        <!-- Nav Item - User Information -->
+                        <!-- Nav Item - Información del Usuario -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">UserName</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@name</span>
                                 <img class="img-profile rounded-circle"
-                                    src="https://www.zizurmayor.es/wp-content/uploads/2022/11/sin-perfil.jpg">
+                                    src="@image">
                             </a>
-                            <!-- Dropdown - User Information -->
+                            <!-- Dropdown - Información del Usuario -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="perfil.html">
@@ -121,7 +128,7 @@
                                     Perfil
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" onclick="OpenDialogLogout()">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Salir
                                 </a>
@@ -138,6 +145,7 @@
 
             </div>
             <!-- End of Main Content -->
+            
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -152,17 +160,20 @@
         <!-- End of Content Wrapper -->
 
     </div>
+
     <!-- End of Page Wrapper -->
     <!-- Bootstrap core JavaScript-->
     <script src="~/vendor/jquery/jquery.min.js"></script>
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
     <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Custom scripts for all pages-->
     <script src="~/js/sb-admin-2.js"></script>
     <script src="~/vendor/toastr/toastr.min.js"></script>
     <script src="~/vendor/sweetalert/sweetalert.js"></script>
     <script src="~/vendor/loadingoverlay/loadingoverlay.min.js"></script>
+
+    <!-- SCRIPT CON LA FUNCIÓN: LOGOUT -->
+    <script src="~/js/vistas/Home_Index.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

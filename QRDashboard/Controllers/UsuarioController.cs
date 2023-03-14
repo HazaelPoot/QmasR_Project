@@ -71,7 +71,7 @@ namespace QRDashboard.Controllers
                 gResponse.Mesaje = ex.Message;
             }
 
-            return StatusCode(StatusCodes.Status200OK, gResponse);
+            return StatusCode(StatusCodes.Status201Created, gResponse);
         }
 
         [HttpPut]
