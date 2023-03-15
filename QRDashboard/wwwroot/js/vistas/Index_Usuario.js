@@ -43,7 +43,7 @@ $(document).ready(function(){
             { "data": "apellidos" },
             { "data": "username" },
             { "data": "passw" },
-            {"data": "adminTypeName" },
+            { "data": "adminTypeName" },
             {
                 "defaultContent": '<button class="btn btn-primary btn-editar btn-sm mr-2"><i class="fas fa-pencil-alt"></i></button>' +
                     '<button class="btn btn-danger btn-eliminar btn-sm"><i class="fas fa-trash-alt"></i></button>',
@@ -129,11 +129,11 @@ $("#btnGuardar").click(function(){
         })
         .then(responseJson => {
             if (responseJson.status) {
-                tablaData.row.add(responseJson.obejct).draw(false)
+                tablaData.row.add(responseJson.object).draw(false)
                 $("#modalData").modal("hide")
                 swal("Listo!", "El Usuario fue creado", "success")
             }else{
-                swal("Lo sentimos", responseJson.Mesaje, "error")
+                swal("Lo sentimos", responseJson.message, "error")
             }
         })
     }
@@ -150,12 +150,12 @@ $("#btnGuardar").click(function(){
         .then(responseJson => {
             if (responseJson.status) {
                 
-                tablaData.row(filaSeleccionada).data(responseJson.obejct).draw(false)
+                tablaData.row(filaSeleccionada).data(responseJson.object).draw(false)
                 filaSeleccionada = null;
                 $("#modalData").modal("hide")
                 swal("Listo!", "El Usuario fue modificado", "success")
             }else{
-                swal("Lo sentimos", responseJson.Mesaje, "error")
+                swal("Lo sentimos", responseJson.message, "error")
             }
         })
     }
@@ -219,7 +219,7 @@ $("#tbdata tbody").on("click", ".btn-eliminar", function(){
                         
                         swal("Listo!", "El Usuario fue Eliminado", "success")
                     }else{
-                        swal("Lo sentimos", responseJson.Mesaje, "error")
+                        swal("Lo sentimos", responseJson.message, "error")
                     }
                 })
             }

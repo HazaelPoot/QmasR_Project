@@ -28,13 +28,6 @@ namespace QRDashboard.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetById(int id)
-        {
-            DtoUsuario dtoProyecto = _mapper.Map<DtoUsuario>(await _usuarioService.GetById(id));
-            return StatusCode(StatusCodes.Status200OK, dtoProyecto);
-        }
-
-        [HttpGet]
         public async Task<IActionResult> ObtenerPerfil()
         {
             GenericResponse<DtoUsuario> response = new GenericResponse<DtoUsuario>();
@@ -44,12 +37,12 @@ namespace QRDashboard.Controllers
                 DtoUsuario usuario = _mapper.Map<DtoUsuario>(await _usuarioService.GetById(idSesion.Value));
 
                 response.Status = true;
-                response.Obejct = usuario;
+                response.Object = usuario;
             }
             catch(Exception ex)
             {
                 response.Status = false;
-                response.Mesaje = ex.Message;
+                response.Message = ex.Message;
             }
 
             return StatusCode(StatusCodes.Status200OK, response);
@@ -72,7 +65,7 @@ namespace QRDashboard.Controllers
             catch(Exception ex)
             {
                 response.Status = false;
-                response.Mesaje = ex.Message;
+                response.Message = ex.Message;
             }
 
             return StatusCode(StatusCodes.Status200OK, response);

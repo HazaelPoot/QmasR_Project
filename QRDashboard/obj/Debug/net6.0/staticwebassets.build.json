@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5I1Ofx9zckqZj7ewklBO4++rkHoGp1KedzEuruo1d/0=",
+  "Hash": "2fDKLrkwyJh+bFXK+tuXPgFuVhqKIQukZtX58xa1k6A=",
   "Source": "QRDashboard",
   "BasePath": "_content/QRDashboard",
   "Mode": "Default",
@@ -340,23 +340,6 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Categoria_Index.js",
-      "SourceId": "QRDashboard",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\",
-      "BasePath": "_content/QRDashboard",
-      "RelativePath": "js/vistas/Categoria_Index.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\vistas\\Categoria_Index.js"
-    },
-    {
       "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\chart-bar-demo.js",
       "SourceId": "QRDashboard",
       "SourceType": "Discovered",
@@ -408,12 +391,12 @@
       "OriginalItemSpec": "wwwroot\\js\\vistas\\datatables-demo.js"
     },
     {
-      "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Home_Index.js",
+      "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Index_Categoria.js",
       "SourceId": "QRDashboard",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\",
       "BasePath": "_content/QRDashboard",
-      "RelativePath": "js/vistas/Home_Index.js",
+      "RelativePath": "js/vistas/Index_Categoria.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -422,15 +405,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\vistas\\Home_Index.js"
+      "OriginalItemSpec": "wwwroot\\js\\vistas\\Index_Categoria.js"
     },
     {
-      "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Proyecto_Index.js",
+      "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Index_Home.js",
       "SourceId": "QRDashboard",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\",
       "BasePath": "_content/QRDashboard",
-      "RelativePath": "js/vistas/Proyecto_Index.js",
+      "RelativePath": "js/vistas/Index_Home.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -439,15 +422,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\vistas\\Proyecto_Index.js"
+      "OriginalItemSpec": "wwwroot\\js\\vistas\\Index_Home.js"
     },
     {
-      "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Usuario_Index.js",
+      "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Index_Layout.js",
       "SourceId": "QRDashboard",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\",
       "BasePath": "_content/QRDashboard",
-      "RelativePath": "js/vistas/Usuario_Index.js",
+      "RelativePath": "js/vistas/Index_Layout.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -456,7 +439,41 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\vistas\\Usuario_Index.js"
+      "OriginalItemSpec": "wwwroot\\js\\vistas\\Index_Layout.js"
+    },
+    {
+      "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Index_Proyecto.js",
+      "SourceId": "QRDashboard",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\",
+      "BasePath": "_content/QRDashboard",
+      "RelativePath": "js/vistas/Index_Proyecto.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\vistas\\Index_Proyecto.js"
+    },
+    {
+      "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Index_Usuario.js",
+      "SourceId": "QRDashboard",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\",
+      "BasePath": "_content/QRDashboard",
+      "RelativePath": "js/vistas/Index_Usuario.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\vistas\\Index_Usuario.js"
     },
     {
       "Identity": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

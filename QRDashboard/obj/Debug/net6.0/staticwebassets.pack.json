@@ -73,20 +73,24 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Categoria_Index.js",
-      "PackagePath": "staticwebassets\\js\\vistas\\Categoria_Index.js"
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Index_Categoria.js",
+      "PackagePath": "staticwebassets\\js\\vistas\\Index_Categoria.js"
     },
     {
-      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Home_Index.js",
-      "PackagePath": "staticwebassets\\js\\vistas\\Home_Index.js"
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Index_Home.js",
+      "PackagePath": "staticwebassets\\js\\vistas\\Index_Home.js"
     },
     {
-      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Proyecto_Index.js",
-      "PackagePath": "staticwebassets\\js\\vistas\\Proyecto_Index.js"
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Index_Layout.js",
+      "PackagePath": "staticwebassets\\js\\vistas\\Index_Layout.js"
     },
     {
-      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Usuario_Index.js",
-      "PackagePath": "staticwebassets\\js\\vistas\\Usuario_Index.js"
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Index_Proyecto.js",
+      "PackagePath": "staticwebassets\\js\\vistas\\Index_Proyecto.js"
+    },
+    {
+      "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\Index_Usuario.js",
+      "PackagePath": "staticwebassets\\js\\vistas\\Index_Usuario.js"
     },
     {
       "Id": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\wwwroot\\js\\vistas\\chart-bar-demo.js",

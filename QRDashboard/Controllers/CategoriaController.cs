@@ -30,7 +30,7 @@ namespace QRDashboard.Controllers
             return StatusCode(StatusCodes.Status200OK, new { data = dtoCategoriaLista });
         }
 
-        //SELECT INPUT
+        //SELECT INPUT JQUERY
         [HttpGet]
         public async Task<IActionResult> ListaCategorias()
         {
@@ -56,15 +56,15 @@ namespace QRDashboard.Controllers
                 modelo = _mapper.Map<DtoCategoria>(categoryCreado);
 
                 gResponse.Status = true;
-                gResponse.Obejct = modelo;
+                gResponse.Object = modelo;
             }
             catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
-            return StatusCode(StatusCodes.Status200OK, gResponse);
+            return StatusCode(StatusCodes.Status201Created, gResponse);
         }
 
         [HttpPut]
@@ -78,12 +78,12 @@ namespace QRDashboard.Controllers
                 modelo = _mapper.Map<DtoCategoria>(category_editada);
 
                 gResponse.Status = true;
-                gResponse.Obejct = modelo;
+                gResponse.Object = modelo;
             }
             catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
             return StatusCode(StatusCodes.Status200OK, gResponse);
@@ -101,7 +101,7 @@ namespace QRDashboard.Controllers
             catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
             return StatusCode(StatusCodes.Status200OK, gResponse);

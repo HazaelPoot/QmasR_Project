@@ -87,12 +87,12 @@ $("#btnGuardar").click(function(){
         })
         .then(responseJson => {
             if (responseJson.status) {
-                tablaData.row.add(responseJson.obejct).draw(false)
+                tablaData.row.add(responseJson.object).draw(false)
                 $("#modalData").modal("hide")
                 swal("Listo!", "La Categoria fue creada", "success")
             }else{
-                swal("Lo sentimos", responseJson.mesaje, "error")
-                console.log(responseJson.mesaje)
+                swal("Lo sentimos", responseJson.message, "error")
+                console.log(responseJson.message)
             }
         })
     }
@@ -110,12 +110,12 @@ $("#btnGuardar").click(function(){
         .then(responseJson => {
             if (responseJson.status) {
                 
-                tablaData.row(filaSeleccionada).data(responseJson.obejct).draw(false)
+                tablaData.row(filaSeleccionada).data(responseJson.object).draw(false)
                 filaSeleccionada = null;
                 $("#modalData").modal("hide")
                 swal("Listo!", "La Categoria fue modificada", "success")
             }else{
-                swal("Lo sentimos", responseJson.Mesaje, "error")
+                swal("Lo sentimos", responseJson.message, "error")
             }
         })
     }
@@ -179,7 +179,7 @@ $("#tbdata tbody").on("click", ".btn-eliminar", function(){
                         
                         swal("Listo!", "La Categoria fue Eliminada", "success")
                     }else{
-                        swal("Lo sentimos", responseJson.Mesaje, "error")
+                        swal("Lo sentimos", responseJson.message, "error")
                     }
                 })
             }

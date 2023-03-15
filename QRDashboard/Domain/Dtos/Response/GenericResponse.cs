@@ -1,10 +1,10 @@
 namespace QRDashboard.Domain.Dtos.Response
 {
-    public class GenericResponse <TObejct>
+    public class GenericResponse <TObject>
     {
         public bool Status { get; set; }
-        public string Mesaje { get; set; }
-        public TObejct Obejct { get; set; }
-        public List<TObejct> ListObject { get; set; }
+        public string Message { get; set; }
+        public TObject Object { get; set; }
+        public List<TObject> ListObject { get; set; }
     }
 }

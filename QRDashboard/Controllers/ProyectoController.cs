@@ -34,14 +34,6 @@ namespace QRDashboard.Controllers
             return StatusCode(StatusCodes.Status200OK, new { data = dtoProyectoLista });
         }
 
-        //ESTE EL GET EN ARRAY, SOLO DESCOMENTALO Y COMENTA EL DE ARRIBA PARA QUE NO TE DE ERROR DE METODO AMBIGUO
-        // [HttpGet]
-        // public async Task<IActionResult> Lista()
-        // {
-        //     List<VMProyecto> vmProyectoLista = _mapper.Map<List<VMProyecto>>(await _proyectoService.Lista());
-        //     return StatusCode(StatusCodes.Status200OK, vmProyectoLista);
-        // }
-
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
@@ -72,15 +64,15 @@ namespace QRDashboard.Controllers
 
                 dtoProyecto = _mapper.Map<DtoProyecto>(ProyectoCreado);
                 gResponse.Status = true;
-                gResponse.Obejct = dtoProyecto;
+                gResponse.Object = dtoProyecto;
             }
             catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
-            return StatusCode(StatusCodes.Status200OK, gResponse);
+            return StatusCode(StatusCodes.Status201Created, gResponse);
         }
 
         [HttpPut]
@@ -106,12 +98,12 @@ namespace QRDashboard.Controllers
 
                 dtoProyecto = _mapper.Map<DtoProyecto>(proyectoEditado);
                 gResponse.Status = true;
-                gResponse.Obejct = dtoProyecto;
+                gResponse.Object = dtoProyecto;
             }
             catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
             return StatusCode(StatusCodes.Status200OK, gResponse);
@@ -129,7 +121,7 @@ namespace QRDashboard.Controllers
             catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
             return StatusCode(StatusCodes.Status200OK, gResponse);

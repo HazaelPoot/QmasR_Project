@@ -10,6 +10,14 @@ const MODELO_BASE_PROJ = {
   urlImagen: "",
 };
 
+$(document).ready(function () {
+  $(".card-img-top").LoadingOverlay("show");
+
+  fetch("/Proyecto/Lista").then((response) => {
+    $(".card-img-top").LoadingOverlay("hide");
+  });
+});
+
 //GRID VIEW: GET
 let gridData;
 $(document).ready(function () {
@@ -116,7 +124,7 @@ $("#btnGuardar").click(function () {
             }
           );
         } else {
-          swal("Lo sentimos", responseJson.Mesaje, "error");
+          swal("Lo sentimos", responseJson.message, "error");
         }
       });
   } else {
@@ -142,7 +150,7 @@ $("#btnGuardar").click(function () {
             }
           );
         } else {
-          swal("Lo sentimos", responseJson.Mesaje, "error");
+          swal("Lo sentimos", responseJson.message, "error");
         }
       });
   }
@@ -191,7 +199,7 @@ function openModalDelete(id) {
                     }
                   );
                 } else {
-                  swal("Lo sentimos", responseJson.Mesaje, "error");
+                  swal("Lo sentimos", responseJson.message, "error");
                 }
               });
           }

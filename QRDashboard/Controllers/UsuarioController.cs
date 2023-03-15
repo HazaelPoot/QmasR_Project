@@ -33,6 +33,7 @@ namespace QRDashboard.Controllers
             return StatusCode(StatusCodes.Status200OK, new { data = dtoUsuarioLista });
         }
 
+        //SELECT INPUT JQUERY
         [HttpGet]
         public async Task<IActionResult> ListaRoles()
         {
@@ -63,12 +64,12 @@ namespace QRDashboard.Controllers
 
                 dtoUsuario = _mapper.Map<DtoUsuario>(usuarioCreado);
                 gResponse.Status = true;
-                gResponse.Obejct = dtoUsuario;
+                gResponse.Object = dtoUsuario;
             }
             catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
             return StatusCode(StatusCodes.Status201Created, gResponse);
@@ -97,12 +98,12 @@ namespace QRDashboard.Controllers
 
                 dtoUsuario = _mapper.Map<DtoUsuario>(usuarioEditado);
                 gResponse.Status = true;
-                gResponse.Obejct = dtoUsuario;
+                gResponse.Object = dtoUsuario;
             }
             catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
             return StatusCode(StatusCodes.Status200OK, gResponse);
@@ -120,7 +121,7 @@ namespace QRDashboard.Controllers
             catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
             return StatusCode(StatusCodes.Status200OK, gResponse);

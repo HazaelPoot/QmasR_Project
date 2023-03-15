@@ -10,7 +10,7 @@ $(document).ready(function(){
       .then(responseJson =>{
 
         if(responseJson.status){
-          const d = responseJson.obejct
+          const d = responseJson.object
 
           $("#imgFoto").attr("src", d.urlImagen)
           $("#txtNombre").val(d.nombre)
@@ -73,51 +73,11 @@ $("#btnGuardarCambios").click(function(){
           if(responseJson.status){
             swal("Listo!", "Los Cambios fueron guardados", "success")
           }else{
-            swal("Lo sentimos", responseJson.mesaje, "error")
+            swal("Lo sentimos", responseJson.message, "error")
           }
         });
       }
     }
   );
-
 })
-
-function OpenDialogLogout() {
-  swal(
-    {
-      title: "¿Desea cerrar Sesión?",
-      type: "info",
-      showCancelButton: true,
-      confirmButtonClass: "btn-info",
-      confirmButtonText: "Si, Salir",
-      cancelButtonText: "No",
-      closeOnConfirm: false,
-      closeOnCancel: true,
-    },
-    function (response) {
-      if (response) {
-        $(".showSweetAlert").LoadingOverlay("show");
-
-        fetch(`/Login/Logout`, {
-          method: "GET",
-        }).then((response) => {
-          $(".showSweetAlert").LoadingOverlay("hide");
-          // return response.ok ? response.json() : Promise.reject(response);
-          if (response) {
-            swal(
-              {
-                title: "Listo!",
-                text: "Se cerró la sesión",
-                type: "success",
-              },
-              function () {
-                location.reload();
-              }
-            );
-          }
-        });
-      }
-    }
-  );
-}
 
