@@ -54,9 +54,10 @@ namespace QRDashboard.Controllers
 
                 if (foto != null)
                 {
-                    string nombre_codigo = Guid.NewGuid().ToString("N");
+                    var fotoName = dtoProyecto.Titulo;
+                    //string nombre_codigo = Guid.NewGuid().ToString("N");
                     string extension = Path.GetExtension(foto.FileName);
-                    nombreFoto = string.Concat(nombre_codigo, extension);
+                    nombreFoto = string.Concat(fotoName, extension);
                     fotoStream = foto.OpenReadStream();
                 }
 
@@ -88,9 +89,10 @@ namespace QRDashboard.Controllers
 
                 if (foto != null)
                 {
-                    string nombre_codigo = Guid.NewGuid().ToString("N");
+                    var fotoName = dtoProyecto.Titulo;
+                    //string nombre_codigo = Guid.NewGuid().ToString("N");
                     string extension = Path.GetExtension(foto.FileName);
-                    nombreFoto = string.Concat(nombre_codigo, extension);
+                    nombreFoto = string.Concat(fotoName, extension);
                     fotoStream = foto.OpenReadStream();
                 }
 

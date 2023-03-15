@@ -34,10 +34,11 @@ namespace QRDashboard.Aplication.Services
             ProyectoQr projectExist = await _repositorio.Obtain(u => u.Titulo == entidad.Titulo);
 
             if(projectExist != null)
-                throw new TaskCanceledException("Ya existe un proyecto con ese nombre");
+                throw new TaskCanceledException("Ya existe un Proyecto con ese Titulo");
 
             try
             {
+                entidad.NombreFoto = NombreFoto;
                 if(Foto != null)
                 {
                     string urlFoto = await _fireBaseService.UploadStorage(Foto, carpetaDestino, NombreFoto);
@@ -78,8 +79,8 @@ namespace QRDashboard.Aplication.Services
                 proj_editar.IdCategoria = entidad.IdCategoria;
                 proj_editar.Status = entidad.Status;
 
-                if(proj_editar.UrlImagen == "")
-                    proj_editar.UrlImagen = entidad.UrlImagen;
+                if(proj_editar.NombreFoto == "")
+                    proj_editar.UrlImagen = NombreFoto;
 
                 if (Foto != null)
                 {
@@ -111,7 +112,7 @@ namespace QRDashboard.Aplication.Services
                 if(proyectoEncontrado == null)
                 throw new TaskCanceledException("El Proyecto no existe");
 
-                string nombreFoto = proyectoEncontrado.UrlImagen;
+                string nombreFoto = proyectoEncontrado.NombreFoto;
                 bool response = await _repositorio.Eliminate(proyectoEncontrado);
 
                 if(response)

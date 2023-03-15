@@ -10,6 +10,7 @@ namespace QRDashboard.Domain.Dtos
         public int? IdCategoria { get; set; }
         public string CategoriaName { get; set; } = null!;
         public int Status { get; set; } = 0;
+        public string NombreFoto { get; set; } = null!;
         public string UrlImagen { get; set; } = null!;
     }
 }

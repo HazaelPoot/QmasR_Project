@@ -26,10 +26,11 @@ namespace QRDashboard.Aplication.Services
             Usuario usuarioExist = await _repositorio.Obtain(u => u.Username == entidad.Username);
 
             if(usuarioExist != null)
-                throw new TaskCanceledException("El Usuario ya existe");
+                throw new TaskCanceledException("Ya Existe un Usuario con ese Username");
 
             try
             {
+                entidad.NombreFoto = NombreFoto;
                 if(Foto != null)
                 {
                     string urlFoto = await _fireBaseService.UploadStorage(Foto, carpetaDestino, NombreFoto);
@@ -57,7 +58,7 @@ namespace QRDashboard.Aplication.Services
             Usuario usuarioExist = await _repositorio.Obtain(u => u.Username == entidad.Username && u.IdUser != entidad.IdUser);
 
             if (usuarioExist != null)
-                throw new TaskCanceledException("El Usuario ya existe");
+                throw new TaskCanceledException("El Usuario No existe");
 
             try
             {
@@ -69,8 +70,8 @@ namespace QRDashboard.Aplication.Services
                 usuario_editar.Passw = entidad.Passw;
                 usuario_editar.AdminType = entidad.AdminType;
 
-                if(usuario_editar.UrlImagen == "")
-                    usuario_editar.UrlImagen = entidad.UrlImagen;
+                if(usuario_editar.NombreFoto == "")
+                    usuario_editar.NombreFoto = NombreFoto;
 
                 if (Foto != null)
                 {
@@ -102,7 +103,7 @@ namespace QRDashboard.Aplication.Services
                 if(usuarioEncontrado == null)
                 throw new TaskCanceledException("El Usuario no existe");
 
-                string nombreFoto = usuarioEncontrado.UrlImagen;
+                string nombreFoto = usuarioEncontrado.NombreFoto;
                 bool response = await _repositorio.Eliminate(usuarioEncontrado);
 
                 if(response)

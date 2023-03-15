@@ -8,11 +8,12 @@
         }
 
         public int IdProj { get; set; }
-        public string Titulo { get; set; } = null!;
-        public string Descripcion { get; set; } = null!;
-        public string Ubicacion { get; set; } = null!;
+        public string Titulo { get; set; }
+        public string Descripcion { get; set; }
+        public string Ubicacion { get; set; }
         public decimal? Presupuesto { get; set; }
-        public string UrlImagen { get; set; } = null!;
+        public string NombreFoto { get; set; }
+        public string UrlImagen { get; set; }
         public int Status { get; set; }
         public int? IdCategoria { get; set; }
 
