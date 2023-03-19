@@ -9,56 +9,67 @@
     <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
 }
 
-<!-- DataTales Example -->
-<div class="main-part-usuarios">
-    <div class="row page-titles mx-0">
-        <div class="col-sm-6 p-md-0">
-            <div class="welcome-text">
-                <h1>Usuarios</h1>
+    @if(ViewData["Unauthorizate"] != null)
+    {
+        <div class="sinLogin">
+            <div class="alert alert-danger" role="alert">
+                @ViewData["Unauthorizate"]
             </div>
         </div>
-        <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Administración</a></li>
-                <li class="breadcrumb-item active">Usuarios</li>
-            </ol>
-        </div>
-    </div>
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 bg-second-primary">
-            <h6 class="m-0 font-weight-bold text-white">Lista de Usuarios</h6>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-sm-3">
-                    <button class="btn btn-success" id="btnNuevo"><i class="fas fa-user-plus"></i> Nuevo Usuario</button>
+    }
+    else
+    {
+        <div class="main-part-usuarios">
+            <div class="row page-titles mx-0">
+                <div class="col-sm-6 p-md-0">
+                    <div class="welcome-text">
+                        <h1>Usuarios</h1>
+                    </div>
+                </div>
+                <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Administración</a></li>
+                        <li class="breadcrumb-item active">Usuarios</li>
+                    </ol>
                 </div>
             </div>
-            <hr />
-            <div class="row">
-                <div class="col-sm-12">
-                    <table class="table table-hover" id="tbdata" cellspacing="0" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Foto</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>UserName</th>
-                                <th>Contraseña</th>
-                                <th>Rol</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!--AQUI SALE LO QUE HAY EN JQUERY-->
-                        </tbody>
-                    </table>
+            <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-second-primary">
+                <h6 class="m-0 font-weight-bold text-white">Lista de Usuarios</h6>
+            </div>
+            <!-- DataTales Example -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <button class="btn btn-success" id="btnNuevo"><i class="fas fa-user-plus"></i> Nuevo Usuario</button>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-hover" id="tbdata" cellspacing="0" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Foto</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>UserName</th>
+                                    <th>Contraseña</th>
+                                    <th>Rol</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--AQUI SALE LO QUE HAY EN JQUERY-->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    }
 <!--  Modal-->
 <div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
@@ -106,16 +117,13 @@
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="txtFoto">Foto</label>
-                                    <input class="form-control-file" type="file" id="txtFoto" />
+                                    <input class="form-control-file" type="file" id="txtFoto" onchange="previewImage(event, '#imgUsuario')"/>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <img id="imgUsuario" style="max-width:200px;"
-                                src="https://www.zizurmayor.es/wp-content/uploads/2022/11/sin-perfil.jpg"
-                                class="rounded mx-auto d-block" alt="Foto usuario">
+                            <img id="imgUsuario" style="width: 100%; height:240px;" src="" class="rounded mx-auto d-block" alt="Foto usuario">
                         </div>
-
                     </div>
                 </form>
             </div>

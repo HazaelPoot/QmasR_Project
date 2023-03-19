@@ -40,6 +40,7 @@ namespace QRDashboard.Infraestructure.Ioc
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IProyectoService, ProyectoService>();
             services.AddScoped<ICategoriaService, CategoriaService>();
+            services.AddScoped<IFotoService, FotoService>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿const MODELO_BASE_USER = {
+﻿//MODELO DE LA RESPUESTA HTTP
+const MODELO_BASE_USER = {
     idUser: 0,
     nombre: "",
     apellidos: "",
@@ -7,6 +8,15 @@
     adminType: 0,
     urlImagen: "",
 }
+
+//ANIMACION DE CARGA DE IMAGEN (PRELOADER)
+$(document).ready(function () {
+    $(".rounded").LoadingOverlay("show");
+  
+    fetch("/Usuario/Lista").then((response) => {
+      $(".rounded").LoadingOverlay("hide");
+    });
+});
 
 //DATA TABLE: GET
 let tablaData;
@@ -71,6 +81,16 @@ $(document).ready(function(){
       });
 })
 
+//MOSTRAR EN EL MODAL LA IMAGEN SELECCIONADA
+function previewImage(event, querySelector){
+	const input = event.target;
+	$imgPreview = document.querySelector(querySelector);
+	if(!input.files.length) return
+	file = input.files[0];
+	objectURL = URL.createObjectURL(file);
+	$imgPreview.src = objectURL;
+}
+
 //MODAL FORM USUARIO
 function mostarModal(modelo = MODELO_BASE_USER){
     $("#txtId").val(modelo.idUser)
@@ -80,6 +100,10 @@ function mostarModal(modelo = MODELO_BASE_USER){
     $("#txtPassword").val(modelo.passw)
     $("#cboRol").val(modelo.adminType == 0 ? $("#cboRol option:first").val(): modelo.adminType)
     $("#txtFoto").val("")
+    if(modelo.urlImagen == "")
+    {
+        modelo.urlImagen = "https://static.vecteezy.com/system/resources/thumbnails/005/720/408/small_2x/crossed-image-icon-picture-not-available-delete-picture-symbol-free-vector.jpg";
+    }
     $("#imgUsuario").attr("src", modelo.urlImagen)
     $("#modalData").modal("show")
 }

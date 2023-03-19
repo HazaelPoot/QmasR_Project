@@ -34,7 +34,7 @@ namespace QRDashboard.Aplication.Services
             ProyectoQr projectExist = await _repositorio.Obtain(u => u.Titulo == entidad.Titulo);
 
             if(projectExist != null)
-                throw new TaskCanceledException("Ya existe un Proyecto con ese Titulo");
+                throw new TaskCanceledException($"Ya existe un Proyecto con el titulo {projectExist.Titulo}");
 
             try
             {
@@ -124,11 +124,6 @@ namespace QRDashboard.Aplication.Services
             {
                 throw;
             }
-        }
-
-        public Task<ProyectoQr> ObtenerPorCredenciales(string username, string clave)
-        {
-            throw new NotImplementedException();
         }
     }
 }

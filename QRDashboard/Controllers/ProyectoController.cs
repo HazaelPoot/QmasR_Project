@@ -24,6 +24,11 @@ namespace QRDashboard.Controllers
         public async Task<IActionResult> Index()
         {
             List<DtoProyecto> dtoProyectoLista = _mapper.Map<List<DtoProyecto>>(await _proyectoService.Lista());
+            
+            var sesion = HttpContext.Session.GetInt32("Sesion");
+            if(sesion == null)
+                return RedirectToAction("Index", "Login");
+
             return View(dtoProyectoLista);
         }
 

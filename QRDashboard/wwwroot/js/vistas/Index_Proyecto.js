@@ -1,3 +1,4 @@
+//MODELO DE LA RESPUESTA HTTP
 const MODELO_BASE_PROJ = {
   idProj: 0,
   titulo: "",
@@ -10,6 +11,7 @@ const MODELO_BASE_PROJ = {
   urlImagen: "",
 };
 
+//ANIMACION DE CARGA DE IMAGEN (PRELOADER)
 $(document).ready(function () {
   $(".card-img-top").LoadingOverlay("show");
 
@@ -18,8 +20,7 @@ $(document).ready(function () {
   });
 });
 
-//GRID VIEW: GET
-let gridData;
+//INPUT SELECT CATEGORIAS
 $(document).ready(function () {
   fetch("/Categoria/ListaCategorias")
     .then((response) => {
@@ -36,6 +37,16 @@ $(document).ready(function () {
     });
 });
 
+//MOSTRAR EN EL MODAL LA IMAGEN SELECCIONADA
+function previewImage(event, querySelector){
+	const input = event.target;
+	$imgPreview = document.querySelector(querySelector);
+	if(!input.files.length) return
+	file = input.files[0];
+	objectURL = URL.createObjectURL(file);
+	$imgPreview.src = objectURL;
+}
+
 //MODAL FORM PROYECTO
 function mostarModal(modelo = MODELO_BASE_PROJ) {
   $("#txtId").val(modelo.idProj);
@@ -43,21 +54,16 @@ function mostarModal(modelo = MODELO_BASE_PROJ) {
   $("#txtDescripcion").val(modelo.descripcion);
   $("#txtPresupuesto").val(modelo.presupuesto);
   $("#txtUbicacion").val(modelo.ubicacion);
-  $("#cboCategoria").val(
-    modelo.idCategoria == 0
-      ? $("#cboCategoria option:first").val()
-      : modelo.idCategoria
-  );
+  $("#cboCategoria").val(modelo.idCategoria == 0 ? $("#cboCategoria option:first").val() : modelo.idCategoria);
   $("#cboEstado").val(modelo.status);
   $("#txtFoto").val("");
+  if(modelo.urlImagen == "")
+  {
+    modelo.urlImagen = "https://static.vecteezy.com/system/resources/thumbnails/005/720/408/small_2x/crossed-image-icon-picture-not-available-delete-picture-symbol-free-vector.jpg";
+  }
   $("#imgPost").attr("src", modelo.urlImagen);
   $("#modalData").modal("show");
 }
-
-//BOTON NUEVO PROYECTO
-$("#btnNuevo").click(function () {
-  mostarModal();
-});
 
 //OBTENER ID PARA EDITAR
 function openModalEdit(id) {
@@ -71,6 +77,11 @@ function openModalEdit(id) {
     }
   });
 }
+
+//BOTON NUEVO PROYECTO
+$("#btnNuevo").click(function () {
+  mostarModal();
+});
 
 //BOTON GUARDA: POST - PUT
 $("#btnGuardar").click(function () {

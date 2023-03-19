@@ -1,0 +1,134 @@
+@model IEnumerable<QRDashboard.Domain.Dtos.DtoFotosProyecto>
+@{
+    ViewData["Title"] = "Imagenes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles mx-0">
+                <div class="col-sm-6 p-md-0">
+                    <div class="welcome-text">
+                        <h2>Imagenes del proyecto: @ViewData["TituloProject"]</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Proyecto/Index">Proyectos</a></li>
+                        <li class="breadcrumb-item active">Imagenes</li>
+                    </ol>
+                    <ol>
+                        <button class="btn btn-success" id="btnNuevo">
+                            <i class="fa fa-file-upload"></i>
+                        </button>
+                    </ol>
+                    <br>
+                </div>
+            </div>
+            <!-- Cards -->
+            <div class="row d-flex justify-content-center">
+                @foreach (var item in Model)
+                {
+                <div class="image-project card-image">
+                    <div class="wrapper">
+                        <img src="@item.UrlImage" style="height: 200px; width: 280px;">
+                        <div class="data">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-md-6 d-flex justify-content-center">
+                                        <div>
+                                            <button class="btn btn-info" onclick="openModalFoto(@item.IdImg)">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 d-flex justify-content-center">
+                                        <div>
+                                            <button class="btn btn-danger" onclick="openModalDelete(@item.IdImg)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--  Modal Agregar-->
+    <div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document" style="height: 200px; width: 380px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Añadir Imagen</h4>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" value="0" id="txtId">
+                        <img id="imgFoto" style="height: 325px; width: 100%;">
+                        <p></p>
+                        <div class="form-group">
+                            <input class="form-control-file" type="file" id="txtFoto" onchange="previewImage(event, '#imgFoto')"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-sm" type="button" id="btnGuardar">
+                        Guardar
+                    </button>
+                    <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!--  Modal Imagen-->
+    <div class="modal fade" id="modalImage" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Ver Imagen</h4>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" value="0" id="txtId">
+                        <img id="imgPost" style="width: 100%;" src="" class="rounded mx-auto d-block" alt="Foto Proyecto">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts{
+
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+
+    <!-- SCRIPT CON LAS FUNCIONES: POST, PUT, DELETE, GET -->
+    <script src="~/js/vistas/Index_Foto.js"></script>
+}

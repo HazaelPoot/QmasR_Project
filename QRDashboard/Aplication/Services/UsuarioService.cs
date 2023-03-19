@@ -9,10 +9,10 @@ namespace QRDashboard.Aplication.Services
         private readonly IGenericRepository<Usuario> _repositorio;
         private readonly IFirebaseService _fireBaseService;
 
-        public UsuarioService(IGenericRepository<Usuario> repositorio, IFirebaseService fireBaseService)
+        public UsuarioService(IGenericRepository<Usuario> repositorio, IFirebaseService firebaseService)
         {
             _repositorio = repositorio;
-            _fireBaseService = fireBaseService;
+            _fireBaseService = firebaseService;
         }
 
         public async Task<List<Usuario>> Lista()
@@ -26,7 +26,7 @@ namespace QRDashboard.Aplication.Services
             Usuario usuarioExist = await _repositorio.Obtain(u => u.Username == entidad.Username);
 
             if(usuarioExist != null)
-                throw new TaskCanceledException("Ya Existe un Usuario con ese Username");
+                throw new TaskCanceledException($"Ya existe un Usuario con el username: {usuarioExist.Username}");
 
             try
             {

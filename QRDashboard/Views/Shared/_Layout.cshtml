@@ -53,40 +53,65 @@
                     <span>Home</span></a>
             </li>
 
-            <!-- Nav Item - Administración Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministracion"
-                    aria-expanded="true" aria-controls="collapseAdministracion">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Admnistración</span>
-                </a>
-                <div id="collapseAdministracion" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/Usuario/Index"><i class="fas fa-fw fa-user"></i> Usuarios</a>
+            @if(sesion != null && typeuser == 1)
+            {
+                    <!-- Nav Item - Administración Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministracion"
+                        aria-expanded="true" aria-controls="collapseAdministracion">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Admnistración</span>
+                    </a>
+                    <div id="collapseAdministracion" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/Usuario/Index"><i class="fas fa-fw fa-user"></i> Usuarios</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
-            <!-- Nav Item - Proyectos Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario"
-                    aria-expanded="true" aria-controls="collapseInventario">
-                    <i class="fas fa-fw fa-images"></i>
-                    <span>Proyectos</span>
-                </a>
-                <div id="collapseInventario" class="collapse" aria-labelledby="headingInventario"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/Proyecto/Index"><i class="fas fa-fw fa-project-diagram"></i>
-                            Proyectos</a>
+                <!-- Nav Item - Proyectos Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario"
+                        aria-expanded="true" aria-controls="collapseInventario">
+                        <i class="fas fa-fw fa-images"></i>
+                        <span>Proyectos</span>
+                    </a>
+                    <div id="collapseInventario" class="collapse" aria-labelledby="headingInventario"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/Proyecto/Index"><i class="fas fa-fw fa-project-diagram"></i>
+                                Proyectos</a>
+                        </div>
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/Categoria/Index"><i class="fas fa-fw fa-list-alt"></i>
+                                Categorias</a>
+                        </div>
                     </div>
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/Categoria/Index"><i class="fas fa-fw fa-list-alt"></i>
-                            Categorias</a>
+                </li>
+            }
+            else if(sesion != null && typeuser == 2)
+            {
+                <!-- Nav Item - Proyectos Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario"
+                        aria-expanded="true" aria-controls="collapseInventario">
+                        <i class="fas fa-fw fa-images"></i>
+                        <span>Proyectos</span>
+                    </a>
+                    <div id="collapseInventario" class="collapse" aria-labelledby="headingInventario"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/Proyecto/Index"><i class="fas fa-fw fa-project-diagram"></i>
+                                Proyectos</a>
+                        </div>
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/Categoria/Index"><i class="fas fa-fw fa-list-alt"></i>
+                                Categorias</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            }
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -112,28 +137,42 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <div class="topbar-divider d-none d-sm-block"></div>
-                        <!-- Nav Item - Información del Usuario -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@name</span>
-                                <img class="img-profile rounded-circle"
-                                    src="@image">
-                            </a>
-                            <!-- Dropdown - Información del Usuario -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
+                        <!-- VALIDACION DE LOGIN -->
+                        @if(sesion == null)
+                        {
+                            <!-- Nav Item - Sin Login -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="/Login/Index">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Iniciar Sesión</span>
+                                    <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" onclick="OpenDialogLogout()">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Salir
+                            </li>
+                        }
+                        else
+                        {
+                            <!-- Nav Item - Información del Usuario -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@name</span>
+                                    <img class="img-profile rounded-circle"
+                                        src="@image">
                                 </a>
-                            </div>
-                        </li>
+                                <!-- Dropdown - Información del Usuario -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="/">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Perfil
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" onclick="OpenDialogLogout()">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Salir
+                                    </a>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </nav>
                 <!-- End of Topbar -->

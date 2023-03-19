@@ -23,6 +23,17 @@ namespace QRDashboard.Controllers
 
         public IActionResult Index()
         {
+            var sesion = HttpContext.Session.GetInt32("Sesion");
+            var typeUser = HttpContext.Session.GetInt32("TypeUser");
+            if(sesion == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if(typeUser != 1)
+            {
+                ViewData["Unauthorizate"] = "No tienes permisos para acceder a esta pantalla, solo los Administradores pueden";
+            }
+
             return View();
         }
 

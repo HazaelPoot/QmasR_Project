@@ -11382,7 +11382,13 @@ body.sidebar-toggled footer.sticky-footer {
   padding: 0px 5px;
 }
 
-
+.sinLogin {
+  margin: 180px 1rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* perueba de las cards */
 .card-image {

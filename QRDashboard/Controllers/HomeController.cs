@@ -20,9 +20,9 @@ namespace QRDashboard.Controllers
         
         public IActionResult Index()
         {
-            // var sesion = HttpContext.Session.GetInt32("Sesion");
-            // if(sesion == null)
-            //     return RedirectToAction("Index", "Login");
+            var sesion = HttpContext.Session.GetInt32("Sesion");
+            if(sesion == null)
+                return RedirectToAction("Index", "Login");
 
             return View();
         }

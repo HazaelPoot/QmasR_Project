@@ -39,6 +39,18 @@ namespace QRDashboard.Aplication.Mappings
                 destino.IdCategoriaNavigation,
                 opt => opt.Ignore());
             #endregion Proyecto
+
+            #region Fotos
+            CreateMap<FotosProyecto, DtoFotosProyecto>()
+                .ForMember(destino =>
+                    destino.NombreProyecto,
+                    opt => opt.MapFrom(origen => origen.IdProjNavigation.Titulo));
+
+            CreateMap<DtoFotosProyecto, FotosProyecto>()
+                .ForMember(destino =>
+                    destino.IdProjNavigation,
+                    opt => opt.Ignore());
+            #endregion Fotos
             
             #region Login
             CreateMap<Usuario, DtoLogin>().ReverseMap();
