@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using QRDashboard.Domain.Dtos;
-using QRDashboard.Domain.Dtos.Response;
+using Microsoft.AspNetCore.Mvc;
 using QRDashboard.Domain.Entities;
 using QRDashboard.Domain.Interfaces;
+using QRDashboard.Domain.Dtos.Response;
 
 namespace QRDashboard.Controllers
 {
@@ -40,6 +40,13 @@ namespace QRDashboard.Controllers
         }
 
         [HttpGet]
+        public async Task<ActionResult<IEnumerable<FotosProyecto>>> ListActivate()
+        {
+            IEnumerable<DtoProyecto> dtoProyectoLista = _mapper.Map<IEnumerable<DtoProyecto>>(await _proyectoService.ListActivate());
+            return StatusCode(StatusCodes.Status200OK, new {data = dtoProyectoLista});
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
             DtoProyecto dtoProyecto = _mapper.Map<DtoProyecto>(await _proyectoService.GetById(id));
@@ -60,7 +67,6 @@ namespace QRDashboard.Controllers
                 if (foto != null)
                 {
                     var fotoName = dtoProyecto.Titulo;
-                    //string nombre_codigo = Guid.NewGuid().ToString("N");
                     string extension = Path.GetExtension(foto.FileName);
                     nombreFoto = string.Concat(fotoName, extension);
                     fotoStream = foto.OpenReadStream();
@@ -95,7 +101,6 @@ namespace QRDashboard.Controllers
                 if (foto != null)
                 {
                     var fotoName = dtoProyecto.Titulo;
-                    //string nombre_codigo = Guid.NewGuid().ToString("N");
                     string extension = Path.GetExtension(foto.FileName);
                     nombreFoto = string.Concat(fotoName, extension);
                     fotoStream = foto.OpenReadStream();

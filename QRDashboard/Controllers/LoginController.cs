@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using QRDashboard.Domain.Dtos;
+﻿using QRDashboard.Domain.Dtos;
+using Microsoft.AspNetCore.Mvc;
 using QRDashboard.Domain.Entities;
 using QRDashboard.Domain.Interfaces;
 

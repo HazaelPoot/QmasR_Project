@@ -29,8 +29,7 @@ export class HomepageComponent implements OnInit {
       this.proyectos = response.data;
       //this.proyectos = response.data.filter(proyecto => proyecto.idCategoria == 1);
       console.log(this.proyectos);
-     },
-    ),
+     }),
     this.proyectoService.getAllCategories().subscribe((res) => {
       // console.log(res.data);
       this.categorias = res.data;

@@ -1,10 +1,10 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using QRDashboard.Domain.Dtos;
-using QRDashboard.Domain.Dtos.Response;
+using Microsoft.AspNetCore.Mvc;
 using QRDashboard.Domain.Entities;
 using QRDashboard.Domain.Interfaces;
+using QRDashboard.Domain.Dtos.Response;
 
 namespace QRDashboard.Controllers
 {
@@ -66,7 +66,6 @@ namespace QRDashboard.Controllers
                 if (foto != null)
                 {
                     var fotoName = dtoUsuario.Username;
-                    //string nombre_codigo = Guid.NewGuid().ToString("N");
                     string extension = Path.GetExtension(foto.FileName);
                     nombreFoto = string.Concat(fotoName, extension);
                     fotoStream = foto.OpenReadStream();
@@ -101,7 +100,6 @@ namespace QRDashboard.Controllers
                 if (foto != null)
                 {
                     var fotoName = dtoUsuario.Username;
-                    // string nombre_codigo = Guid.NewGuid().ToString("N");
                     string extension = Path.GetExtension(foto.FileName);
                     nombreFoto = string.Concat(fotoName, extension);
                     fotoStream = foto.OpenReadStream();

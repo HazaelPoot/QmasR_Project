@@ -1,4 +1,3 @@
-//HAZAEL ADD
 export interface Categoria{
 
   idCategoria: number;

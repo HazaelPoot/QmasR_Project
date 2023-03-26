@@ -49,7 +49,7 @@ namespace QRDashboard.Controllers
                 return BadRequest("El proyecto no existe");
 
             IEnumerable<DtoFotosProyecto> dtoFotoProj = _mapper.Map<IEnumerable<DtoFotosProyecto>>(await _fotoService.ListByProject(idProj));
-            return StatusCode(StatusCodes.Status200OK, dtoFotoProj);
+            return StatusCode(StatusCodes.Status200OK, new {data = dtoFotoProj});
         }
 
         [HttpGet]
@@ -73,7 +73,6 @@ namespace QRDashboard.Controllers
 
                 if (foto != null)
                 {
-                    // var fotoName = dtoFotoProj.Titulo;
                     string nombre_codigo = Guid.NewGuid().ToString("N");
                     string extension = Path.GetExtension(foto.FileName);
                     nombreFoto = string.Concat(nombre_codigo, extension);

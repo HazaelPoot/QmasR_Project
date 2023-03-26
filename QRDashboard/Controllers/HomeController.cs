@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using QRDashboard.Domain.Dtos;
-using QRDashboard.Domain.Dtos.Response;
+using Microsoft.AspNetCore.Mvc;
 using QRDashboard.Domain.Entities;
 using QRDashboard.Domain.Interfaces;
+using QRDashboard.Domain.Dtos.Response;
 
 namespace QRDashboard.Controllers
 {
