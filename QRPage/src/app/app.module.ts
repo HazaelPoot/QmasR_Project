@@ -7,6 +7,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { ProyectodetailComponent } from './components/proyectodetail/proyectodetail.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,12 +16,14 @@ import { ProyectodetailComponent } from './components/proyectodetail/proyectodet
     HomepageComponent,
     AboutComponent,
     ContactComponent,
-    ProyectodetailComponent
+    ProyectodetailComponent,
+    // ReactiveFormsModule
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent, ]

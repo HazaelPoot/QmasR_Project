@@ -2816,3 +2816,19 @@ section {
   height: 250px;
   width: 500px;
 }
+
+// .form-control.is-invalid, .form-control:invalid {
+//   border-color: var(--bs-form-invalid-border-color);
+//   padding-right: calc(1.5em + 0.75rem);
+//   background-repeat: no-repeat;
+//   background-position: right calc(0.375em + 0.1875rem) center;
+//   background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+// }
+
+.invalid-feedback-form {
+  display: initial;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: .95em;
+  color: #dc3545;
+}

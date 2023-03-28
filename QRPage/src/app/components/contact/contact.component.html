@@ -100,27 +100,56 @@
           </div><!-- End Google Maps -->
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form [formGroup]="form" (ngSubmit)="sendEmail()" role="form" class="php-email-form">
               <div class="row gy-4">
+
                 <div class="col-lg-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
+                  <input formControlName="nombre" name="name" class="form-control" id="name" placeholder="Tu Nombre" required>
+                  <div *ngIf="form.get('nombre')?.dirty && form.get('nombre')?.invalid || form.get('nombre')?.touched">
+                    <span *ngIf="form.get('nombre')?.errors?.['required']"  class="invalid-feedback-form">
+                      <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Por favor ingrese su Nombre
+                    </span>
+                  </div>
+                  </div>
+
                 <div class="col-lg-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input formControlName="remitente" type="email" class="form-control" placeholder="Tu Email" required>
+                  <div *ngIf="form.get('remitente')?.dirty && form.get('remitente')?.invalid || form.get('remitente')?.touched">
+                    <span *ngIf="form.get('remitente')?.errors?.['required']" class="invalid-feedback-form">
+                      <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Por favor ingrese su Email
+                    </span>
+                    <span *ngIf="form.get('remitente')?.errors?.['email']" class="invalid-feedback-form">
+                      <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Este no es un formato de Email
+                    </span>
+                  </div>
                 </div>
               </div>
+
               <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <input formControlName="asunto" type="text" class="form-control" placeholder="Asunto" required>
+                <div *ngIf="form.get('asunto')?.dirty && form.get('asunto')?.invalid || form.get('asunto')?.touched">
+                  <span *ngIf="form.get('asunto')?.errors?.['required']"  class="invalid-feedback-form">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Por favor ingrese un Asunto
+                  </span>
+                </div>
               </div>
+
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea formControlName="contenido"  class="form-control" rows="5" placeholder="Mensaje" required></textarea>
+                <div *ngIf="form.get('contenido')?.dirty && form.get('contenido')?.invalid || form.get('contenido')?.touched">
+                  <span *ngIf="form.get('contenido')?.errors?.['required']"  class="invalid-feedback-form">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Por favor escriba un Mensaje
+                  </span>
+                </div>
               </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+
+              <!-- <button (click)="simpleAlert()">Simple Alert</button> -->
+              <div *ngIf="form.invalid" class="form-group text-center">
+                <p class="text-warning">El boton de enviar aparece cuando llenes todos los campos</p>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div *ngIf="form.valid" class="text-center">
+                <button type="submit">Enviar Mensaje</button>
+              </div>
             </form>
           </div><!-- End Contact Form -->
 

@@ -23,7 +23,6 @@ namespace QRDashboard.Infraestructure.Ioc
                     app.AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod();
-
                 });
             });
 
@@ -35,12 +34,13 @@ namespace QRDashboard.Infraestructure.Ioc
             });
 
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped<IFirebaseService, FirebaseService>();
-            services.AddScoped<IRolService, RolService>();
-            services.AddScoped<IUsuarioService, UsuarioService>();
-            services.AddScoped<IProyectoService, ProyectoService>();
             services.AddScoped<ICategoriaService, CategoriaService>();
+            services.AddScoped<IFirebaseService, FirebaseService>();
+            services.AddScoped<IProyectoService, ProyectoService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IFotoService, FotoService>();
+            services.AddScoped<IRolService, RolService>();
         }
     }
 }
