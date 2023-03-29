@@ -12,10 +12,6 @@ export class EmailService {
     private http: HttpClient
   ) { }
 
-  // getPhotosById(idProj: number): Observable<PhotoResponse>{
-  //   return this.http.get<PhotoResponse>(`https://localhost:7019/Foto/ListByProject?idProj=${idProj}`)
-  // }
-
   sendEmail(email: Email): Observable<Email>{
     return this.http.post<Email>("https://localhost:7019/Api/Email", email)
   }

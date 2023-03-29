@@ -16,8 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomepageComponent,
     AboutComponent,
     ContactComponent,
-    ProyectodetailComponent,
-    // ReactiveFormsModule
+    ProyectodetailComponent
   ],
   imports: [
     BrowserModule,
