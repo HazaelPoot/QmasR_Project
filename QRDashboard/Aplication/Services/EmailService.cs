@@ -19,7 +19,7 @@ namespace QRDashboard.Aplication.Services
             try
             {
                 //Ingresar en esta variable el correo de la empresa
-                var Destinatario = "rzkd.ycvxg54@nefyp.com";
+                var Destinatario = "hazaelpootmay14705@gmail.com";
 
                 string template = GetEmailTemplate();
                 string emailContent = new StringBuilder(template)

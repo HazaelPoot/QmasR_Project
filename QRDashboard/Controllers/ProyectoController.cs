@@ -12,12 +12,10 @@ namespace QRDashboard.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IProyectoService _proyectoService;
-        private readonly ICategoriaService _categoriaService;
 
-        public ProyectoController(IProyectoService proyectoService, ICategoriaService categoriaService, IMapper mapper)
+        public ProyectoController(IProyectoService proyectoService, IMapper mapper)
         {
             _proyectoService = proyectoService;
-            _categoriaService = categoriaService;
             _mapper = mapper;
         }
         

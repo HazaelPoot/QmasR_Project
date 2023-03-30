@@ -8,11 +8,13 @@ namespace QRDashboard.Aplication.Services
     {
         private readonly IGenericRepository<ProyectoQr> _repositorio;
         private readonly IFirebaseService _fireBaseService;
+        private readonly IFotoService _fotoService;
 
-        public ProyectoService(IGenericRepository<ProyectoQr> repositorio, IFirebaseService fireBaseService)
+        public ProyectoService(IGenericRepository<ProyectoQr> repositorio, IFirebaseService fireBaseService, IFotoService fotoService)
         {
             _repositorio = repositorio;
             _fireBaseService = fireBaseService;
+            _fotoService = fotoService;
         }
 
         public async Task<List<ProyectoQr>> Lista()
@@ -116,8 +118,10 @@ namespace QRDashboard.Aplication.Services
                 ProyectoQr proyectoEncontrado = await _repositorio.Obtain(u => u.IdProj == idProyecto);
 
                 if(proyectoEncontrado == null)
-                throw new TaskCanceledException("El Proyecto no existe");
+                    throw new TaskCanceledException("El Proyecto no existe");
 
+                await _fotoService.EliminarRange(idProyecto);
+                
                 string nombreFoto = proyectoEncontrado.NombreFoto;
                 bool response = await _repositorio.Eliminate(proyectoEncontrado);
 

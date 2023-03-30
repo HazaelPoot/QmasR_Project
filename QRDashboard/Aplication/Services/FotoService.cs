@@ -88,5 +88,24 @@ namespace QRDashboard.Aplication.Services
                 throw;
             }
         }
+
+        public async Task<bool> EliminarRange(int idProj)
+        {
+            try
+            {
+                IQueryable<FotosProyecto> fotoEncontrado = await _repository.Consult(u => u.IdImg == idProj);
+
+                if(fotoEncontrado == null)
+                    throw new TaskCanceledException("Las fotos no existen");
+
+                bool eliminado = await _repository.EliminateRange<FotosProyecto>(u => u.IdProj == idProj);
+
+                return true;
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }
