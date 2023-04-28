@@ -6,24 +6,24 @@ namespace QRDashboard.Aplication.Services
 {
     public class UsuarioService : IUsuarioService
     {
-        private readonly IGenericRepository<Usuario> _repositorio;
+        private readonly IGenericRepository<Usuario> _repository;
         private readonly IFirebaseService _fireBaseService;
 
-        public UsuarioService(IGenericRepository<Usuario> repositorio, IFirebaseService firebaseService)
+        public UsuarioService(IGenericRepository<Usuario> repository, IFirebaseService firebaseService)
         {
-            _repositorio = repositorio;
+            _repository = repository;
             _fireBaseService = firebaseService;
         }
 
         public async Task<List<Usuario>> Lista()
         {
-            IQueryable<Usuario> query = await _repositorio.Consult();
+            IQueryable<Usuario> query = await _repository.Consult();
             return query.Include(r => r.AdminTypeNavigation).ToList(); 
         }
 
         public async Task<Usuario> Crear(Usuario entidad, Stream Foto = null, string carpetaDestino = "", string NombreFoto = "")
         {
-            Usuario usuarioExist = await _repositorio.Obtain(u => u.Username == entidad.Username);
+            Usuario usuarioExist = await _repository.Obtain(u => u.Username == entidad.Username);
 
             if(usuarioExist != null)
                 throw new TaskCanceledException($"Ya existe un Usuario con el username: {usuarioExist.Username}");
@@ -37,11 +37,11 @@ namespace QRDashboard.Aplication.Services
                     entidad.UrlImagen = urlFoto;
                 }
 
-                Usuario usuarioCreado = await _repositorio.Create(entidad);
+                Usuario usuarioCreado = await _repository.Create(entidad);
                 if(usuarioCreado.IdUser == 0)
                     throw new TaskCanceledException("No se pudo crear el usuario");
 
-                IQueryable<Usuario> query = await _repositorio.Consult(u => u.IdUser == usuarioCreado.IdUser);
+                IQueryable<Usuario> query = await _repository.Consult(u => u.IdUser == usuarioCreado.IdUser);
                 usuarioCreado = query.Include(r => r.AdminTypeNavigation).First();
 
                 return usuarioCreado;
@@ -55,14 +55,14 @@ namespace QRDashboard.Aplication.Services
 
         public async Task<Usuario> Editar(Usuario entidad, Stream Foto = null, string carpetaDestino = "", string NombreFoto = "")
         {
-            Usuario usuarioExist = await _repositorio.Obtain(u => u.Username == entidad.Username && u.IdUser != entidad.IdUser);
+            Usuario usuarioExist = await _repository.Obtain(u => u.Username == entidad.Username && u.IdUser != entidad.IdUser);
 
             if (usuarioExist != null)
                 throw new TaskCanceledException("El Usuario No existe");
 
             try
             {
-                IQueryable<Usuario> queryUser = await _repositorio.Consult(u => u.IdUser == entidad.IdUser);
+                IQueryable<Usuario> queryUser = await _repository.Consult(u => u.IdUser == entidad.IdUser);
                 Usuario usuario_editar = queryUser.First();
                 usuario_editar.Nombre = entidad.Nombre;
                 usuario_editar.Apellidos = entidad.Apellidos;
@@ -79,7 +79,7 @@ namespace QRDashboard.Aplication.Services
                     usuario_editar.UrlImagen = urlFoto;
                 }
 
-                bool response = await _repositorio.Edit(usuario_editar);
+                bool response = await _repository.Edit(usuario_editar);
 
                 if(!response)
                     throw new TaskCanceledException("No se pudo moficiar el usuario");
@@ -98,13 +98,13 @@ namespace QRDashboard.Aplication.Services
         {
             try
             {
-                Usuario usuarioEncontrado = await _repositorio.Obtain(u => u.IdUser == IdUsuario);
+                Usuario usuarioEncontrado = await _repository.Obtain(u => u.IdUser == IdUsuario);
 
                 if(usuarioEncontrado == null)
                 throw new TaskCanceledException("El Usuario no existe");
 
                 string nombreFoto = usuarioEncontrado.NombreFoto;
-                bool response = await _repositorio.Eliminate(usuarioEncontrado);
+                bool response = await _repository.Eliminate(usuarioEncontrado);
 
                 if(response)
                     await _fireBaseService.DeleteStorage("Fotos_Perfil", nombreFoto);
@@ -119,13 +119,13 @@ namespace QRDashboard.Aplication.Services
 
         public async Task<Usuario> Autenthication(string username, string password)
         {
-            Usuario user_encontrado = await _repositorio.Obtain(u => u.Username.Equals(username) && u.Passw.Equals(password));
+            Usuario user_encontrado = await _repository.Obtain(u => u.Username.Equals(username) && u.Passw.Equals(password));
             return user_encontrado;
         }
 
         public async Task<Usuario> GetById(int IdUsuario)
         {
-            IQueryable<Usuario> query = await _repositorio.Consult(u => u.IdUser == IdUsuario);
+            IQueryable<Usuario> query = await _repository.Consult(u => u.IdUser == IdUsuario);
             Usuario result = query.Include(r => r.AdminTypeNavigation).FirstOrDefault();
 
             return result;
@@ -135,7 +135,7 @@ namespace QRDashboard.Aplication.Services
         {
             try
             {
-                Usuario user_encontrado = await _repositorio.Obtain(u => u.IdUser == entidad.IdUser);
+                Usuario user_encontrado = await _repository.Obtain(u => u.IdUser == entidad.IdUser);
 
                 if(user_encontrado == null)
                     throw new TaskCanceledException("El usuario no existe");
@@ -143,7 +143,7 @@ namespace QRDashboard.Aplication.Services
                 user_encontrado.Username = entidad.Username;
                 user_encontrado.Passw = entidad.Passw;
 
-                bool response = await _repositorio.Edit(user_encontrado);
+                bool response = await _repository.Edit(user_encontrado);
 
                 return response;
             }

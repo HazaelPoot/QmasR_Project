@@ -45,6 +45,7 @@ namespace QRDashboard.Controllers
         public async Task<ActionResult<IEnumerable<FotosProyecto>>> ListByProject(int idProj)
         {
             ProyectoQr search = await _proyectoService.GetById(idProj);
+            TempData["IdProj"] = idProj;
             if(search == null)
                 return BadRequest("El proyecto no existe");
 

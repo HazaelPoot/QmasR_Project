@@ -77,8 +77,8 @@ namespace QRDashboard.Infraestructure.Repositories
         {
             try
             {
-                var registrosAEliminar = _context.Set<TEntity>().Where(filtro);
-                _context.Set<TEntity>().RemoveRange(registrosAEliminar);
+                var rangeDelete = _context.Set<TEntity>().Where(filtro);
+                _context.Set<TEntity>().RemoveRange(rangeDelete);
                 await _context.SaveChangesAsync();
                 return true;
             }
@@ -87,6 +87,5 @@ namespace QRDashboard.Infraestructure.Repositories
                 throw;
             }
         }
-
     }
 }

@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
-import * as Aos from 'aos';
+import { ProyectosService } from 'src/app/services/proyectos.service';
 import { Categoria } from 'src/app/models/category.model';
 import { Proyecto } from 'src/app/models/proyect.model';
-import { ProyectosService } from 'src/app/services/proyectos.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-homepage',
@@ -15,27 +13,20 @@ import { ProyectosService } from 'src/app/services/proyectos.service';
 export class HomepageComponent implements OnInit {
 
   proyectos: Proyecto[] = [];
-  categorias: Categoria[] = [];
   claseSeleccionada:  Categoria[] = [];
 
   constructor(
     private proyectoService: ProyectosService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.getAllProyects();
+  }
 
-    this.proyectoService.getAllProyects().subscribe((response) => {
-      // console.log(response.data);
+  getAllProyects(){
+    this.proyectoService.getProyects().subscribe(
+      (response) => {
       this.proyectos = response.data;
-      //this.proyectos = response.data.filter(proyecto => proyecto.idCategoria == 1);
-      console.log(this.proyectos);
-     }),
-    this.proyectoService.getAllCategories().subscribe((res) => {
-      // console.log(res.data);
-      this.categorias = res.data;
-      console.log(this.categorias);
-    })
-   }
+     })
+  }
 }
-
-

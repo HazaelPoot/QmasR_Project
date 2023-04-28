@@ -18,7 +18,7 @@ namespace QRDashboard.Controllers
         public IActionResult Enviar(DtoEmail email)
         {
             _emailService.SendEmail(email);
-            return Ok($"Tu mensaje se envio con exito, la respuesta será enviada su correo: {email.Remitemte}");
+            return StatusCode(StatusCodes.Status200OK, new {message = $"Tu mensaje se envio con exito, la respuesta será enviada su correo: {email.Remitemte}"});
         }
     }
 }

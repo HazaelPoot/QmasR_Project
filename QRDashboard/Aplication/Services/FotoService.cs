@@ -9,9 +9,9 @@ namespace QRDashboard.Aplication.Services
         private readonly IGenericRepository<FotosProyecto> _repository;
         private readonly IFirebaseService _fireBaseService;
 
-        public FotoService(IGenericRepository<FotosProyecto> repositorio, IFirebaseService fireBaseService)
+        public FotoService(IGenericRepository<FotosProyecto> repository, IFirebaseService fireBaseService)
         {
-            _repository = repositorio;
+            _repository = repository;
             _fireBaseService = fireBaseService;
         }
         public async Task<List<FotosProyecto>> Lista()

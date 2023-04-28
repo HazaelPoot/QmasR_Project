@@ -20,14 +20,8 @@ namespace QRDashboard.Infraestructure.Data
         public virtual DbSet<ProyectoQr> ProyectoQrs { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
 
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // {
-        //     if (!optionsBuilder.IsConfigured)
-        //     {
-        //         optionsBuilder.UseSqlServer("Data source=HAZAEL\\SQLEXPRESS; Initial Catalog=QR_DATABASE; Trusted_Connection=True;");
-        //         optionsBuilder.UseSqlServer("workstation id=qmasrdatabase.mssql.somee.com;packet size=4096;user id=Hazael_Poot_SQLLogin_1;pwd=epua3vqx4v;data source=qmasrdatabase.mssql.somee.com;persist security info=False;initial catalog=qmasrdatabase");
-        //     }
-        // }
+        // "Data source=HAZAEL\\SQLEXPRESS; Initial Catalog=QR_DATABASE; Trusted_Connection=True;"
+        // "workstation id=qmasrdatabase.mssql.somee.com;packet size=4096;user id=Hazael_Poot_SQLLogin_1;pwd=epua3vqx4v;data source=qmasrdatabase.mssql.somee.com;persist security info=False;initial catalog=qmasrdatabase"
 
        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

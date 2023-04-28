@@ -210,20 +210,6 @@
               <li data-filter=".Diseño">Diseño</li>
             </ul>
 
-            <!-- ESTE FILTRO ES CON EL NGFOR, PERO NO JALA XD -->
-            <!-- <ul class="portfolio-flters" data-aos="fade-up" data-aos-delay="100">
-              <li data-filter="*" class="filter-active">Todos</li>
-              <li *ngFor="let cat of categorias">{{cat.descripcion}}</li>
-            </ul> -->
-
-            <!-- ESTE UN UNA PRUEBA DE FILTROS CON DIV -->
-            <!-- <div class="container" style="width: 700px;">
-              <div class="row mb-3 portfolio-flters" data-aos="fade-up" data-aos-delay="100">
-               <div class="col d-flex justify-content-center">Todo</div>
-               <div *ngFor="let cat of categorias" class="col d-flex justify-content-center">{{cat.descripcion}}</div>
-             </div>
-            </div> -->
-
             <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
             <!-- CARDS DE LOS PROYECTOS -->
             <div *ngFor="let proy of proyectos" class="col-lg-4 col-md-6 portfolio-item {{proy.categoriaName}}">

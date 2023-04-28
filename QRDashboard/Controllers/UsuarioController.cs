@@ -20,6 +20,14 @@ namespace QRDashboard.Controllers
             _rolService = rolService;
             _mapper = mapper;
         }
+        
+        //SELECT INPUT JQUERY
+        [HttpGet]
+        public async Task<IActionResult> ListaRoles()
+        {
+            List<DtoRol> dtoListaRoles = _mapper.Map<List<DtoRol>>(await _rolService.Lista());
+            return StatusCode(StatusCodes.Status200OK, dtoListaRoles);
+        }
 
         public IActionResult Index()
         {
@@ -44,12 +52,14 @@ namespace QRDashboard.Controllers
             return StatusCode(StatusCodes.Status200OK, new { data = dtoUsuarioLista });
         }
 
-        //SELECT INPUT JQUERY
         [HttpGet]
-        public async Task<IActionResult> ListaRoles()
+        public async Task<IActionResult> GetById(int id)
         {
-            List<DtoRol> dtoListaRoles = _mapper.Map<List<DtoRol>>(await _rolService.Lista());
-            return StatusCode(StatusCodes.Status200OK, dtoListaRoles);
+            DtoUsuario dtoUsuario = _mapper.Map<DtoUsuario>(await _usuarioService.GetById(id));
+            if(dtoUsuario is null)
+                return BadRequest($"El Usuario {id} no existe");
+
+            return StatusCode(StatusCodes.Status200OK, dtoUsuario);
         }
 
         [HttpPost]

@@ -1,17 +1,21 @@
-﻿using QRDashboard.Domain.Dtos;
+﻿using AutoMapper;
+using QRDashboard.Domain.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using QRDashboard.Domain.Entities;
 using QRDashboard.Domain.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace QRDashboard.Controllers
 {
     public class LoginController : Controller
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly IMapper _mapper;
 
-        public LoginController(IUsuarioService usuarioService)
+        public LoginController(IUsuarioService usuarioService, IMapper mapper)
         {
             _usuarioService = usuarioService;
+            _mapper = mapper;
         }
         public IActionResult Index()
         {
@@ -22,17 +26,18 @@ namespace QRDashboard.Controllers
             return View();        
         }
 
+        [HttpPost]
         public async Task<IActionResult> Acceso(DtoLogin dto)
         {
-            Usuario user_econtrado = await _usuarioService.Autenthication(dto.Username, dto.Passw);
+            Usuario auth = await _usuarioService.Autenthication(dto.Username, dto.Passw);
 
-            if(user_econtrado != null)
+            if(auth != null)
             {
-                HttpContext.Session.SetInt32("Sesion", user_econtrado.IdUser);
-                HttpContext.Session.SetString("Nombres", user_econtrado.Nombre);
-                HttpContext.Session.SetString("Username", user_econtrado.Username);
-                HttpContext.Session.SetString("Imagen", user_econtrado.UrlImagen);
-                HttpContext.Session.SetInt32("TypeUser", user_econtrado.AdminType);
+                HttpContext.Session.SetInt32("Sesion", auth.IdUser);
+                HttpContext.Session.SetString("Nombres", auth.Nombre);
+                HttpContext.Session.SetString("Username", auth.Username);
+                HttpContext.Session.SetString("Imagen", auth.UrlImagen);
+                HttpContext.Session.SetInt32("TypeUser", auth.AdminType);
             }
             else
             {
@@ -41,6 +46,27 @@ namespace QRDashboard.Controllers
             }
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ApiAcceso([FromBody] DtoLogin dto)
+        {
+            Usuario auth = await _usuarioService.Autenthication(dto.Username, dto.Passw);
+            
+
+            if(auth != null)
+            {  
+                HttpContext.Session.SetInt32("Sesion", auth.IdUser);
+                HttpContext.Session.SetString("Nombres", auth.Nombre);
+                HttpContext.Session.SetString("Username", auth.Username);
+                HttpContext.Session.SetString("Imagen", auth.UrlImagen);
+                HttpContext.Session.SetInt32("TypeUser", auth.AdminType);
+                
+                DtoUsuario dtoUsuario = _mapper.Map<DtoUsuario>(await _usuarioService.GetById(auth.IdUser));
+                return StatusCode(StatusCodes.Status200OK, dtoUsuario);
+            }
+
+            return StatusCode(StatusCodes.Status404NotFound, new {message = "Username o Contraseña Incorrectos"});
         }
 
         public IActionResult Logout()

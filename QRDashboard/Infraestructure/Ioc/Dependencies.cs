@@ -33,6 +33,13 @@ namespace QRDashboard.Infraestructure.Ioc
                 options.Cookie.IsEssential = true;
             });
 
+            services.AddDistributedMemoryCache();
+            services.Configure<CookiePolicyOptions>(options => 
+            {
+                options.CheckConsentNeeded = configuration => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<ICategoriaService, CategoriaService>();
             services.AddScoped<IFirebaseService, FirebaseService>();

@@ -18,6 +18,14 @@ namespace QRDashboard.Controllers
             _mapper = mapper;
         }
 
+        //SELECT INPUT JQUERY
+        [HttpGet]
+        public async Task<IActionResult> ListaCategorias()
+        {
+            List<DtoCategoria> dtoListaCategoria = _mapper.Map<List<DtoCategoria>>(await _categoriaService.Lista());
+            return StatusCode(StatusCodes.Status200OK, dtoListaCategoria);
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -28,14 +36,6 @@ namespace QRDashboard.Controllers
         {
             List<DtoCategoria> dtoCategoriaLista = _mapper.Map<List<DtoCategoria>>(await _categoriaService.Lista());
             return StatusCode(StatusCodes.Status200OK, new { data = dtoCategoriaLista });
-        }
-
-        //SELECT INPUT JQUERY
-        [HttpGet]
-        public async Task<IActionResult> ListaCategorias()
-        {
-            List<DtoCategoria> dtoListaCategoria = _mapper.Map<List<DtoCategoria>>(await _categoriaService.Lista());
-            return StatusCode(StatusCodes.Status200OK, dtoListaCategoria);
         }
 
         [HttpGet]

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Email } from 'src/app/models/email.model';
 import { EmailService } from 'src/app/services/email.service';
+import { Email } from 'src/app/models/email.model';
+import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -41,20 +41,31 @@ export class ContactComponent {
         confirmButtonText: 'Si, enviar!',
       }).then((result) => {
         if (result) {
-          this.emailService.sendEmail(email).subscribe((data) => {}),
-            Swal.fire({
-              title: 'Enviado',
-              text: `Recibirá la respuesta al correo ${email.remitemte}`,
-              icon: 'success',
-              confirmButtonColor: '#3085d6',
-              confirmButtonText: 'OK',
-            }).then((result) => {
-              if (result.isConfirmed) {
-                window.location.reload();
-              }
-            });
+          this.taskEmail(email);
         }
       });
     }
+  }
+
+  taskEmail(email: Email){
+    this.emailService.sendEmail(email).subscribe({
+      next: (res) => {
+        console.log(res);
+        Swal.fire({
+          title: 'Enviado',
+          text: `Recibirá la respuesta al correo ${email.remitemte}`,
+          icon: 'success',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload();
+          }
+        });
+      },
+      error: (err) =>{
+        console.log(err);
+      }
+    })    
   }
 }
