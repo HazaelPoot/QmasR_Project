@@ -4,24 +4,19 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>Q+R - Contacto</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
-
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -43,22 +38,18 @@
             <li><a href="/contact" class="active">Contacto</a></li>
         </ul>
       </nav><!-- .navbar -->
-
     </div>
   </header><!-- End Header -->
 
   <main id="main">
-
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-
         <h2>Contacto</h2>
         <ol>
           <li><a href="index.html">Home</a></li>
           <li>Contacto</li>
         </ol>
-
       </div>
     </div><!-- End Breadcrumbs -->
 
@@ -90,54 +81,75 @@
               <p>+5293954923459</p>
             </div>
           </div><!-- End Info Item -->
-
         </div>
 
         <div class="row gy-4 mt-1">
-
           <div class="col-lg-6 ">
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d232.84414128937206!2d-89.6479228313469!3d20.972334104009555!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5673be6e51c9e1%3A0xe7f0ea0cbeaef257!2sCalle%2059%20668A%2C%20Boj%C3%B3rquez%2C%2097230%20M%C3%A9rida%2C%20Yuc.!5e0!3m2!1ses-419!2smx!4v1676704082994!5m2!1ses-419!2smx" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
           </div><!-- End Google Maps -->
-
+          <!-- Formulario de Correo -->
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form [formGroup]="form" (ngSubmit)="sendEmail()" role="form" class="php-email-form">
               <div class="row gy-4">
+                <!-- Input Nombre -->
                 <div class="col-lg-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
+                  <input formControlName="nombre" name="name" class="form-control" id="name" placeholder="Tu Nombre" required>
+                  <div *ngIf="form.get('nombre')?.dirty && form.get('nombre')?.invalid || form.get('nombre')?.touched">
+                    <span *ngIf="form.get('nombre')?.errors?.['required']"  class="invalid-feedback-form">
+                      <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Por favor ingrese su Nombre
+                    </span>
+                  </div>
+                  </div>
+                <!-- Input Email -->
                 <div class="col-lg-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input formControlName="remitente" type="email" class="form-control" placeholder="Tu Email" required>
+                  <div *ngIf="form.get('remitente')?.dirty && form.get('remitente')?.invalid || form.get('remitente')?.touched">
+                    <span *ngIf="form.get('remitente')?.errors?.['required']" class="invalid-feedback-form">
+                      <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Por favor ingrese su Email
+                    </span>
+                    <span *ngIf="form.get('remitente')?.errors?.['email']" class="invalid-feedback-form">
+                      <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Este no es un formato de Email
+                    </span>
+                  </div>
                 </div>
               </div>
+              <!-- Input Asunto del correo -->
               <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <input formControlName="asunto" type="text" class="form-control" placeholder="Asunto" required>
+                <div *ngIf="form.get('asunto')?.dirty && form.get('asunto')?.invalid || form.get('asunto')?.touched">
+                  <span *ngIf="form.get('asunto')?.errors?.['required']"  class="invalid-feedback-form">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Por favor ingrese un Asunto
+                  </span>
+                </div>
               </div>
+              <!-- Textarea Mensaje -->
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea formControlName="contenido"  class="form-control" rows="5" placeholder="Mensaje" required></textarea>
+                <div *ngIf="form.get('contenido')?.dirty && form.get('contenido')?.invalid || form.get('contenido')?.touched">
+                  <span *ngIf="form.get('contenido')?.errors?.['required']"  class="invalid-feedback-form">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Por favor escriba un Mensaje
+                  </span>
+                </div>
               </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+              <!-- Validacion de Formulario -->
+              <div *ngIf="form.invalid" class="form-group text-center">
+                <p class="text-warning">El boton de enviar aparece cuando llenes todos los campos</p>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div *ngIf="form.valid" class="text-center">
+                <button type="submit">Enviar Mensaje</button>
+              </div>
             </form>
           </div><!-- End Contact Form -->
-
         </div>
-
       </div>
     </section><!-- End Contact Section -->
-
   </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
-
       <div class="footer-content position-relative">
         <div class="container">
           <div class="row">
-
             <div class="col-lg-4 col-md-6">
               <div class="footer-info">
                 <img style="height:57px ;" src="assets/img/Q+R ICONO.png"/>
@@ -196,7 +208,7 @@
                 <li><a href="#">Contrucción</a></li>
                 <li><a href="#">Albanileria</a></li>
                 <li><a href="#">Carpinteria</a></li>
-                <li><a href="login">Iniciar sesión</a></li>
+                <li><a href="https://localhost:7019/login">Iniciar sesión</a></li>
               </ul>
             </div><!-- End footer links column-->
 
@@ -214,12 +226,9 @@
           </div>
         </div>
       </div>
-
     </footer>
     <!-- End Footer -->
-
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
   <div id="preloader"></div>
-
 </body>
+</html>

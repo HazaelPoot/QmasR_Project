@@ -1,0 +1,42 @@
+﻿@model QRDashboard.Domain.Dtos.DtoLogin;
+
+@{
+    Layout = null;
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="~/img/favicon.png">
+    <title>Q+R - Iniciar Sesión</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="~/css/inicio_sesion.css" rel="stylesheet" />
+</head>
+
+<body>
+    <form asp-controller="Login" asp-action="Acceso" method="post">
+        <br>
+        <div class="login-content">
+            <img src="~/Img/favicon.png" />
+        </div>
+        <br />
+        <label for="username">Usuario</label>
+        <input placeholder="Ingrese su Usuario" type="text" asp-for="Username" required>
+        <label for="password">Contraseña</label>
+        <input placeholder="Ingrese su Contraseña" type="password" asp-for="Passw" required>
+        <br />
+        @if (ViewData["Message"] != null)
+        {
+            <div class="alert alert-danger" role="alert" style="text-align:center">
+                @ViewData["Message"]
+            </div>
+        }
+        <button type="submit" class="submit" id="btnEntrar">Log In</button>
+    </form>
+</body>

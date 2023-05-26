@@ -13,8 +13,12 @@
 
 .nav-link {
   display: block;
-  padding: $nav-link-padding-y $nav-link-padding-x;
-  text-decoration: if($link-decoration == none, null, none);
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: #000;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 
   @include hover-focus() {
     text-decoration: none;
@@ -53,9 +57,9 @@
 
   .nav-link.active,
   .nav-item.show .nav-link {
-    color: $nav-tabs-link-active-color;
-    background-color: $nav-tabs-link-active-bg;
-    border-color: $nav-tabs-link-active-border-color;
+    color: #feb900;
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: var(--bs-nav-tabs-link-active-border-color);
   }
 
   .dropdown-menu {
@@ -71,6 +75,12 @@
 // Pills
 //
 
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: red;
+  background-color: red;
+  border-color: red;
+}
+
 .nav-pills {
   .nav-link {
     @include border-radius($nav-pills-border-radius);
@@ -78,8 +88,8 @@
 
   .nav-link.active,
   .show > .nav-link {
-    color: $nav-pills-link-active-color;
-    background-color: $nav-pills-link-active-bg;
+    color: #feb900;
+    background-color: #feb900;
   }
 }
 

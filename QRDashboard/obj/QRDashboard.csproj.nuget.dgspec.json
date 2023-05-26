@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {}
+    "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {
+    "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
+        "projectUniqueName": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
         "projectName": "QRDashboard",
-        "projectPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
+        "projectPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
         "packagesPath": "C:\\Users\\Hazael_Poot\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\QRDashboard\\obj\\",
+        "outputPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hazael_Poot\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -66,7 +66,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[6.0.12, )"
             }
           },
           "imports": [
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

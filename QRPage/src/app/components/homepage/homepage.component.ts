@@ -1,6 +1,7 @@
+import { ProyectosService } from 'src/app/services/proyectos.service';
+import { Categoria } from 'src/app/models/category.model';
+import { Proyecto } from 'src/app/models/proyect.model';
 import { Component, OnInit } from '@angular/core';
-
-import * as Aos from 'aos';
 
 @Component({
   selector: 'app-homepage',
@@ -9,18 +10,23 @@ import * as Aos from 'aos';
 
 })
 
+export class HomepageComponent implements OnInit {
 
+  proyectos: Proyecto[] = [];
+  claseSeleccionada:  Categoria[] = [];
 
-export class HomepageComponent {
+  constructor(
+    private proyectoService: ProyectosService
+  ) {}
 
-  public slides = [
-    { src: "https://image1.com" },
-    { src: "https://image2.com" },
-    { src: "https://image3.com" },
-    { src: "https://image4.com" }
-  ];
+  ngOnInit(){
+    this.getAllProyects();
+  }
 
-    constructor() {}
+  getAllProyects(){
+    this.proyectoService.getProyects().subscribe(
+      (response) => {
+      this.proyectos = response.data;
+     })
+  }
 }
-
-

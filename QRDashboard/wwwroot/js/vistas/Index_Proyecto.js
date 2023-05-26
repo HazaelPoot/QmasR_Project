@@ -1,0 +1,221 @@
+//MODELO DE LA RESPUESTA HTTP
+const MODELO_BASE_PROJ = {
+  idProj: 0,
+  titulo: "",
+  descripcion: "",
+  ubicacion: "",
+  presupuesto: 0,
+  idCategoria: 0,
+  categoriaName: "",
+  status: 0,
+  urlImagen: "",
+};
+
+//ANIMACION DE CARGA DE IMAGEN (PRELOADER)
+$(document).ready(function () {
+  $(".card-img-top").LoadingOverlay("show");
+
+  fetch("/Proyecto/Lista").then((response) => {
+    $(".card-img-top").LoadingOverlay("hide");
+  });
+});
+
+//INPUT SELECT CATEGORIAS
+$(document).ready(function () {
+  fetch("/Categoria/ListaCategorias")
+    .then((response) => {
+      return response.ok ? response.json() : Promise.reject(response);
+    })
+    .then((responseJson) => {
+      if (responseJson.length > 0) {
+        responseJson.forEach((item) => {
+          $("#cboCategoria").append(
+            $("<option>").val(item.idCategoria).text(item.descripcion)
+          );
+        });
+      }
+    });
+});
+
+//MOSTRAR EN EL MODAL LA IMAGEN SELECCIONADA
+function previewImage(event, querySelector){
+	const input = event.target;
+	$imgPreview = document.querySelector(querySelector);
+	if(!input.files.length) return
+	file = input.files[0];
+	objectURL = URL.createObjectURL(file);
+	$imgPreview.src = objectURL;
+}
+
+//MODAL FORM PROYECTO
+function mostarModal(modelo = MODELO_BASE_PROJ) {
+  $("#txtId").val(modelo.idProj);
+  $("#txtTitulo").val(modelo.titulo);
+  $("#txtDescripcion").val(modelo.descripcion);
+  $("#txtPresupuesto").val(modelo.presupuesto);
+  $("#txtUbicacion").val(modelo.ubicacion);
+  $("#cboCategoria").val(modelo.idCategoria == 0 ? $("#cboCategoria option:first").val() : modelo.idCategoria);
+  $("#cboEstado").val(modelo.status);
+  $("#txtFoto").val("");
+  if(modelo.urlImagen == "")
+  {
+    modelo.urlImagen = "https://static.vecteezy.com/system/resources/thumbnails/005/720/408/small_2x/crossed-image-icon-picture-not-available-delete-picture-symbol-free-vector.jpg";
+  }
+  $("#imgPost").attr("src", modelo.urlImagen);
+  $("#modalData").modal("show");
+}
+
+//OBTENER ID PARA EDITAR
+function openModalEdit(id) {
+  $.ajax({
+    url: "/Proyecto/GetById/" + id,
+    type: "GET",
+    dataType: "json",
+    success: function (datos) {
+      mostarModal(datos);
+      console.log(id);
+    }
+  });
+}
+
+//BOTON NUEVO PROYECTO
+$("#btnNuevo").click(function () {
+  mostarModal();
+});
+
+//BOTON GUARDA: POST - PUT
+$("#btnGuardar").click(function () {
+  const inputs = $("input.input-validar").serializeArray();
+  const inputsSnValor = inputs.filter((item) => item.value.trim() == "");
+
+  if (inputsSnValor.length > 0) {
+    const mensaje = `Debe completar el campo "${inputsSnValor[0].name}"`;
+    toastr.warning("", mensaje);
+    $(`input[name="${inputsSnValor[0].name}"]`).focus();
+    return;
+  }
+
+  const modelo = structuredClone(MODELO_BASE_PROJ);
+  modelo["idProj"] = parseInt($("#txtId").val());
+  modelo["titulo"] = $("#txtTitulo").val();
+  modelo["descripcion"] = $("#txtDescripcion").val();
+  modelo["ubicacion"] = $("#txtUbicacion").val();
+  modelo["presupuesto"] = $("#txtPresupuesto").val();
+  modelo["idCategoria"] = $("#cboCategoria").val();
+  modelo["status"] = $("#cboEstado").val();
+
+  const inputFoto = document.getElementById("txtFoto");
+  const formData = new FormData();
+
+  formData.append("foto", inputFoto.files[0]);
+  formData.append("modelo", JSON.stringify(modelo));
+
+  $("#modalData").find("div.modal-content").LoadingOverlay("show");
+
+  if (modelo.idProj == 0) {
+    fetch("/Proyecto/Crear", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        $("#modalData").find("div.modal-content").LoadingOverlay("hide");
+        return response.ok ? response.json() : Promise.reject(response);
+      })
+      .then((responseJson) => {
+        if (responseJson.status) {
+          $("#modalData").modal("hide");
+          swal(
+            {
+              title: "Listo!",
+              text: "El Proyecto fue creado",
+              type: "success",
+            },
+            function () {
+              location.reload();
+            }
+          );
+        } else {
+          swal("Lo sentimos", responseJson.message, "error");
+        }
+      });
+  } else {
+    fetch("/Proyecto/Editar", {
+      method: "PUT",
+      body: formData,
+    })
+      .then((response) => {
+        $("#modalData").find("div.modal-content").LoadingOverlay("hide");
+        return response.ok ? response.json() : Promise.reject(response);
+      })
+      .then((responseJson) => {
+        if (responseJson.status) {
+          $("#modalData").modal("hide");
+          swal(
+            {
+              title: "Listo!",
+              text: "El Proyecto fue Modificado",
+              type: "success",
+            },
+            function () {
+              location.reload();
+            }
+          );
+        } else {
+          swal("Lo sentimos", responseJson.message, "error");
+        }
+      });
+  }
+});
+
+//ELIMINAR PROYECTO: DELETE
+function openModalDelete(id) {
+  $.ajax({
+    url: "/Proyecto/GetById/" + id,
+    type: "GET",
+    dataType: "json",
+    success: function (datos) {
+      swal(
+        {
+          title: "¿Está seguro?",
+          text: `Eliminar Proyecto "${datos.titulo}"`,
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "Si, Eliminar",
+          cancelButtonText: "No, Cancelar",
+          closeOnConfirm: false,
+          closeOnCancel: true,
+        },
+        function (response) {
+          if (response) {
+            $(".showSweetAlert").LoadingOverlay("show");
+
+            fetch(`/Proyecto/Eliminar?idProj=${id}`, {
+              method: "DELETE",
+            })
+              .then((response) => {
+                $(".showSweetAlert").LoadingOverlay("hide");
+                return response.ok ? response.json() : Promise.reject(response);
+              })
+              .then((responseJson) => {
+                if (responseJson.status) {
+                  swal(
+                    {
+                      title: "Listo!",
+                      text: "El Proyecto fue Eliminado",
+                      type: "success",
+                    },
+                    function () {
+                      location.reload();
+                    }
+                  );
+                } else {
+                  swal("Lo sentimos", responseJson.message, "error");
+                }
+              });
+          }
+        }
+      );
+    },
+  });
+}

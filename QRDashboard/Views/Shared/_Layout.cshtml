@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -6,16 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="~/img/favicon.png">
     <title>Q+R - @ViewData["Title"]</title>
     <!-- Custom fonts for this template-->
     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
-    <link href="~/css/sb-admin-2.css" rel="stylesheet">
     <link href="~/vendor/toastr/toastr.min.css" rel="stylesheet">
     <link href="~/vendor/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="~/css/sb-admin-2.css" rel="stylesheet">
+
     @await RenderSectionAsync("Styles", required: false)
 </head>
+
+@{
+    var session = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var nombre = User.Identity.Name;
+    var typeuser = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Role));
+    var rolname = User.FindFirstValue("RolName");
+    var imagen = User.FindFirstValue("Profile");
+}
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -27,44 +39,71 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon">
-                    <img style="height:60px ;" src="https://firebasestorage.googleapis.com/v0/b/prueba-sotorage.appspot.com/o/Fotos_Perfil%2FQ%2BR%20ICONO.png?alt=media&token=cd048026-5108-4578-bce1-4cb3d98dc882" />
+                    <img style="height:55px ;" src="~/Img/QmasRIcono.png" />
                 </div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-
-            <!-- Nav Item - Administración Collapse Menu -->
+            <!-- Nav Item - Home -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministracion"
-                    aria-expanded="true" aria-controls="collapseAdministracion">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Admnistración</span>
-                </a>
-                <div id="collapseAdministracion" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/Usuario/Index">Usuarios</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="http://localhost:4200/" target="_blank">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Home</span></a>
             </li>
 
-            <!-- Nav Item - Inventario Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario"
-                    aria-expanded="true" aria-controls="collapseInventario">
-                    <i class="fas fa-fw fa-images"></i>
-                    <span>Projects</span>
-                </a>
-                <div id="collapseInventario" class="collapse" aria-labelledby="headingInventario"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/Proyecto/Index">Proyectos</a>
+            @if(session != null && typeuser == 1)
+            {
+                    <!-- Nav Item - Administración Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministracion"
+                        aria-expanded="true" aria-controls="collapseAdministracion">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Admnistración</span>
+                    </a>
+                    <div id="collapseAdministracion" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/Usuario/Index"><i class="fas fa-fw fa-user"></i> Usuarios</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+
+                <!-- Nav Item - Proyectos Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario"
+                        aria-expanded="true" aria-controls="collapseInventario">
+                        <i class="fas fa-fw fa-images"></i>
+                        <span>Proyectos</span>
+                    </a>
+                    <div id="collapseInventario" class="collapse" aria-labelledby="headingInventario"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/Proyecto/Index"><i class="fas fa-fw fa-project-diagram"></i>
+                                Proyectos</a>
+                        </div>
+                    </div>
+                </li>
+            }
+            else if(session != null && typeuser == 2)
+            {
+                <!-- Nav Item - Proyectos Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario"
+                        aria-expanded="true" aria-controls="collapseInventario">
+                        <i class="fas fa-fw fa-images"></i>
+                        <span>Proyectos</span>
+                    </a>
+                    <div id="collapseInventario" class="collapse" aria-labelledby="headingInventario"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/Proyecto/Index"><i class="fas fa-fw fa-project-diagram"></i>
+                                Proyectos</a>
+                        </div>
+                    </div>
+                </li>
+            }
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -90,33 +129,44 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <div class="topbar-divider d-none d-sm-block"></div>
-                        <!-- Nav Item - User Information -->
-                         <!-- Nav Item - User Information -->
-                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">UserName</span>
-                                <img class="img-profile rounded-circle"
-                                    src="https://www.zizurmayor.es/wp-content/uploads/2022/11/sin-perfil.jpg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="perfil.html">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
+                        <!-- VALIDACION DE LOGIN -->
+                        @if(session == null)
+                        {
+                            <!-- Nav Item - Sin Login -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="/Login/Index">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Iniciar Sesión</span>
+                                    <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Salir
+                            </li>
+                        }
+                        else
+                        {
+                            <!-- Nav Item - Información del Usuario -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@nombre</span>
+                                    <img class="img-profile rounded-circle" src="@imagen">
                                 </a>
-                            </div>
-                        </li>
+                                <!-- Dropdown - Información del Usuario -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="/">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Perfil
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" onclick="OpenDialogLogout()">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Salir
+                                    </a>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </nav>
                 <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     @RenderBody()
@@ -125,6 +175,7 @@
 
             </div>
             <!-- End of Main Content -->
+            
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -139,20 +190,21 @@
         <!-- End of Content Wrapper -->
 
     </div>
+
     <!-- End of Page Wrapper -->
     <!-- Bootstrap core JavaScript-->
     <script src="~/vendor/jquery/jquery.min.js"></script>
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
     <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
     <script src="~/js/sb-admin-2.js"></script>
     <script src="~/vendor/toastr/toastr.min.js"></script>
     <script src="~/vendor/sweetalert/sweetalert.js"></script>
     <script src="~/vendor/loadingoverlay/loadingoverlay.min.js"></script>
+
+    <!-- SCRIPT CON LA FUNCIÓN: LOGOUT -->
+    <script src="~/js/vistas/Index_Layout.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-</html>
 
+</html>

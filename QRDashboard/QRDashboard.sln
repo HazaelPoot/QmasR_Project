@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRDashboard", "QRDashboard.csproj", "{A86756C2-DEFF-44AF-8068-9B554CA4B8BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRDashboard", "QRDashboard.csproj", "{ED7D4132-48DF-4903-949E-B65F957C868B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +14,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A86756C2-DEFF-44AF-8068-9B554CA4B8BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A86756C2-DEFF-44AF-8068-9B554CA4B8BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A86756C2-DEFF-44AF-8068-9B554CA4B8BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A86756C2-DEFF-44AF-8068-9B554CA4B8BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED7D4132-48DF-4903-949E-B65F957C868B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED7D4132-48DF-4903-949E-B65F957C868B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED7D4132-48DF-4903-949E-B65F957C868B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED7D4132-48DF-4903-949E-B65F957C868B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

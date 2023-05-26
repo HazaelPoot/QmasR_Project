@@ -1,10 +1,12 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using QRDashboard.Domain.Dtos.Response;
+using System.Security.Claims;
+using QRDashboard.Domain.Dtos;
+using Microsoft.AspNetCore.Mvc;
 using QRDashboard.Domain.Entities;
 using QRDashboard.Domain.Interfaces;
-using QRDashboard.Models;
+using QRDashboard.Domain.Dtos.Response;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QRDashboard.Controllers
 {
@@ -20,94 +22,122 @@ namespace QRDashboard.Controllers
             _rolService = rolService;
             _mapper = mapper;
         }
+        
+        //SELECT INPUT JQUERY
+        [HttpGet]
+        public async Task<IActionResult> ListaRoles()
+        {
+            List<DtoRol> dtoListaRoles = _mapper.Map<List<DtoRol>>(await _rolService.Lista());
+            return StatusCode(StatusCodes.Status200OK, dtoListaRoles);
+        }
 
         public IActionResult Index()
         {
+            var session = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var typeUser = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Role));
+
+            if(session == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if(typeUser != 1)
+            {
+                ViewData["Unauthorizate"] = "No tienes permisos para acceder a esta pantalla, solo los Administradores pueden";
+            }
+
             return View();
         }
 
         [HttpGet]
+        // [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Lista()
         {
-            List<VMUsuario> vmUsuarioLista = _mapper.Map<List<VMUsuario>>(await _usuarioService.Lista());
-            return StatusCode(StatusCodes.Status200OK, new { data = vmUsuarioLista });
+            List<DtoUsuario> dtoUsuarioLista = _mapper.Map<List<DtoUsuario>>(await _usuarioService.Lista());
+            return StatusCode(StatusCodes.Status200OK, new { data = dtoUsuarioLista });
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListaRoles()
+        // [Authorize(Policy = "Admin")]
+        public async Task<IActionResult> GetById(int id)
         {
-            List<VMRol> vmListaRoles = _mapper.Map<List<VMRol>>(await _rolService.Lista());
-            return StatusCode(StatusCodes.Status200OK, vmListaRoles);
+            DtoUsuario dtoUsuario = _mapper.Map<DtoUsuario>(await _usuarioService.GetById(id));
+            if(dtoUsuario is null)
+                return BadRequest($"El Usuario {id} no existe");
+
+            return StatusCode(StatusCodes.Status200OK, dtoUsuario);
         }
 
         [HttpPost]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Crear([FromForm] IFormFile foto, [FromForm] string modelo)
         {
-            GenericResponse<VMUsuario> gResponse = new GenericResponse<VMUsuario>();
+            GenericResponse<DtoUsuario> gResponse = new GenericResponse<DtoUsuario>();
 
             try
             {
-                VMUsuario vMUsuario = JsonConvert.DeserializeObject<VMUsuario>(modelo);
+                DtoUsuario dtoUsuario = JsonConvert.DeserializeObject<DtoUsuario>(modelo);
                 string nombreFoto = "";
                 Stream fotoStream = null;
 
                 if (foto != null)
                 {
-                    string nombre_codigo = Guid.NewGuid().ToString("N");
+                    var fotoName = dtoUsuario.Username;
                     string extension = Path.GetExtension(foto.FileName);
-                    nombreFoto = string.Concat(nombre_codigo, extension);
+                    nombreFoto = string.Concat(fotoName, extension);
                     fotoStream = foto.OpenReadStream();
                 }
 
-                Usuario usuarioCreado = await _usuarioService.Crear(_mapper.Map<Usuario>(vMUsuario), fotoStream, nombreFoto);
+                Usuario usuarioCreado = await _usuarioService.Crear(_mapper.Map<Usuario>(dtoUsuario), fotoStream, "Fotos_Perfil", nombreFoto);
 
-                vMUsuario = _mapper.Map<VMUsuario>(usuarioCreado);
+                dtoUsuario = _mapper.Map<DtoUsuario>(usuarioCreado);
                 gResponse.Status = true;
-                gResponse.Obejct = vMUsuario;
+                gResponse.Object = dtoUsuario;
             }
             catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
-            return StatusCode(StatusCodes.Status200OK, gResponse);
+            return StatusCode(StatusCodes.Status201Created, gResponse);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpPut]
         public async Task<IActionResult> Editar([FromForm] IFormFile foto, [FromForm] string modelo)
         {
-            GenericResponse<VMUsuario> gResponse = new GenericResponse<VMUsuario>();
+            GenericResponse<DtoUsuario> gResponse = new GenericResponse<DtoUsuario>();
 
             try
             {
-                VMUsuario vMUsuario = JsonConvert.DeserializeObject<VMUsuario>(modelo);
+                DtoUsuario dtoUsuario = JsonConvert.DeserializeObject<DtoUsuario>(modelo);
                 string nombreFoto = "";
                 Stream fotoStream = null;
 
                 if (foto != null)
                 {
-                    string nombre_codigo = Guid.NewGuid().ToString("N");
+                    var fotoName = dtoUsuario.Username;
                     string extension = Path.GetExtension(foto.FileName);
-                    nombreFoto = string.Concat(nombre_codigo, extension);
+                    nombreFoto = string.Concat(fotoName, extension);
                     fotoStream = foto.OpenReadStream();
                 }
 
-                Usuario usuarioEditado = await _usuarioService.Editar(_mapper.Map<Usuario>(vMUsuario), fotoStream, nombreFoto);
+                Usuario usuarioEditado = await _usuarioService.Editar(_mapper.Map<Usuario>(dtoUsuario), fotoStream, "Fotos_Perfil", nombreFoto);
 
-                vMUsuario = _mapper.Map<VMUsuario>(usuarioEditado);
+                dtoUsuario = _mapper.Map<DtoUsuario>(usuarioEditado);
                 gResponse.Status = true;
-                gResponse.Obejct = vMUsuario;
+                gResponse.Object = dtoUsuario;
             }
             catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
             return StatusCode(StatusCodes.Status200OK, gResponse);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpDelete]
         public async Task<IActionResult> Eliminar(int idUsuario)
         {
@@ -117,10 +147,10 @@ namespace QRDashboard.Controllers
             {
                 gResponse.Status = await _usuarioService.Eliminar(idUsuario);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 gResponse.Status = false;
-                gResponse.Mesaje = ex.Message;
+                gResponse.Message = ex.Message;
             }
 
             return StatusCode(StatusCodes.Status200OK, gResponse);
