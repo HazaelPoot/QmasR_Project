@@ -1,18 +1,20 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
+using System.Security.Claims;
 using QRDashboard.Domain.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using QRDashboard.Domain.Entities;
 using QRDashboard.Domain.Interfaces;
 using QRDashboard.Domain.Dtos.Response;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QRDashboard.Controllers
 {
     public class ProyectoController : Controller
     {
-        private readonly IMapper _mapper;
         private readonly IProyectoService _proyectoService;
-
+        private readonly IMapper _mapper;
+        
         public ProyectoController(IProyectoService proyectoService, IMapper mapper)
         {
             _proyectoService = proyectoService;
@@ -23,7 +25,7 @@ namespace QRDashboard.Controllers
         {
             List<DtoProyecto> dtoProyectoLista = _mapper.Map<List<DtoProyecto>>(await _proyectoService.Lista());
             
-            var sesion = HttpContext.Session.GetInt32("Sesion");
+            var sesion = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if(sesion == null)
                 return RedirectToAction("Index", "Login");
 
@@ -51,6 +53,7 @@ namespace QRDashboard.Controllers
             return StatusCode(StatusCodes.Status200OK, dtoProyecto);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Crear([FromForm] IFormFile foto, [FromForm] string modelo)
         {
@@ -85,6 +88,7 @@ namespace QRDashboard.Controllers
             return StatusCode(StatusCodes.Status201Created, gResponse);
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Editar([FromForm] IFormFile foto, [FromForm] string modelo)
         {
@@ -119,6 +123,7 @@ namespace QRDashboard.Controllers
             return StatusCode(StatusCodes.Status200OK, gResponse);
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> Eliminar(int idProj)
         {

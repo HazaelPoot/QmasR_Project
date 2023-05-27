@@ -61,40 +61,40 @@ namespace QRDashboard.Aplication.Services
         {
             string template = @"
             <html>
-            <head>
-                <meta charset='UTF-8'>
-                <title>{{Subject}}</title>
-            </head>
+                <head>
+                    <meta charset='UTF-8'>
+                    <title>{{Subject}}</title>
+                </head>
 
-            <body>
-                <table style='width:100%¿'>
-                    <tr>
-                        <td align='center' colspan='2'>
-                            <h2 style='color:#004DAF'>Q+R Correo Web</h2>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align='left' colspan='2'>
-                            <h4>Este correo fue enviado por un usuario desde la pagina web principal</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><h4 style='color:#004DAF;margin:2px'>Remitente:</h4></td>
-                        <td>{{FromAddress}}</td>
-                    </tr>
-                    <tr>
-                        <td><h4 style='color:#004DAF;margin:2px'>Asunto:</h4></td>
-                        <td>{{Subject}}</td>
-                    </tr>
-                </table>
-                <br>
-                <p style='font-size: 15px'>{{Body}}</p>
-                <br>
-                <a style='border:3px solid #004DAF; border-radius:22px; padding: 5px; text-decoration: none; color: #004DAF; font-weight: bold;' 
-                    href='mailto:{{FromAddress}}?Subject=Respuesta%20para:%20{{Subject}}'>Responder
-                </a>
-                <br>
-            </body>
+                <body>
+                    <table style='width:100%¿'>
+                        <tr>
+                            <td align='center' colspan='2'>
+                                <h2 style='color:#004DAF'>Q+R Correo Web</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align='left' colspan='2'>
+                                <h4>Este correo fue enviado por un usuario desde la pagina web principal</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4 style='color:#004DAF;margin:2px'>Remitente:</h4></td>
+                            <td>{{FromAddress}}</td>
+                        </tr>
+                        <tr>
+                            <td><h4 style='color:#004DAF;margin:2px'>Asunto:</h4></td>
+                            <td>{{Subject}}</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <p style='font-size: 15px'>{{Body}}</p>
+                    <br>
+                    <a style='border:3px solid #004DAF; border-radius:22px; padding: 5px; text-decoration: none; color: #004DAF; font-weight: bold;' 
+                        href='mailto:{{FromAddress}}?Subject=Respuesta%20para:%20{{Subject}}'>Responder
+                    </a>
+                    <br>
+                </body>
             </html>
             ";
 

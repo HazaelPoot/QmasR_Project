@@ -97,7 +97,7 @@ function mostarModal(modelo = MODELO_BASE_USER){
     $("#txtNombre").val(modelo.nombre)
     $("#txtApellido").val(modelo.apellidos)
     $("#txtUserName").val(modelo.username)
-    $("#txtPassword").val(modelo.passw)
+    $("#txtPassword").val(modelo.passw).prop("disabled", modelo.passw);
     $("#cboRol").val(modelo.adminType == 0 ? $("#cboRol option:first").val(): modelo.adminType)
     $("#txtFoto").val("")
     if(modelo.urlImagen == "")

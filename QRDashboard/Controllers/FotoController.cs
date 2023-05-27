@@ -1,10 +1,12 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Security.Claims;
 using QRDashboard.Domain.Dtos;
-using QRDashboard.Domain.Dtos.Response;
+using Microsoft.AspNetCore.Mvc;
 using QRDashboard.Domain.Entities;
 using QRDashboard.Domain.Interfaces;
+using QRDashboard.Domain.Dtos.Response;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QRDashboard.Controllers
 {
@@ -16,29 +18,22 @@ namespace QRDashboard.Controllers
 
         public FotoController(IFotoService fotoService, IMapper mapper, IProyectoService proyectoService)
         {
-            _fotoService = fotoService;
             _proyectoService = proyectoService;
+            _fotoService = fotoService;
             _mapper = mapper;
         }
         public async Task<ActionResult<IEnumerable<FotosProyecto>>> Index(int idProj)
         {
+            var sesion = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if(sesion == null)
+                return RedirectToAction("Index", "Login");
+                
             IEnumerable<DtoFotosProyecto> dtoFotoProj = _mapper.Map<IEnumerable<DtoFotosProyecto>>(await _fotoService.ListByProject(idProj));
             ProyectoQr search = await _proyectoService.GetById(idProj);
             ViewData["TituloProject"] = search.Titulo;
             TempData["IdProj"] = idProj;
 
-            var sesion = HttpContext.Session.GetInt32("Sesion");
-            if(sesion == null)
-                return RedirectToAction("Index", "Login");
-
             return View(dtoFotoProj);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Lista()
-        {
-            List<DtoFotosProyecto> dtoFotoProj = _mapper.Map<List<DtoFotosProyecto>>(await _fotoService.Lista());
-            return StatusCode(StatusCodes.Status200OK, new { data = dtoFotoProj });
         }
 
         [HttpGet]
@@ -54,12 +49,20 @@ namespace QRDashboard.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Lista()
+        {
+            List<DtoFotosProyecto> dtoFotoProj = _mapper.Map<List<DtoFotosProyecto>>(await _fotoService.Lista());
+            return StatusCode(StatusCodes.Status200OK, new { data = dtoFotoProj });
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
             DtoFotosProyecto dtoFotoProj = _mapper.Map<DtoFotosProyecto>(await _fotoService.GetById(id));
             return StatusCode(StatusCodes.Status200OK, dtoFotoProj);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Crear([FromForm] IFormFile foto, [FromForm] string modelo)
         {
@@ -95,11 +98,11 @@ namespace QRDashboard.Controllers
             return StatusCode(StatusCodes.Status201Created, gResponse);
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> Eliminar(int idImage)
         {
             GenericResponse<string> gResponse = new GenericResponse<string>();
-
             try
             {
                 gResponse.Status = await _fotoService.Eliminar(idImage);
@@ -112,6 +115,5 @@ namespace QRDashboard.Controllers
 
             return StatusCode(StatusCodes.Status200OK, gResponse);
         }
-
     }
 }

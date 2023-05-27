@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.InyectarDependencia(builder.Configuration);
+builder.Services.InjectDependency(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 var app = builder.Build();
@@ -19,10 +19,15 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
-app.UseSession();
+
 app.UseRouting();
+
 app.UseCors("QmasRPolicy");
+
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(

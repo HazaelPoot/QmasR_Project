@@ -1,10 +1,12 @@
 using AutoMapper;
 using Newtonsoft.Json;
+using System.Security.Claims;
 using QRDashboard.Domain.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using QRDashboard.Domain.Entities;
 using QRDashboard.Domain.Interfaces;
 using QRDashboard.Domain.Dtos.Response;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QRDashboard.Controllers
 {
@@ -31,9 +33,10 @@ namespace QRDashboard.Controllers
 
         public IActionResult Index()
         {
-            var sesion = HttpContext.Session.GetInt32("Sesion");
-            var typeUser = HttpContext.Session.GetInt32("TypeUser");
-            if(sesion == null)
+            var session = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var typeUser = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Role));
+
+            if(session == null)
             {
                 return RedirectToAction("Index", "Login");
             }
@@ -46,6 +49,7 @@ namespace QRDashboard.Controllers
         }
 
         [HttpGet]
+        // [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Lista()
         {
             List<DtoUsuario> dtoUsuarioLista = _mapper.Map<List<DtoUsuario>>(await _usuarioService.Lista());
@@ -53,6 +57,7 @@ namespace QRDashboard.Controllers
         }
 
         [HttpGet]
+        // [Authorize(Policy = "Admin")]
         public async Task<IActionResult> GetById(int id)
         {
             DtoUsuario dtoUsuario = _mapper.Map<DtoUsuario>(await _usuarioService.GetById(id));
@@ -63,6 +68,7 @@ namespace QRDashboard.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Crear([FromForm] IFormFile foto, [FromForm] string modelo)
         {
             GenericResponse<DtoUsuario> gResponse = new GenericResponse<DtoUsuario>();
@@ -96,6 +102,7 @@ namespace QRDashboard.Controllers
             return StatusCode(StatusCodes.Status201Created, gResponse);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpPut]
         public async Task<IActionResult> Editar([FromForm] IFormFile foto, [FromForm] string modelo)
         {
@@ -130,6 +137,7 @@ namespace QRDashboard.Controllers
             return StatusCode(StatusCodes.Status200OK, gResponse);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpDelete]
         public async Task<IActionResult> Eliminar(int idUsuario)
         {

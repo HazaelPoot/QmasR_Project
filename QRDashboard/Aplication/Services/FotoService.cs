@@ -89,16 +89,20 @@ namespace QRDashboard.Aplication.Services
             }
         }
 
-        public async Task<bool> EliminarRange(int idProj)
+        public async Task<bool> EliminarList(int idProj)
         {
             try
             {
-                IQueryable<FotosProyecto> fotoEncontrado = await _repository.Consult(u => u.IdImg == idProj);
+                IQueryable<FotosProyecto> fotoEncontrado = await _repository.Consult(u => u.IdProj == idProj);
+                List<FotosProyecto> fotos = fotoEncontrado.ToList();
 
-                if(fotoEncontrado == null)
+                if(fotos == null)
                     throw new TaskCanceledException("Las fotos no existen");
 
-                bool eliminado = await _repository.EliminateRange<FotosProyecto>(u => u.IdProj == idProj);
+                foreach (var item in fotos)
+                {
+                    await Eliminar(item.IdImg);
+                }
 
                 return true;
             }

@@ -12,7 +12,7 @@ namespace QRDashboard.Infraestructure.Repositories
         {
             _context = context;
         }
-
+    
         public async Task<TEntity> Obtain(Expression<Func<TEntity, bool>> filtro)
         {
             try
@@ -25,12 +25,13 @@ namespace QRDashboard.Infraestructure.Repositories
                 throw;
             }
         }
+    
         public Task<IQueryable<TEntity>> Consult(Expression<Func<TEntity, bool>> filtro = null)
         {
             IQueryable<TEntity> queryEntity = filtro == null? _context.Set<TEntity>() : _context.Set<TEntity>().Where(filtro);
             return Task.FromResult(queryEntity);
         }
-        
+    
         public async Task<TEntity> Create(TEntity entidad)
         {
             try
@@ -44,7 +45,7 @@ namespace QRDashboard.Infraestructure.Repositories
                 throw;
             }
         }
-
+    
         public async Task<bool> Edit(TEntity entidad)
         {
             try
@@ -58,7 +59,7 @@ namespace QRDashboard.Infraestructure.Repositories
                 throw;
             }
         }
-
+    
         public async Task<bool> Eliminate(TEntity entidad)
         {
             try
@@ -72,7 +73,7 @@ namespace QRDashboard.Infraestructure.Repositories
                 throw;
             }
         }
-
+    
         public async Task<bool> EliminateRange<TEntidad>(Expression<Func<TEntity, bool>> filtro) where TEntidad : class
         {
             try

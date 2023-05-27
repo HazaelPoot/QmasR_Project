@@ -120,7 +120,7 @@ namespace QRDashboard.Aplication.Services
                 if(proyectoEncontrado == null)
                     throw new TaskCanceledException("El Proyecto no existe");
 
-                await _fotoService.EliminarRange(idProyecto);
+                await _fotoService.EliminarList(idProyecto);
                 
                 string nombreFoto = proyectoEncontrado.NombreFoto;
                 bool response = await _repository.Eliminate(proyectoEncontrado);

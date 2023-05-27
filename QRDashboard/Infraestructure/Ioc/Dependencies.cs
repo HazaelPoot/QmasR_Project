@@ -1,14 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using QRDashboard.Aplication.Services;
 using QRDashboard.Domain.Interfaces;
+using QRDashboard.Aplication.Services;
 using QRDashboard.Infraestructure.Data;
 using QRDashboard.Infraestructure.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace QRDashboard.Infraestructure.Ioc
 {
     public static class Dependencies
     {
-        public static void InyectarDependencia(this IServiceCollection services, IConfiguration configuration)
+        public static void InjectDependency(this IServiceCollection services, IConfiguration configuration)
         {
 
             services.AddDbContext<AppDbContext>(options =>
@@ -26,18 +27,18 @@ namespace QRDashboard.Infraestructure.Ioc
                 });
             });
 
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
-                options.Cookie.Name = ".QmasR.Session";
-                options.Cookie.IsEssential = true;
+            services.AddHttpContextAccessor();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(opt => {
+                opt.Cookie.Name = "Q+R_Cookie";
+                opt.LoginPath = "/Login/Index";
+                opt.ExpireTimeSpan = TimeSpan.FromMinutes(50);
             });
 
-            services.AddDistributedMemoryCache();
-            services.Configure<CookiePolicyOptions>(options => 
-            {
-                options.CheckConsentNeeded = configuration => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+            services.AddAuthorization(options => {
+                options.AddPolicy("Admin", policy => policy.RequireClaim("RolName", "Administrador"));
+                options.AddPolicy("Super", policy => policy.RequireClaim("RolName", "Supervisor"));
             });
 
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -45,6 +46,8 @@ namespace QRDashboard.Infraestructure.Ioc
             services.AddScoped<IFirebaseService, FirebaseService>();
             services.AddScoped<IProyectoService, ProyectoService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IUtilityService, UtilityService>();
+            services.AddScoped<IAccesoService, AccesoService>(); 
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IFotoService, FotoService>();
             services.AddScoped<IRolService, RolService>();

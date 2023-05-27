@@ -6,9 +6,9 @@ namespace QRDashboard.Domain.Interfaces
     {
         Task<List<ProyectoQr>> Lista();
         Task<List<ProyectoQr>> ListActivate();
+        Task<ProyectoQr> GetById (int idProyecto);
         Task<ProyectoQr> Crear(ProyectoQr entidad, Stream Foto = null, string carpetaDestino = "", string NombreFoto ="");
         Task<ProyectoQr> Editar(ProyectoQr entidad, Stream Foto = null, string carpetaDestino = "", string NombreFoto ="");
         Task<bool> Eliminar(int idProyecto);
-        Task<ProyectoQr> GetById (int idProyecto);
     }
 }

@@ -11374,12 +11374,25 @@ body.sidebar-toggled footer.sticky-footer {
   padding: 0px 5px;
 }
 
-.main-part-profile {
+/* .main-part-profile {
   width: 45%;
   height: 100%;
   margin: 0 auto;
   text-align: start;
   padding: 0px 5px;
+} */
+
+.main-part-profile {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: start;
+  padding: 0px 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .sinLogin {

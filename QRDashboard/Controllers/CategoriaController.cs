@@ -9,9 +9,8 @@ namespace QRDashboard.Controllers
 {
     public class CategoriaController : Controller
     {
-        private readonly IMapper _mapper;
         private readonly ICategoriaService _categoriaService;
-
+        private readonly IMapper _mapper;
         public CategoriaController(ICategoriaService categoriaService, IMapper mapper)
         {
             _categoriaService = categoriaService;

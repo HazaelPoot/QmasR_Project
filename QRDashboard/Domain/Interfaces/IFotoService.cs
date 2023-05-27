@@ -9,6 +9,6 @@ namespace QRDashboard.Domain.Interfaces
         Task<FotosProyecto> GetById (int idImage);
         Task<FotosProyecto> Crear(FotosProyecto entidad, int? idProj, Stream Foto = null, string carpetaDestino = "", string NombreFoto ="");
         Task<bool> Eliminar(int idImage);
-        Task<bool> EliminarRange(int idProj);
+        Task<bool> EliminarList(int idProj);
     }
 }
