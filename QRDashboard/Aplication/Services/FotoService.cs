@@ -73,7 +73,7 @@ namespace QRDashboard.Aplication.Services
                 FotosProyecto fotoEncontrado = await _repository.Obtain(u => u.IdImg == idImage);
 
                 if(fotoEncontrado == null)
-                throw new TaskCanceledException("El Proyecto no existe");
+                    throw new TaskCanceledException("No se econtro la foto");
 
                 string nombreFoto = fotoEncontrado.NombreFoto;
                 bool response = await _repository.Eliminate(fotoEncontrado);
