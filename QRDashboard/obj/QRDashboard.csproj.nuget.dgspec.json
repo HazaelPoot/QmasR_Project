@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {}
+    "C:\\Users\\Hazael_Poot\\Desktop\\UTM\\8A IDGS\\DESARROLLO WEB PROFESIONAL\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {
+    "C:\\Users\\Hazael_Poot\\Desktop\\UTM\\8A IDGS\\DESARROLLO WEB PROFESIONAL\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
+        "projectUniqueName": "C:\\Users\\Hazael_Poot\\Desktop\\UTM\\8A IDGS\\DESARROLLO WEB PROFESIONAL\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
         "projectName": "QRDashboard",
-        "projectPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
+        "projectPath": "C:\\Users\\Hazael_Poot\\Desktop\\UTM\\8A IDGS\\DESARROLLO WEB PROFESIONAL\\Q+R PROJECT\\QRDashboard\\QRDashboard.csproj",
         "packagesPath": "C:\\Users\\Hazael_Poot\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hazael_Poot\\Desktop\\Q+R PROJECT\\Q+R PROJECT\\QRDashboard\\obj\\",
+        "outputPath": "C:\\Users\\Hazael_Poot\\Desktop\\UTM\\8A IDGS\\DESARROLLO WEB PROFESIONAL\\Q+R PROJECT\\QRDashboard\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hazael_Poot\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -88,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }
